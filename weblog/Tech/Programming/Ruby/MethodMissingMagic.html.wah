@@ -1,0 +1,84 @@
+# --- 
+# title: method_missing magic - emulating Groovy's "it" in Ruby
+# published: 2 Oct 2006, 13:55
+# Updated: 5 Oct 2006, 10:25
+# ...
+
+Inspired variously by:
+
+  - {Symbol#to_proc}@http://blogs.pragprog.com/cgi-bin/pragdave.cgi/Tech/Ruby/ToProc.rdoc
+  - Nat Pryce's articles on {Higher-Order Messaging in Ruby}@http://nat.truemesh.com/archives/000535.html
+  - Groovy's {implied "+it+" closure-parameter}@http://groovy.codehaus.org/Closures
+
+I've cooked up a shortcut for generating simple blocks, meaning that rather
+than 
+
+| people.select { |x| x.name.length > 10 }
+
+I can write such things as:
+
+| people.select(&its.name.length > 10)
+
+<em> Disclaimer: I think this is more "cool hack" than useful tool; it's
+probably too much of an {alien
+artifact}@http://www.eaves.org/blog-archive/000071.html to be useful in
+real life.  And it's not generally applicable, like "+it+" in Groovy.  And
+really, it's not *that* much more verbose to use a block. Aaaaaanyway
+...</em>
+
+The trick is that the above is parsed as
+
+| people.select(&(its.name.length.>(10)))
+
+The "+its+" method creates a +MessageBuffer+ object, which records the
+messages (method invocations) sent it's way:
+
+| irb(main):001:0> require 'message_buffer'
+| => true
+| irb(main):002:0> its
+| => #<MessageBuffer:0x6b40b44 @messages=[]>
+| irb(main):003:0> its.name.length < 10
+| => #<MessageBuffer:0x6b3e678 @messages=[[:name], [:length], [:<, 10]]>
+
+Now, the "&" operator coerces it's argument to a +Proc+, and
++MessageBuffer#to_proc+ generates a +Proc+ that replays all the recorded
+messages.  Q.E.D.  
+
+The full source-code is fairly short, so I'll include it inline:
+
+| class MessageBuffer 
+| 
+|   instance_methods.each do |m|
+|     undef_method m unless m =~ /^(__|respond_to|inspect)/ 
+|   end
+|   
+|   def initialize
+|     @messages = []
+|   end
+| 
+|   def method_missing(*message)
+|     @messages << message        # record the message
+|     self                        # return self so we can keep recording
+|   end
+|   
+|   def __replay_all_messages__(obj)
+|     @messages.inject(obj) do |obj, message|
+|       obj.__send__(*message)
+|     end 
+|   end
+|   
+|   def to_proc
+|     proc { |x| __replay_all_messages__(x) }
+|   end
+| 
+| end
+| 
+| def its
+|   MessageBuffer.new
+| end
+
+<hr/>
+
+<em>Update: Florian Gross suggested a better way to replay recorded
+messages, using <code>inject</code>, and I've updated the code accordingly.
+</em>

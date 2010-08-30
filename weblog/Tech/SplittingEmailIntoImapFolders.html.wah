@@ -1,0 +1,94 @@
+# --- 
+# title: Splitting email into IMAP folders
+# published: 26-Jun-2004, 22:30
+# ...
+
+After years of using Emacs-based {Gnus}@http://gnus.org/about.html to read
+my email, I've recently switched to IMAP, and
+{Thunderbird}@http://www.mozilla.org/products/thunderbird/.
+
+Having switched, I immediately began to miss the powerful
+{mail-splitting}@http://www.gnus.org/manual/gnus_161.html#SEC161
+functionality of Gnus.  I subscribe to a bunch of mailing lists, and had
+configured Gnus such that messages were filed into a separate folder for
+each list.  For example:
+
+| (setq nmail-split-methods
+|       '(
+|         ("list.yahoo.\\1"       
+|          "^Delivered-To:.* \\(\\S +\\)@yahoogroups.com")
+|         ("list.codehaus.\\1" 
+|          "^Delivered-To:.* \\(\\S +\\)@codehaus.org")
+|         ("misc" "")))
+
+I wanted to do the same kind of thing in my new IMAP-based environment.
+And I want to be able to read my mail from a variety of locations, which
+indicated a server-side solution, rather than one depending on filters in
+my mail client.
+
+The result is a bit of magic using {+procmail+}@http://www.procmail.org,
+though +procmail+ alone wasn't quite up to the job, so I had to resort to a
+bit of Ruby on the side.  Here's the relevant part of my
+<code>~/.procmailrc</code> ...
+
+| DEFAULT="$HOME/Maildir/"
+| 
+| :0 hWi
+| AUTOFOLDER=| $HOME/Global/bin/choose-imap-folder
+|
+| :0
+| * ! AUTOFOLDER ?? ^^^^
+| ${DEFAULT}.${AUTOFOLDER}/
+
+The first recipe pipes the message header into a script, and captures the
+script output in <code>$AUTOFOLDER</code>.  The next checks to see whether
+<code>$AUTOFOLDER</code> is set, and if it is, delivers to the named
+folder.
+
+Paths above are correct for Courier IMAPD, where mail intended for the
+"foo" folder needs to be filed in "<code>$HOME/Maildir/.foo/</code>".
+
+The folder-selection script itself looks something like this:
+
+| #! /usr/bin/env ruby
+| 
+| ARGF.each_line do |line|
+| 
+|   folder = \
+|   case line
+|     
+|   when %r{^Delivered-To: mailing list (\S+)@yahoogroups\.com}
+|     'yahoo.' + $1
+| 
+|   when %r{^Delivered-To: mailing list (\S+)@codehaus\.org}
+|     'codehaus.' + $1
+|   when %r{^Delivered-To: mailing list (\S+)@(\S+)\.codehaus\.org}
+|     'codehaus.' + $2 + '-' + $1
+|     
+|   end
+| 
+|   if folder 
+|     puts folder
+|     exit
+|   end
+| 
+| end
+
+So there you go.  I'll have to tweak the +choose-imap-folder+ when I
+subscribe to a list from a new source, but otherwise, new folders just
+appear like magic.
+
+To make this comfortable when using Thunderbird, I had to do two things:
+
+# Configure my IMAP accounts to show *all* folders, rather requiring
+  subscription:
+
+  - Select menu "Tools" ... "Account Settings"
+  - Goto "Server Settings"
+  - Enter the "Advanced..." dialog
+  - Select the "IMAP" tab
+  - Untick "Show only subscribed folders"
+
+# Configure it to {check *all* IMAP folders for new
+  mail}@http://texturizer.net/thunderbird/tips.html#beh_downloadstartup,
+  rather than just "INBOX".

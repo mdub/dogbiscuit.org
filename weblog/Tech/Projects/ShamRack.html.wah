@@ -1,0 +1,29 @@
+# --- 
+# title: Introducing ShamRack
+# published: 3-July-2009, 15:50
+# ...
+
+The system I'm currently working on integrates with several external systems, over HTTP, using simple (RESTish) web-services.  I really don't want to involve those external systems while testing my own, though; I want to stub 'em out.
+
+My first attempt involved stubbing out HTTP calls using my mocking framework of choice.  I'm using {RestClient}@http://rest-client.heroku.com, which I like a lot, and stubbing out RestClient API calls worked quite well.  It kept on working quite well for several hours, until I decided to refactor a little, using RestClient in a slightly differently way, at which point it broke completely.  Bother.  I really don't like having tests coupled to implementation details, so went searching for another way.
+
+{FakeWeb}@http://fakeweb.rubyforge.org looked pretty good, in that it stubs things out at the Net::HTTP layer, which I'm unlikely to refactor out of the picture.  In the end, though, it's not really what I wanted. I wanted to be able to do things like:
+
+- verify the body (and mime-type) of a POST/PUT request
+- dynamically generate responses, based on some aspect of the request (e.g. query parameters) 
+
+In short, I wanted a {Fake Object}@http://xunitpatterns.com/Fake%20Object.html, rather than a simple stub.
+
+It occurred to me around about then that we already have plenty of tools for describing the behaviour of web-applications: they're called web-application frameworks!  Many of them are too heavy-weight for my purposes, but {Sinatra}@http://www.sinatrarb.com/ is nicely minimal.  So, 60 lines of Ruby code later, I had a little web-app that mimicked one of those external web-services sufficiently for my testing.  Win!
+
+But waitaminut.  I really don't want to have to start a separate process running my fake web-service, and talk to it using HTTP.  That's going to be slow: network I/O isn't cheap.  Isn't there some way I can use something like Sinatra but still keep everything in-process?
+
+There is now.  {ShamRack}@http://github.com/mdub/sham_rack plumbs Net::HTTP directly into applications built to run on {Rack}@http://rack.rubyforge.org/.  Which includes all Sinatra apps, as well as Rails, Merb, etc.
+
+<div align="center">
+<img src="/mdub/images/ShamRack.png" />
+</div>
+
+Using ShamRack, I avoid the network traffic, making the tests a whole lot faster (about 25 times faster, in my case).  Plus, I avoid the complication of having to start and stop an external web-server.  Finally, because my fake web-service app is in-process, I get a handy back-channel I can use to setup or inspect it's state during tests.
+
+If you find ShamRack handy, or have ideas about how it could improve, let me know!

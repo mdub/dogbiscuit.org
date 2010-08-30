@@ -1,0 +1,42 @@
+# --- 
+# title: "Pattern: Pseudo-User Programming Interface"
+# published: 
+# ...
+
+  Abstract: User-interface-based automated tests become more maintainable
+  if you add a layer insulating the tests from the testing tool.
+
+These days it's common practice to implement automated tests for software
+systems.  For web-based systems it's fairly common to implement
+acceptance-tests, functional-tests and/or system-tests at the level of the
+HTML user-interface, either by emulating a web-browser
+(e.g. {HtmlUnit}@http://htmlunit.sourceforge.net/,
+{jWebUnit}@http://jwebunit.sourceforge.net/) or by leveraging a real
+browser (e.g. {Selenium}@http://openqa.org/selenium/,
+{Watir}@http://openqa.org/watir/).
+
+For example (in Watir):
+
+| ... example goes here ...
+
+The problem is that the test is now defined in terms of low-level, generic,
+user-interface constructs: fields, buttons, links, element IDs, etc.  
+
+I much prefer to define the tests in higher-level, application-specific
+terms, for a couple of reasons:
+
+- it allows {DRYer}@http://www.artima.com/intv/dry.html, more maintainable
+  tests, AND
+- the resulting tests make more sense (I hope) to non-developers
+
+To that end, I like to introduce an API which models the application's
+user-interface, and write tests 
+
+This too is fairly common practice; in the context of web-applications,
+I've often heard the user-interface model called "page objects", or "page
+drivers".  I feel that misses point somewhat, though, because it's often
+worth modelling UI concepts beyond simple "pages".  Also, the concept works
+nicely for traditional (non-web) UIs too, where there's nary a "page" in
+sight.  So, these days I tend to call this kind of thing a "pseudo-user
+programming interface" (I'm hoping the name will catch on).
+

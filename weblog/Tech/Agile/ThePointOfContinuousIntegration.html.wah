@@ -1,0 +1,44 @@
+# --- 
+# title: "\"Continuous Integration\" might not mean what you think it means"
+# published: 8-Jul-2008, 23:25
+# ...
+
+{Continuous
+Integration}@http://martinfowler.com/articles/continuousIntegration.html is a
+common practice in {Agile}@http://agilemanifesto.org/ development circles, but I
+think people (especially those new to agile thinking) sometimes miss the point.
+
+Problem is, the term has become synonymous with build-servers such as
+{CruiseControl}@http://cruisecontrol.sourceforge.net/
+({etc}@http://tinderbox.mozilla.org/, {etc}@https://hudson.dev.java.net/), which
+frequently grab the latest code, build it, and execute automated tests. These are
+often referred to as "continuous-integration servers", which IMHO is a <u>really
+bad name</u>, 'cos if there's one thing these servers typically <em>don't</em> do,
+it's <u>integrate</u>.
+
+And the point of continuous-integration is just that: *Integrating*.  *Continuously*!  Which means: 
+
+* developers frequently updating their working-areas (or personal branches) with
+  the latest code on the mainline branch (typically many times a day), and
+
+* frequently merging their own changes back into the mainline (typically several
+  times a day).
+
+Unless you're doing this, you ain't "doing continuous integration", however frequently you're running automated builds!
+
+Integrating continuously can be difficult. In particular, it forces you to chunk
+larger changes and features into small, bite-sized pieces that can be drip-fed
+into the codebase. And, you have to deal with other developers changing stuff all
+the time. Build-servers and automated tests are essential tools here, because they
+help keep the team honest, ensuring that everyone has a stable (if evolving) base
+to work on.
+
+There are are plenty of upsides to frequent integration:
+
+- each individual integration is smaller, and therefore easier
+- design issues (including differences of opinion) are identified earlier
+- developers can leverage each other's work earlier
+- changes can be tested (and bugs detected) earlier
+- software can be deployed more frequently
+
+In summary: check it in already!

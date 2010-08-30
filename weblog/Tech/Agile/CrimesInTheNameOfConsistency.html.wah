@@ -1,0 +1,47 @@
+# --- 
+# title: Crimes committed in the name of "Consistency"
+# published: 19-Sep-2005, 23:00
+# ...
+
+In developing software, consistency often helps:
+
+* Refactoring your code to *reduce duplication* makes your system easier to
+  extend, and provides bugs fewer places to hide.
+
+* Solving similar problems in similar ways (e.g. using {design
+  patterns}@http://en.wikipedia.org/wiki/Design_pattern)
+  promotes *conceptual consistency*, allowing teams to communicate and
+  collaborate more easily.
+
+* Adhering to *user-interface guidelines* can make your application more
+  predictable, and therefore, more comfortable to use.
+
+That's great.  But don't lose sight of the real goals, like:
+*usability* and *maintainability*.  Consistency is _just a strategy_; if
+it's allowed to become a goal in it's own right, things can start to go
+awry:
+
+* Comments are sometimes helpful, but making them mandatory for every
+  method/procedure often /reduces/ maintainability, by making the code
+  "noisy".
+
+* Parts of your system may benefit from declarative security and
+  transaction management, clustering, and all those other tempting features
+  provided by {EJBs}@http://java.sun.com/products/ejb/, but that's no
+  reason to use them /everywhere/.
+
+* An ORM tool like {Hibernate}@http://hibernate.org is great for building
+  object-oriented, domain-driven, RDBMS-backed enterprise applications, but
+  if all you're doing is dumping data as CSV files, perhaps it's overkill.
+
+* Your defect-tracking system might be good for tracking, er, defects
+  ... but that doesn't mean you should use it to manage /all/ your work.
+
+* Re-use is nice, where appropriate, but some things that look conceptually
+  similar from the {ivory
+  penthouse}@http://jagraham.blogspot.com/2005/09/ivory-penthouses-of-architecture.html
+  can turn out to be quite different once you get into the details.  If it
+  requires _more_ code to use an existing library, than to implement your
+  feature directly, then the library isn't adding value.
+
+In summary: keep your eye on the ball.  (Whoops, there it goes ...)

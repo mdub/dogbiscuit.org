@@ -1,0 +1,27 @@
+# --- 
+# title: Emacs nxml-mode
+# published: 16-Jan-2004, 11:00
+# ...
+
+Good, free, XML editors: they're surprisingly hard to come by.
+
+I've been using GNU Emacs' standard +sgml-mode+, augmented with my own
+{+xml-lite+}@//mdub/software/xml-lite.el for indentation. (In truth, I used
+the CVS version of +sgml-mode+, which amounts to the same thing.)  And I've
+found this to be quite adequate for my XML-editing needs ... even if it's
+not DTD-savvy.
+
+Then, a couple of days ago, I discovered {James
+Clark's}@http://web.archive.org/web/20020224025029/http://www.ddj.com/documents/s=862/ddj0107e/
+wonderful {nxml-mode}@http://www.xmlhack.com/read.php?item=2061 package
+... and let me tell you, it *rocks*!  Features include:
+
+- Validation and context-sensitive completion, using {RELAX
+  NG}@http://relaxng.org/ schemas.
+
+- On-the-fly, in-the-background checking for well-formedness and validity,
+  with highlighting of errors.
+
+- Speedy, robust indentation (better than +xml-lite+, methinks).
+
+Very, very nice work.

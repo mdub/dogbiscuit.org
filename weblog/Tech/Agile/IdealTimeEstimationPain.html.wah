@@ -1,0 +1,50 @@
+# --- 
+# title: "\"Ideal time\" estimates invite bad assumptions"
+# published: 15-Sep-2004, 21:15
+# ...
+
+When developing using {XP}@http://extremeprogramming.org/, the development
+team estimates the work using some arbitrary unit of time, which is then
+mapped to real time using a measured
+{velocity}@http://extremeprogramming.org/rules/velocity.html factor.
+
+Often, the unit of estimation is something like an "ideal day" or perhaps
+an "ideal hour", or an "ideal week", depending on your level of extremity).
+An "ideal day" is about the amount of work a developer feels s/he could get
+through in a day if fully fed and watered, well-rested, un-interrupted, and
+so on.  Estimating this way makes sense from a developer's point of view,
+as we typically know what a day's worth of work "feels" like.
+
+But, in addition to the fact that interruptions etc are inevitable, we're
+usually somewhat optimistic (read: utterly delusional) in imagining how
+much work we can get done.  Often, by the time I've clarified
+requirements, written tests, etc, it takes me two to three real, elapsed
+working days to complete a task that my gut told me would take one "ideal
+day".  (That's me; I'm a consistent under-estimator ... though I think a
+factor of 2-3 is fairly typical.)
+
+If everyone involved understands this, and can interpret estimates through
+the lens of an appropriate (preferrably measured) velocity factor, you
+/might/ get away with it.  
+
+But when you include a word like "day" in the name of your
+unit-of-estimation, people (non-agilists) can be forgiven for making the
+assumption that they map roughly to real, elapsed days.  They'll probably
+give a little, but when you try to explain that it might take 
+*several days* to complete an "ideal day" of work, it's often a hard sell.
+If the people who don't "get it" include your customer, or project manager,
+then you have a problem!
+
+In future, I'm going to estimate in something like
+{StoryPoints}@http://c2.com/cgi/wiki?StoryPoints, in an attempt to avoid
+the mis-interpretation.  To further discourage bad assumptions, I'll
+probably take my internal "ideal day" estimate and slap a zero on the end.
+I figure that:
+
+    This week, I completed 20 story-points.
+
+will be less likely to invite argument, panic and retribution than:
+
+    This week, I did 2 (ideal) days worth of work.
+
+Wish me luck.

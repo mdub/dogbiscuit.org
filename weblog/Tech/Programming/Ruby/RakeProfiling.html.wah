@@ -1,0 +1,20 @@
+# --- 
+# title: Rake profiling
+# published: 1-Feb-2008
+# ...
+
+Where's the bottleneck in your {Rake}@http://rake.rubyforge.org build?  Let's find out.  Drop (or include) this in your Rakefile:
+
+| module Rake
+|   class Task
+|     def execute_with_timestamps(*args)
+|       start = Time.now
+|       execute_without_timestamps(*args)
+|       execution_time_in_seconds = Time.now - start
+|       printf("** %s took %.1f seconds\n", name, execution_time_in_seconds)
+|     end
+|     
+|     alias :execute_without_timestamps :execute
+|     alias :execute :execute_with_timestamps 
+|   end
+| end

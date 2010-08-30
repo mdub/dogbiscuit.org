@@ -1,0 +1,22 @@
+# --- 
+# title: XP Architects should make themselves redundant
+# published: 12 May 2003
+# ...
+
+{PragDave
+reports}@http://www.pragprog.com/pragdave/Random/FirstKillTheArchiects.rdoc,v
+on a talk by Martin Fowler at rOOts.  Quick summary:
+
+  - An architecture (according to Ralph Johnson) documents the design
+    decisions that are difficult to change.
+
+  - In an agile project, we strive to minimise the number of things that
+    are difficult to change.
+
+  - Therefore (says Fowler), the role of Architects in an agile project is
+    to make themselves redundant!
+
+I assume we're not talking redundancy in a financial sense :-) But
+certainly, the senior technical people should use their design expertise to
+avoid the steel framework and lumps of concrete that make a system
+difficult to change.

@@ -1,0 +1,119 @@
+# --- 
+# title: Spying on your code with RR
+# published: 27 May 2009, 22:39
+# ...
+
+A while back, Melbourne's own Pete Yandell created {Not A Mock}@http://notahat.com/not_a_mock/, an extension to RSpec that supports {/test-spies/}@http://xunitpatterns.com/Test%20Spy.html.  And a damn fine idea it was, too.
+
+I've recently discovered that my current favourite stub/mock framework, Brian Takita's {RR}@http://github.com/btakita/rr, can do test-spies too!
+
+=== Huh?
+
+What's this "spy" business about?  Well, when /mocking/, _before_ triggering the behaviour you're testing, you set up /expectations/ that a certain methods of collaborating objects will be invoked, with the specified parameters.  Like so:
+
+| describe TransferEverything do
+|
+|   before do
+|     @account1 = Account.new
+|     @account2 = Account.new
+|     @transfer = TransferEverything.new(:from => @account1, :to => @account2)
+|   end
+|
+|   describe "#execute" do
+| 
+|     it "moves all funds from one account to the other" do
+|
+|       all_the_money = 1.42
+|       stub(@account1).balance { all_the_money }
+|
+|       mock(@account1).withdraw(all_the_money)   # <= set expectations
+|       mock(@account2).deposit(all_the_money)
+|
+|       @transfer.execute                         # <= execute
+|       
+|     end                                         # <= verify expectations
+|
+|   end
+|
+| end
+
+The expectations are typically verified auto-magically, by the mocking framework, at the end of your test. 
+
+=== The spy alternative
+ 
+Setting up expectations /before/ a call always feels clumsy.  Using a test /spy/ makes tests flow more naturally:
+
+# *Stub* out collaborators, setting up canned responses where required.
+# *Execute* the code you're testing.
+# *Verify* the results, including both:
+  - the outputs (return values, or resulting state)
+  - the interactions (ie. the method-invocations you expected your fake collaborators to receive).
+
+Fur egg-sample:
+
+| describe TransferEverything do
+|
+|   # ...
+|
+|   describe "#execute" do
+| 
+|     it "moves all funds from one account to the other" do
+|
+|       all_the_money = 1.42
+|       stub(@account1).balance { all_the_money }
+|       stub(@account1).withdraw
+|       stub(@account2).deposit
+|
+|       @transfer.execute
+|
+|       @account1.should have_received.withdraw(all_the_money)
+|       @account2.should have_received.deposit(all_the_money)
+|
+|     end
+|
+|   end
+|
+| end
+
+One thing I find particularly useful about this technique is the ability to execute code in a setup block, then verify the various aspects of it's behaviour in separate test-cases.
+
+| describe TransferEverything do
+|
+|   # ...
+|
+|   describe "#execute" do
+|
+|     before do
+|       @all_the_money = 1.42
+|       stub(@account1).balance { all_the_money }
+|       stub(@account1).withdraw
+|       stub(@account2).deposit
+|       @transfer.execute
+|     end
+|
+|     it "withdraws all funds from source account" do
+|       @account1.should have_received.withdraw(all_the_money)
+|     end
+|
+|     it "deposits funds in receiving account" do
+|       @account2.should have_received.deposit(all_the_money)
+|     end
+|
+|   end
+|
+| end
+
+This results in smaller, more coherent test-cases.  
+
+=== Using RR test-spies in RSpec
+
+If you're using RSpec, you'll need to use the adapter class that comes with RR, rather than the one that comes with RSpec.  That is, in your +spec_helper.rb+, do this, which provides access to the +have_received+ matcher.
+
+| require 'rr'
+| Spec::Runners.configure do |config|
+|   config.mock_with RR::Adapters::Rspec
+| end
+
+=== Spying on Java
+
+Honourable mention: if you're lucky (\*cough\*) enough to be coding Java, I HIGHLY recommended {Mockito}@http://mockito.org, which also implements test-spies, and is easily the best Java mocking/stubbing library around.

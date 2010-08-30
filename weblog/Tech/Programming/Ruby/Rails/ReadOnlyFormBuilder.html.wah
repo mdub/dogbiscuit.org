@@ -1,0 +1,69 @@
+# --- 
+# title: ReadOnlyFormBuilder
+# published: 8-Mar-2008, 22:00
+# ...
+
+For RubyOnRails developers, {+form_for+ and +fields_for+}@http://api.rubyonrails.org/classes/ActionView/Helpers/FormHelper.html
+are the accepted way of DRYing up form templates. You know the deal; you code
+
+| <% form_for :customer, :url => customers_path() do |customer_form| %>
+|   <p>
+|     <label>Name:</label> 
+|     <%= customer_form.text_field :first_name, :size => 15 %>
+|     <%= customer_form.text_field :last_name, :size => 20 %>
+|   </p>
+|   ... etc ...
+| <% end %>
+
+and you get
+
+| <form action="/customers" method="post">
+|   <p>
+|     <label>Name:</label> 
+|     <input id="customer_first_name" name="customer[first_name]" size="15" type="text" />
+|     <input id="customer_last_name" name="customer[last_name]" size="20" type="text" value="" />
+|   </p>
+|   ... etc ...
+| </form>
+
+Rails generates sensible field names and ids for you, and slurps existing values out of the model object.  So far, so good.
+
+Lately, I've taken to using the same trick when presenting data, not just when editing it.  So, whereas before I might have written:
+
+|   <p>
+|     <label>Name:</label> 
+|     <span id="customer_first_name"><%= h @customer.first_name %></span>
+|     <span id="customer_last_name"><%= h @customer.last_name %></span>
+|   </p>
+|   ... etc ...
+
+I'll now code it up as:
+
+| <% fields_for :customer, :builder => ReadOnlyFormBuilder do |customer_form| %>
+|   <p>
+|     <label>Name:</label> 
+|     <%= customer_form.text_field :first_name, :size => 15 %>
+|     <%= customer_form.text_field :last_name, :size => 20 %>
+|   </p>
+|   ... etc ...
+| <% end %>
+
+and get the same output.  (In case you're wondering, the ids are there to help with automated testing).
+
+Note the similarity between the last code snippet and the first one on this page; apart from the first line they're
+indentical. Usually, I'll put the field-declarations themselves in a partial that's shared between "new", "edit" and "show"
+actions.  That way, your "show" page automatically gets identical layout to the others, just with raw values in place of editable fields.
+
+The ReadOnlyFormBuilder class itself it fairly straightforward - I'm planning to wrap it up into a plugin sometime soon.  In the meantime, the implementation of text_field looks something like this:
+
+| def text_field(attribute, options={})
+|   content_tag("span", html_escape(value_of(attribute)), :id => "#{@object_name}_#{attribute}")
+| end
+|
+| def value_of(attribute)
+|   value = model.send(attribute)
+| end
+|
+| def model
+|   @object || @template.instance_variable_get("@#{@object_name}")
+| end

@@ -1,0 +1,73 @@
+# --- 
+# title: Jetty as a test-suite decorator
+# published: 9-Jul-2004 4:30pm
+# ...
+
+{Marty Andrews}@http://www.wrytradesman.com/blog/ and I have been working
+on a small project together.  It's primarily intended as a demo of
+continuous integration, but has also given us the opportunity to play with
+some new technologies/ideas.
+
+One of the coolest tricks we picked up (from
+{Cactus}@http://jakarta.apache.org/cactus/integration/integration_jetty.html)
+was to start/stop a web-server as part of running the tests, rather than
+depending on having one running already. 
+
+(In the past I've typically written Ant scripts that dump a WAR-file in a
+magic directory, and wait "a bit" for the server to auto-deploy it, before
+running my HTTP-based acceptance-tests.  This is way nicer.)
+
+The key is a test decorator that starts {Jetty}@http://jetty.mortbay.com/
+to serve our web-app:
+
+| package com.thoughtworks.todolist;
+| 
+| import junit.extensions.TestSetup;
+| import junit.framework.Test;
+| import org.mortbay.jetty.Server;
+| import org.mortbay.util.InetAddrPort;
+| 
+| public class JettyTestSetup extends TestSetup {
+| 
+|     private Server _server;
+| 
+|     public JettyTestSetup(Test test) {
+|         super(test);
+|     }
+| 
+|     protected void setUp() throws Exception {
+|         _server = new Server();
+|         _server.addListener(new InetAddrPort(9999));
+|         _server.addWebApplication(
+|             "/todolist", "build/todolist.war"
+|         );
+|         _server.start();
+|     }
+| 
+|     protected void tearDown() throws Exception {
+|         _server.stop();
+|         _server = null;
+|     }
+| 
+| }
+
+As you can see, it's not hard to get a Jetty server going.  Jetty is nice
+and lightweight, too: it's small (less than 600k), and starts up fast (less
+than a second here).
+
+Now, it's a simple matter to decorate our test-suite with JettyTestSetup:
+
+| public class AllAcceptanceTests {
+| 
+|     public static Test suite() throws Exception {
+|         TestSuite suite = new TestSuite();
+|         suite.addTestSuite(ViewListTest.class);
+|         suite.addTestSuite(AddItemTest.class);
+|         // ... etc ...
+|         return new JettyTestSetup(suite);
+|     }
+| 
+| }
+
+That's it.  The server gets started at the beginning of the suite, and
+stopped afterward.

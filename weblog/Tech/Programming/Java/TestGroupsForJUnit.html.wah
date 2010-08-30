@@ -1,0 +1,154 @@
+# --- 
+# title: TestGroups for JUnit
+# published: 19-Dec-2004, 23:00
+# ...
+
+New users of {JUnit}@http://www.junit.org often assume that there will only
+be one instance of their TestCase class (I did, at first).
+
+In fact, each test-method is represented by a {separate
+instance}@http://martinfowler.com/bliki/JunitNewInstance.html of the
+test-class.  This isolation of test-methods is actually pretty sensible,
+since it means that (from the {horse's
+mouth}@http://junit.sourceforge.net/doc/cookstour/cookstour.htm)
+
+> ... each test will run with a fresh fixture and the results of one test
+> can't influence the result of another.
+
+If your tests are truly unit-tests, then re-creating a fresh fixture for
+every method should be fairly cheap, so it's not a big deal.  BUT, it's a
+slightly different story if you're using JUnit as a framework for
+/acceptance/ tests, or /integration/ tests, or any scenario in which
+creating the required fixture/resource objects is costly.
+
+=== My problem
+
+On my current project, we have a large suite of web-app acceptance-tests
+written using {HtmlUnit}@htmlunit.sourceforge.net.  We starting off writing
+tests something like this:
+
+  | public PolicySelectionScreenTest extends TestCase {
+  |     public void setUp() throws Exception {
+  |         expensiveSetUpCode();
+  |     }
+  |     public void testPolicyTypeDefaultsToStandard() {
+  |         assertEquals("STD", screenFixture.getPolicyType());
+  |     }
+  |     public void testWindscreenOptionDefaultsToNo() {
+  |         assertEquals("N", screenFixture.getWindscreenOption());
+  |     }
+  | }
+
+It soon became obvious that re-running the
+<code>expensiveSetUpCode()</code> for each test was - well - expensive, so
+we starting looking for ways to reduce that overhead.  An obvious way to do
+it is to bundle several asserts into the one test, e.g.
+
+  | public PolicySelectionScreenTest extends TestCase {
+  |     public void testInitialScreenStateIsCorrect() {
+  |         expensiveSetUpCode();
+  |         assertEquals("STD", screenFixture.getPolicyType());
+  |         assertEquals("N", screenFixture.getWindscreenOption());
+  |     }
+  | }
+
+There are a couple of problems with this, though:
+
+- Test-methods get bloaty, and their names become less informative.  This
+  isn't ideal, as I prefer short test-methods, with names that describe the
+  intended behaviour.
+
+- Testing of a scenario may halt prematurely, when it could usefully run
+  further and provide more feedback about what is or isn't working.
+
+=== A solution
+
+So, I developed a way of aggregating a number of related test-methods into
+a "TestGroup".  Now our tests look more like this:
+
+  | public PolicySelectionScreenTests extends TestGroup {
+  |     public void groupSetUp() throws Exception {
+  |         expensiveSetUpCode();
+  |     }
+  |     public void testPolicyTypeDefaultsToStandard() {
+  |         assertEquals("STD", screenFixture.getPolicyType());
+  |     }
+  |     public void testWindscreenOptionDefaultsToNo() {
+  |         assertEquals("N", screenFixture.getWindscreenOption());
+  |     }
+  | }
+
+A +TestGroup+ instance can be converted into JUnit-ese easily, by calling
+its <code>asTest()</code> method:
+
+  | public static Test suite() {
+  |     TestSuite suite = new TestSuite();
+  |     // ... etc ...
+  |     suite.addTest(new PolicySelectionScreenTests().asTest());
+  |     return suite;
+  | }
+
+Alternatively, we have an extended +TestSuite+ implementation that makes
+this a little easier:
+
+  | public static Test suite() {
+  |     TestSuite suite = new GroupAwareTestSuite();
+  |     // ... etc ...
+  |     suite.addTestSuite(PolicySelectionScreenTests.class);
+  |     return suite;
+  | }
+
+Now, our original tests run faster (since the
+<code>expensiveSetUpCode()</code> is only run once), but the test-methods
+remain short and well-named.  Woo-hoo!  [cue weird little dance of joy].
+
+=== But wait, there's more
+
+As you might have guessed, there's a <code>groupTearDown()</code> to match
+<code>groupSetUp()</code>.  The normal <code>setUp()</code> and
+<code>tearDown()</code> hooks are also supported, and run before/after each
+test, as you'd expect.
+
+=== A warning
+
+Once we start sharing test-fixtures like this, we're effectively removing
+JUnit's built-in safety harness, and thus running the risk of tests
+infecting the results of other tests by "polluting" the fixture.  There's
+no easy solution: you just have to /be really careful/.  Guidelines:
+
+* If possible, avoid putting any code that alters the state into the
+  test-methods of a TestGroup.
+
+* If that's not possible, ensure you reset the fixture to a known state in
+  the <code>setUp()</code> hook.
+
+=== A peek inside
+
+In my first attempt at TestGroups, I simply implemented the
+{+Test+}@http://www.junit.org/junit/javadoc/3.8.1/junit/framework/Test.html
+interface.  Unfortunately, it's a fairly thin interface, and doesn't
+provide an API for navigating the hierarchical structure of a test-suite.
+If you want to explore the hierarchy, you'll have to assume that your
+test-suite will be constructed from +TestCase+ and +TestSuite+ objects -
+perhaps with the odd +TestDecorator+ thrown in - and perform the required
++instanceof+ checks.  If some new, unknown implementation of +Test+ comes
+along, your assumptions are shot.  Most IDEs are in this position, as they
+typically display the test-hierarchy.  Thus, my original implementation
+didn't play nicely in an IDE environment.
+
+So, instead, <code>TestGroup.asTest()</code> creates a structure that
+adapts the +TestGroup+ to look like a +TestSuite+.  The suite is wrapped by
+a +TestSetup+ decorator that fires the <code>groupSetUp()</code> and
+<code>groupTearDown()</code> hooks.  The +TestCases+ in the suite are
+simple proxies that invoke methods on the shared +TestGroup+ instance.  Or,
+in pictures:
+
+<img src="/mdub/images/TestGroup-asTest.gif" alt="TestGroup">
+
+Because the result is just a aggregate of core JUnit objects, it doesn't
+confuse IDEs in the way I described earlier.
+
+=== The code
+
+If you're interested in using +TestGroups+, or just want to take a look at the
+code, you can get it {here}@//mdub/software/testgroups-src.jar.

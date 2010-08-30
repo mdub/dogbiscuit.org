@@ -1,0 +1,35 @@
+# --- 
+# title: Selenium Core 0.8.0
+# published: 29 Sep 2006, 16:15
+# ...
+
+The {Selenium Core}@http://www.openqa.org/selenium-core/ team (of which I'm
+a sometime member)
+{released}@http://wiki.openqa.org/display/SEL/2006/09/20/Selenium+Core+0.8.0+released
+version 0.8.0 last week.
+
+Highlights include:
+
+  - a "multiWindow" option which places the application-under-test in a
+    separate window, allowing testing of "frame-busting" apps;
+  
+  - more reliable page-load detection for popup windows;
+  
+  - new cookie-management actions;
+  
+  - a run-speed slider and "Pause" button which replace the old Run/Walk/Step
+    radio-buttons;
+  
+  - many bug-fixes and stability improvements;
+  
+  - tested against latest versions of Firefox, IE6, Opera, Konqueror, Safari
+    and WebKit.
+
+The multi-window layout option is a great step forward, since it was a
+limitation that prevented many people from using Selenium.
+
+You can download the new version at:
+
+    http://release.openqa.org/selenium-core/0.8.0/
+
+(Yes, the documentation and website still suck.  Sorry.)

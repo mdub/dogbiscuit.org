@@ -1,0 +1,51 @@
+# --- 
+# title: Git (on the Mac)
+# published: 18-Apr-2008, 13:30
+# ...
+
+{Git}@http://git.or.cz/ is the hype.  I'm just starting to use it for a couple of projects, both directly, and as a local facade to Subversion.
+
+Here are some suggestions on using git under Mac OS X.
+
+=== Installation
+
+Installation using MacPorts is pretty painless.  Ensure you choose the "svn" variant if you want Git/Subversion integration.
+
+| sudo port install git +svn +doc
+
+Another option is the native installer, available at http://code.google.com/p/git-osx-installer/
+
+=== Textmate
+
+If you use Textmate, the {Git Textmate bundle}@http://gitorious.org/projects/git-tmbundle/ is *rather nice*. 
+
+| cd ~/Library/Application\ Support/TextMate/Bundles
+| git clone git://gitorious.org/git-tmbundle/mainline.git Git.tmbundle
+
+Remember to set the TM_GIT variable (to "/opt/local/bin/git" or "/usr/local/bin/git", as the case may be), otherwise stuff won't work.
+
+=== Shell completion
+
+For command-line (bash) users, there's TAB-completion available, which is pretty handy. I'm using it directly from my local clone of the git
+source tree, like this:
+
+| # in .bashrc ...
+| 
+| git_completion_script=$HOME/OpenSource/kernel.org/git/contrib/completion/git-completion.bash
+| if test -f $git_completion_script; then
+|   source $git_completion_script
+| fi
+
+=== GitNub for history browsing
+
+{GitNub}@http://github.com/Caged/gitnub/wikis/home is a sweet little UI for browsing history of git commits.
+
+=== Using Git
+
+So far, I haven't talked at all about how you actually USE the thing, and don't intend to, since there are already so many great resources out
+there on the subject.  Some I've found useful are:
+
+* {A tutorial introduction to git}@http://www.kernel.org/pub/software/scm/git/docs/tutorial.html
+* {Git for SVN users}@http://git.or.cz/course/svn.html
+* Git cheat-sheets from {Zack Rusin}@http://zrusin.blogspot.com/2007/09/git-cheat-sheet.html and {Err the blog}@http://cheat.errtheblog.com/s/git/
+* Andy Delcambre's {Git SVN Workflow}@http://andy.delcambre.com/2008/3/4/git-svn-workflow

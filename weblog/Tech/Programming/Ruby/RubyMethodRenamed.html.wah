@@ -1,0 +1,105 @@
+# --- 
+# title: Refactoring "support" for Ruby?
+# published: 10-Apr-2005 23:00
+# ...
+
+These days, there a number of pretty damn good IDEs for Java, with features
+like intelligent code-completion (aka "intellisense") and automated
+refactorings.  I was a late-starter with IDEs, myself, but even just over
+the past year I've become annoyingly dependent on some of those IDE
+features.
+
+Such features depend quite heavily on gleaning data-type information from
+the code, which is fine for languages like Java and C#.  But in
+dynamically-typed languages like {Ruby}@http://ruby-lang.org, we don't have
+that type info, so things like method-name completion and automated
+renaming become impossible.  (Or so I thought).
+
+=== Stealing a trick from SmallTalk
+
+It's been puzzling me that there isn't better refactoring support for Ruby,
+given that the whole concept of {refactoring}@http://www.refactoring.com
+grew out of the SmallTalk community, in the first place.  Or more
+accurately, I've been confused about how automated refactoring could be
+possible in a dynamic language like SmallTalk.  
+
+Then, recently, I stumbled across a paper describing "{A Refactoring Tool
+for Smalltalk}@http://st-www.cs.uiuc.edu/~droberts/tapos/TAPOS.htm", which
+contains the following explanation:
+
+> The Refactoring Browser uses _method wrappers_ to collect runtime
+> information. These wrappers are activated when the wrapped method is
+> called and when it returns. The wrapper can execute an arbitrary block of
+> Smalltalk code. To perform the rename method refactoring dynamically, the
+> Refactoring Browser renames the initial method and then puts a method
+> wrapper on the original method. As the program runs, the wrapper detects
+> sites that call the original method. Whenever a call to the old method is
+> detected, the method wrapper suspends execution of the program, goes up
+> the call stack to the sender and changes the source code to refer to the
+> new, renamed method. Therefore, _as the program is exercised_, it
+> converges towards a correctly refactored program.
+
+Ah-ha!  Cunning.
+
+=== The Ruby version
+
+As it turns out, we can do much the same thing in Ruby ... leaving aside
+the "go up the call stack and change the source code" part.
+
+Here's the supporting code:
+
+| def method_renamed(h)
+|   old_name = h.keys[0].to_sym
+|   new_name = h.values[0].to_sym
+|   define_method(old_name) { |*args|
+|     file, line = caller[1].split(':')
+|     warning = "##{old_name} renamed to ##{new_name}"
+|     $stderr.puts "#{file}:#{line}: #{warning}"
+|     send(new_name, *args)
+|   }
+| end
+
+Okay, here's a method I want to rename:
+
+| class LinkPanel
+|
+|   def render
+|     # ... 
+|   end
+|
+| end
+
+When I rename it, I also record the change using +method_renamed+:
+
+| class LinkPanel
+|
+|   method_renamed :render => :to_html
+|
+|   def to_html
+|     # ... 
+|   end
+|
+| end
+
+Now, I run my tests, and calls to the renamed method result in warnings:
+
+| /home/mikew/eyaw/sidebar.rb:229: #render renamed to #to_html
+
+With a single key-chord in my {Ruby
+IDE}@http://www.gnu.org/software/emacs/emacs.html, I can jump directly to
+the source-code in question, and fix up the call.  I imagine that an
+ever-so-slightly-more intelligent IDE could complete the refactoring,
+applying the rename to the call-site automatically!  Later on, when I'm
+confident that everything has been cleaned up, I'll go back and remove that
++method_renamed+ alias.
+
+There's more to refactoring than just renaming stuff, of course.  I think
+the "dynamic analysis" trick would be useful to support other refactorings,
+too ... though I haven't tried it yet.
+
+Proviso: this approach relies on actually running the code, preferably from
+tests.  As the original paper says:
+
+> .. the refactoring is only as good as your test suite. If there are
+> pieces of code that are not executed, they will never be analyzed, and
+> the refactoring will not be completed ...

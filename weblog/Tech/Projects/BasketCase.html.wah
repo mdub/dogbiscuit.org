@@ -1,0 +1,30 @@
+# --- 
+# title: BasketCase
+# published: 25 Jun 2006
+# ...
+
+The project I'm currently on uses {Rational
+ClearCase}@http://www.ibm.com/software/awdtools/clearcase/ to manage it's
+source-code.
+
+Now, I'm sure there are many great things about ClearCase.  Not that any
+spring to mind.  (Wait, here's one: it keeps ClearCase administrators in a
+job!  Whew, I knew there had to be a silver lining somewhere.)
+
+What I can tell you, though, is that it *sucks* for agile, team
+development.  So, I've wrapped a script around the ClearCase command-line,
+to make the wannabe Subversion user in me feel more at home. 
+
+(Ruby: {the glue that doesn't
+set}@http://blogs.pragprog.com/cgi-bin/pragdave.cgi/Tech/UnsetGlue.html).
+
+The result is {*BasketCase*}@http://basketcase.rubyforge.org (at
+RubyForge).  It's still very much a work-in-progress (and when I no longer
+have need of it, will likely become a work-in-abandonment), but I hope it
+may provide a glimmer of hope to anyone else who finds themselves in a
+similar predicament.
+
+<small>
+By the way, the less observant of you may not have noticed that the name is
+a clever play on the word "rational".  Geddit?  Oh, nevermind ...
+</small>

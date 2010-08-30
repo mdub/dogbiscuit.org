@@ -1,0 +1,12 @@
+# --- 
+# title: New Inversion of Control framework(s)
+# published: 23 Jun 2003, 22:58
+# ...
+
+{PicoContainer}@http://picocontainer.org and
+{NanoContainer}@http://nanocontainer.org are a brand-new implementations of
+the {Inversion of
+Control}@http://avalon.apache.org/framework/guide-patterns-ioc.html
+pattern, used in Apache projects such as
+{Cocoon}@http://cocoon.apache.org/.  Looks like they might be worth
+watching.

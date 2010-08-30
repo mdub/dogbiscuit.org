@@ -1,0 +1,98 @@
+# --- 
+# title: "Rsync: 1, Time Machine: 0"
+# published: "11-Nov-2008, 23:30 "
+# ...
+
+I recently bought a Mac Mini to serve various purposes about the house - not least of which, as a
+remote backup server for my MacBook Pro.
+
+At which point I spent several evenings wrestling with {Time
+Machine}@http://www.apple.com/macosx/features/timemachine.html, with limited success. I moved my
+existing (500G, external) drive to the Mac Mini, shared it, and nominated it as my backup volume.
+But:
+
+* Time Machine wouldn't recognise the existing backups on that drive, and insisted on starting again
+  from scratch (because it creates sparsebundle disk images for remote backup clients, but not for
+  the local system). Annoying.
+
+* The initial backup took *forever*, because TM backs up *everything* not specifically excluded.
+  (Granted, I'm backing up over a 801.11g wireless network).
+
+* Incremental backups kicked in every hour, and even when I hadn't been altering files, seemed to
+  take an excessive amount of time to complete, ie. around 15 minutes. Much of this time was spent
+  "preparing", and affected the performance of both my laptop, and the network. I don't need or want
+  hourly backup, but TM provides no way to set a less demanding schedule.
+
+* Several times things got borked when I interrupted a backup midway, and I had to reboot, remount or
+  otherwise intervene to get things working again.
+
+Eventually, I gave up, and went looking for alternatives. After flirting with
+{rdiff-backup}@http://www.nongnu.org/rdiff-backup and {rsnapshot}@http://rsnapshot.org, I eventually
+did a {little}@http://blog.interlinked.org/tutorials/rsync_time_machine.html
+{research}@http://www.mikerubel.org/computers/rsync_snapshots and rolled my own rsync backup script:
+
+| #! /bin/sh
+| 
+| set -e 
+| 
+| snapshot_host=theLoungeRoomMac.local
+| snapshot_dir=/Volumes/WD_500/Snapshots/woollyams
+| snapshot_user=root
+| ssh_user=$snapshot_user@$snapshot_host
+| 
+| ping -o $snapshot_host > /dev/null || {
+|   echo "WARNING: can't see $snapshot_host -- skipping backup"
+|   exit 1
+| }
+| 
+| ssh $ssh_user "test -d $snapshot_dir" || {
+|   echo "ERROR: can't see $ssh_user:$snapshot_dir" >&2
+|   exit 2
+| }
+|   
+| snapshot_id=`date +%Y%m%d%H%M`
+| 
+| /usr/bin/rsync --archive --verbose \
+|   --delete --delete-excluded \
+|   --numeric-ids --extended-attributes \
+|   --one-file-system \
+|   --partial \
+|   --link-dest ../current/ \
+|   --relative \
+|   --max-size=50M \
+|   --exclude ".git" \
+|   --exclude ".svn" \
+|   /private/etc /Users/mdub \
+|   $ssh_user:$snapshot_dir/in-progress/
+| 
+| ssh $ssh_user "cd $snapshot_dir; rm -fr $snapshot_id; mv in-progress $snapshot_id; rm -f current; ln -s $snapshot_id $snapshot_dir/current"
+
+Advantages over Time Machine are:
+
+* I can run this as often or as infrequently as I like.
+
+  - I'm currently running it out of /etc/daily.local, which is run by
+    {periodic}@http://developer.apple.com/documentation/Darwin/Reference/ManPages/man8/periodic.8.html, which is run by
+    {launchd}@http://developer.apple.com/documentation/Darwin/Reference/ManPages/man8/launchd.8.html.
+
+  - It doesn't get in my way by running while I'm actively using my machine. 
+  
+* I can use the full power of rsync filter rules to exclude uninteresting files (e.g. "<code>--exclude .git
+  --exclude .svn</code>").
+
+* I can even filter by file size ("<code>--max-size=50M</code>") to skip things like big downloads and VMware
+  images, without having to explicitly nominate them.
+
+* It takes less than 3 minutes to perform an incremental backup (providing I haven't changed too much).
+
+* I can safely interrupt the backup process, or pull the plug, or whatever, and it's robust enough to carry
+  on where it left off next time.
+
+* I can keep as many time-stamped snapshots as I wish.
+
+* It's relatively efficient space-wise, due to the use of hard-links to share unchanged files between
+  snapshots (not as efficient as Time Machine, though, which hard-links entire directories).
+
+* Each snapshot is a simple, easy-to-browse, easy-to-search directory, containing plain old files and
+  directories. It gives me comfort that I wouldn't need a spiffy GUI to locate a file I was looking to
+  restore.

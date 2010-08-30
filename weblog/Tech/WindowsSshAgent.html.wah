@@ -1,0 +1,33 @@
+# --- 
+# title: Using ssh-agent under Windows
+# published: 17-Jun-2004, 16:20
+# ...
+
+Thanks to Ovidiu Predescu for his blog entry on "{Setting up ssh-agent on
+Windows
+XP}@http://www.webweavertech.com/ovidiu/weblog/archives/000326.html".
+
++ssh-agent+ allows you to protect your SSH private-keys with a pass-phrase,
+while avoiding having to continuously re-enter the pass-phrase.
+
+It's very easy to set up under Linux; in fact, in most distros it's
+probably running by default.  As Ovidiu points out, it's actually fairly
+easy to set up in Windows XP, too, using {Cygwin}@http://cygwin.com/
+OpenSSH.  The trick is to pre-select the agent bind address ...
+
+First, create a new Windows environment variable called "+SSH_AUTH_SOCK+",
+and give it the value "<code>\/tmp\/.ssh-socket</code>".
+
+Next, insert the following snippet in your <code>~/.bashrc</code>:
+
+| ssh-add -l >/dev/null 2>&1
+| if [ $? = 2 ]; then
+|     # exit-status 2 = couldn't connect to ssh-agent
+|     echo -n "Starting SSH agent ... "
+|     eval `ssh-agent -a $SSH_AUTH_SOCK`
+| fi
+
+This will start a new +ssh-agent+ if there isn't yet one running (this is a
+slight simplification of Ovidiu's script).
+
+Now, type just "+ssh-add+", and your pass-phrase, and SSH in peace.

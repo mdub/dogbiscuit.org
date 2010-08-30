@@ -1,0 +1,14 @@
+# --- 
+# title: Presentation on Ruby/Rails at EJA
+# published: 28 Sep 2006, 4:10pm
+# ...
+
+A couple of months ago I gave a presentation on
+{Ruby}@http://www.ruby-lang.org and {Rails}@http://rubyonrails.org to a
+{local Java user-group}@http://www.enterprisejava.org.au/.  My slides are
+now online:
+
+* {Ruby@EJA}@/../presentations/Ruby@EJA/
+
+It contains a few examples showing how expressive Ruby can be, when
+compared to Java.

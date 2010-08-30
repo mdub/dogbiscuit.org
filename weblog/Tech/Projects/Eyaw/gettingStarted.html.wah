@@ -1,0 +1,25 @@
+# --- 
+# title: Even Yet Another WebLog
+# published: 13 Apr 2003 23:00
+# ...
+
+So, I'm messing around trying to craft a weblog CGI-script using Ruby.  I've
+been very much influenced by +blosxom+, and by Dave Thomas's work on
++RubLog+ ... but I needed a good excuse to play with Ruby, so have started
+to hack together my own.
+
+Basic features I'm after include:
+
+- Wiki-esque markup
+- Easy hyperlinking
+- A simple, file-based data-store
+- Easy navigation
+
+But rather perversely, I'm not prepared to trust file +mtimes+ to specify
+posting dates.  Instead, I'm going to pull meta-information from the file
+"header".  Sample input looks something like this:
+
+|     Subject: entry title
+|     Date: 13 Apr 2003, 11pm
+| 
+|     Here's the content ...

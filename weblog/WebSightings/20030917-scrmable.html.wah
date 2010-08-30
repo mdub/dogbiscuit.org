@@ -1,0 +1,26 @@
+# --- 
+# title: Scrmable (Ruby does line-noise, too!)
+# published: 17-Sep-2003
+# ...
+
+From {languagehat.com}@http://www.languagehat.com/archives/000840.php (and
+many others):
+
+> Aoccdrnig to a rscheearch at an Elingsh uinervtisy, it deosn't mttaer in
+> waht oredr the ltteers in a wrod are, the olny iprmoetnt tihng is taht
+> frist and lsat ltteer is at the rghit pclae. The rset can be a toatl mses
+> and you can sitll raed it wouthit porbelm. Tihs is bcuseae we do not raed
+> ervey lteter by it slef but the wrod as a wlohe.
+
+Various scrambler scripts are now doing the rounds (the most high-profile
+being {jwz's}@http://www.jwz.org/hacks/scrmable.pl).  But the best
+implementation I've seen is this little beauty, spotted on the
+{ruby-talk}@http://www.ruby-talk.org/cgi-bin/scat.rb/ruby/ruby-talk/82189
+list:
+
+| ruby -pe 'gsub!(/\B\w+\B/){$&.split(//).sort_by{rand}.join}'
+
+Note the <code>sort_by\{rand\}</code> trick; it takes the internal letters of
+the word and sorts them using a {Schwartzian
+Transform}@http://www.stonehenge.com/merlyn/UnixReview/col06.html, with a
+random number as the sort-key.  Asoemwe.

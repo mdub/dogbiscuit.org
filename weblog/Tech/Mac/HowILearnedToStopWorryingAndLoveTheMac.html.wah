@@ -1,0 +1,27 @@
+# --- 
+# title: How I Learning to Stop Worrying and Love the Mac
+# published: 30-Jan-2008, 22:50
+# ...
+
+In my {new job}@/Tech/ThoughtlesslyBackIntoTheWorkforce, a Mac is the preferred tool of the trade. So now I'm learning to use a nice shiny
+MacBook Pro, and after years developing on Windoze, it's a _very_ pleasant experience. Here are some of the things that are making my life just that little bit more delightful:
+
+* It's Unix.  On Windoze, Cygwin helped a little, but this is soooo much better.
+
+* {*Launchbar*}@http://www.obdev.at/products/launchbar/index.html - an application launcher and more. I bought this almost
+  immediately after getting my Mac, based on some random recommendation somewhere, and haven't regretted it - I probably use it once every 5
+  minutes, on average. I've subsequently tried {Quicksilver}@http://docs.blacktree.com/quicksilver/what_is_quicksilver, but it didn't feel
+  immediately "right" in the same way Launchbar does.
+
+* {*Textmate*}@http://macromates.com/ - "the missing editor". I've been a dedicated Emacs user for about 20 years now, but had to give
+  Textmate a try, given all the hype. It's noice! Many of the features I know and love from Emacs are there (albeit bound to /different/
+  cryptic key-combinations), and the UI is clean and Mac-savvy.
+
+* {*1Password*}@http://1passwd.com/ - a password manager. I got this handy little utility as part of a bundle from
+  {macheist.com}@http://www.macheist.com. It stores all your passwords in a (secure) keychain, indexed by website, making it really easy to log back in
+  next time you visit. Best of all, it integrates with most browsers, meaning you only need to store passwords once. It can store multiple sets of
+  login details per site, too, which is very useful when testing web-apps.
+
+* *Safari* is a nice little web browser, and once you {turn on the *debug menu*}@http://www.macosxhints.com/article.php?story=20030110063041629, 
+  it's even better. Normally, I'd reach for {Firebug}@http://www.getfirebug.com/ for this sort of functionality, but the built-in Safari equivalent
+  is almost as good.

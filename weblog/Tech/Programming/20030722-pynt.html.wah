@@ -1,0 +1,13 @@
+# --- 
+# title: A Python-esque alternative to Ant
+# published: 22 July 2003
+# ...
+
+{Pynt}@http://pynt.sf.net is "a scripting language designed to simplify
+running builds".  Nice.  It's similar in intent to Ant, but has a
+Python-like syntax allowing true scripting.
+
+IMHO the most promising feature is the ability to encapsulate re-usable
+build-logic in methods.  In Ant, you'd need to create a custom task
+(ie. drop into Java), or invoke Ant recursively (*very* ugly and
+frustrating).

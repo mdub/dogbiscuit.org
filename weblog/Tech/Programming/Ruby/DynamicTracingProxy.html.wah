@@ -1,0 +1,51 @@
+# --- 
+# title: Tracing with a dynamic Proxy, in Ruby
+# published: 12-May-2005 13:45
+# ...
+
+Recently, I was writing a ({Ruby}@http://ruby-lang.org) script to sync
+email between two IMAP servers.  My unit-tests were all working, but
+something was going screwy when I plugged in a real server.
+
+I wanted to be able to trace the conversation with the IMAP server (or at
+least, Ruby's IMAP API), to see what was going on.  Initially, I started
+sprinkling tracing statements throughout my code, until I realised that it
+was going to be easier to define a simple "tracing proxy", and wrap it
+around the object I wanted to trace:
+
+| imap_handle = TracingProxy.new(imap_handle, $stderr)
+| 
+| # ... do stuff with imap_handle ...
+
+It turned out to be straightforward to implement:
+
+| class TracingProxy
+| 
+|   def initialize(obj, dest) 
+|     @obj = obj
+|     @dest = dest
+|   end
+| 
+|   def method_missing(symbol, *args)
+|     arglist = args.map { |a| a.inspect }.join(', ')
+|     @dest.puts "#{symbol}(#{arglist})"
+|     rval = @obj.send(symbol, *args)
+|     @dest.puts ">> #{rval.inspect}"
+|     rval
+|   end
+|   
+| end
+
+{+method_missing+}@http://www.ruby-doc.org/core/classes/Kernel.html#M001729
+is a fallback method invoked when the called method isn't found - it's
+great for implementing dynamic proxies.  There's nothing particularly
+ground-breaking going on here - this kind of trick is fairly common in
+Ruby-land.
+
+My point is: implementing a dynamic-proxy for tracing was so *easy* in Ruby
+that I actually did it.  I could have done something similar in Java, using
++java.lang.reflect.Proxy+, or {cglib}@http://cglib.sourceforge.net/ - but I
+most likely wouldn't have bothered.
+
+In Ruby, implementing the proxy made my life easier, not harder.  Ruby
+_encourages me to produce better designs_.

@@ -1,0 +1,74 @@
+# --- 
+# title: Attacking slow-running builds (notes from CITCON)
+# published: 1-Jul-2008, 22:20
+# ...
+
+Last weekend I went along to {CITCON}@http://www.citconf.com/ here in Melbourne.  Which was great fun, by the way.
+
+There I ran a session on "Attacking slow-running CI builds".  It was a small group, but an interesting discussion, I think.  Here are my (rough, unedited) notes:
+
+=== WHAT is the impact of a slow build?
+
+- fewer checkins
+- more waiting
+- context switching
+- discourages integration
+- discourages writing of additional tests
+- more chance of overlapping checkins
+- more build breakages
+- more time required to get the build fixed
+- reduced productivity
+- WASTE!
+
+=== WHY is the build slow?
+
+- slow tests (particularly acceptance tests)
+    - over-testing (testing the same code-paths repeatedly)
+    - expensive set-up and tear-down
+    - too much testing via the user-interface
+    - tests that pause, sleep, or poll (e.g. to deal with AJAX)
+- too much I/O!
+- use of slow infrastructure components (database servers, application servers, etc.)
+- slow hardware
+
+=== HOW can we make it faster?
+
+- faster hardware
+- run tests in parallel
+- distribute tests
+- fail fast
+    - selective testing: run tests most likely to fail first
+        - could use dependency-analysis to identify which tests were affected by recent commits
+- refactor story-based acceptance tests into scenario-based tests
+    - bigger tests, with more assertions, offsets set-up/tear-down costs
+        - but makes tests more complex
+- share test fixtures between a group of tests
+    - but breaks test isolation
+- avoid I/O
+    - in-memory database
+    - in-memory file-store (RAM disk?)
+    - stub out infrastructure components
+        - avoid testing these components by side-effect
+- populate the database directly, rather than using the user-interface to set-up for a test
+- separate your system into components that can be tested independently
+
+== Thinking about this later ...
+
+=== There are two types ...
+
+The suggestions for improving build times seemed to fall into two categories:
+
+  # optimise the build/tests
+  # throw additional hardware at the problem
+  
+My problem with the "throw hardware at it" approach is that it typically _only helps for the build-server_ machine; the poor old developers are still left with a slow-running build, and therefore many of the productivity issues still exist.
+
+=== Another idea
+
+It occurs to me now that we missed a fairly fundamental trick to improve test times: _improve the performance of the system-under-test itself_.  It's a great excuse to start thinking about  performance earlier in the project.
+ 
+=== "Customer Acceptance Test" does not need to mean end-to-end
+
+On all the projects I've been on in recent years, we've ended up with the majority of the tests being either "developer unit tests", which run super-fast, or "customer acceptance tests" which test end-to-end (browser-to-database) and run super-slow.  
+
+Methinks it should be less black-and-white.  If we can demonstrate functionality that the customer cares about by calling the underlying logic directly (i.e. at unit-test level), rather than by exercising the user-interface, then what's wrong with that?  (We just need one test to prove that the underlying logic has been properly integrated into the UI.)

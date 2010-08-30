@@ -1,0 +1,43 @@
+# --- 
+# title: Railsconf 2008 Highlights
+# published: 5 June 2008, 22:00
+# ...
+
+I was lucky enough to be at Railsconf 2008 in Portland last weekend (along with
+{Marty}@http://www.martyandrews.net/blog/, Rob, {Trav}@http://www.prozacblues.com/travo/blog/ and
+{Abhi}@http://blog.hiremaga.com/). 
+
+=== Highlights
+
+* Meeting other Ruby/Rails enthusiasts from all over.  (Well, all over the US, at least).
+
+* *Joel Spolsky*'s opening keynote was hilarious (in a good way). Some other commentators found it
+  low on content, but I thought it had a strong message: usability matters!
+
+* Seeing *Kent Beck* present was fantastic. He had the audience hanging on his every word, as he
+  described how "anything he'd done had taken 20 years to have an impact".
+
+* Ezra's talk on {*Vertebra*}@http://brainspl.at/articles/2008/06/02/introducing-vertebra, his
+  XMPP-based "cloud control" project, was fascinating. What a great abuse of technology!
+
+* The *JRuby* and *Rubinius* teams are co-operating closely, in a spirit of friendly, respectful
+  rivalry. Particularly notable is their effort to collaborate (with each other, and Matz) on a
+  rigourous set of executable specs for Ruby language.
+
+* The upcoming version of {*Phusion Passenger*}@http://modrails.com will support not only Rails
+  applications, but also {Rack}@http://rack.rubyforge.org/ (and therefore Merb, Sinatra, Camping),
+  and (get this) {WSGI}@http://en.wikipedia.org/wiki/Web_Server_Gateway_Interface (and therefore a
+  bunch of Python frameworks, including {Django}@http://www.djangoproject.com/)!
+
+* There are *increasingly varied options for deploying Rails apps*, including the traditional
+  <code>\{Apache,nginx}+\{mongrel,thin}</code>, JRuby WARs in a servlet container, Passenger, and
+  the Amazon-EC2-based services like RightScale and Heroku. {*Heroku*'s}@http://heroku.com
+  deployment model is pretty damn clever: just "<code>git push</code>".
+
+=== Regrets
+
+With 4 streams going on, the talks I got to were naturally out-numbered by those I missed.  Some of the ones I really wish I'd seen include:
+- MagLev: Gemstone's Ruby implementation-in-progress, based on their Smalltalk VM
+- Scott Chacon on "Using Git" (apparently he went into mind-bending detail of the Git internals)
+- Justin Gehtland's "Small Things, Loosely Joined, and Written Fast"
+

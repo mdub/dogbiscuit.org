@@ -1,0 +1,41 @@
+# --- 
+# title: Dealing with Recategorisation
+# published: 14-Apr-2003 13:54
+# ...
+
+A {new feature in RubLog}@http://pragprog.com/pragdave/Tech/Blog/MoreWikiBlog.rdoc,v 
+allows "global" URIs for articles to be constructed using WikiWords.  Such
+URIs use just the base-name of the article - not the whole category-path -
+and so make links less likely to break if the category hierarchy is
+re-organised.
+
+PragDave makes a valid point: categorisation is kind of artificial and
+arbitrary, and may be prone to change.  Actually, even with only a handful
+of articles here on DogBiscuit, I've already been tempted to re-categorise
+:-)
+
+The RubLog feature works by allowing links using just the last part (the
+"basename") of the article ID.  If the same basename is used in multiple
+categories, this may result in collisions ...  RubLog solves the problem by
+presenting all the matching articles.  One problem here is that the user
+has no way of knowing which article is the "right one", ie. the intended
+destination of the link.
+
+== Categories as meta-data?
+
+Another approach might be to capture categories in article meta-data,
+rather than using the file-system structure, e.g.
+
+|     Subject: Dealing with Recategorisation
+|     Category: /Tech/Projects/Eyaw
+|     
+|     A new feature ...
+
+This way, articles can be filed into a directory structure that stays
+fairly constant (e.g. directory per day?), and so can be used to form
+"permanent" links.  Categories are laid "on top", and it could even allow
+for an articles to be cross-filed in multiple categories.  Holy dueling
+taxonomies!
+
+On the downside, it becomes harder to *see* the category hierarchy, and
+modifying it potentially involves editing a whole bunch of files.  Bother.

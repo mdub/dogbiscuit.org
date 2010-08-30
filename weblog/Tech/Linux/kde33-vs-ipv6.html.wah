@@ -1,0 +1,27 @@
+# --- 
+# title: KDE 3.3 vs IPv6
+# published: 3 Feb 2005
+# ...
+
+A while back, {KDE}@http://www.kde.org 3.3 made it's way into
+{Debian}@http://www.debian.org, and thence onto my home PC.  Around about
+the same time, my web-browser (Konqueror) got very, very sluggish.  My dear
+wife uses this machine too, so I haven't been popular.
+
+It's taken me until now to figure it out.  It seems to be related to
+{IPv6}@http://www.ipv6.org DNS lookups.  I'm stuck behind an ADSL
+modem/router/firewall, which acts as a DNS proxy, and I guess it doesn't
+handle IPv6 too well.
+
+Luckily it's a
+{known}@http://www.linuxquestions.org/questions/showthread.php?s=&threadid=244976
+problem, and there's a
+{workaround}@http://frontrangebsd.org/pipermail/kde-freebsd/2004-October/009280.html:
+setting the environment variable +KDE_NO_IPV6+ to "true" tells KDE to
+disable IPv6 address DNS lookups.
+
+So, having added the following to +/etc/environment+
+
+|   KDE_NO_IPV6=true
+
+I can now retain my sanity whilst browsing.

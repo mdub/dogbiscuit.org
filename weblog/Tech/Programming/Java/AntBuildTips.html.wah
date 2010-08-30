@@ -1,0 +1,226 @@
+# --- 
+# title: Ant build tips
+# published: 25-Nov-2007, 23:00
+# ...
+
+During my past few Java projects, I've developed some guidelines which I
+find make builds faster, more reliable and easier to maintain.  The details
+are specific to Ant, but hopefully the principles are transferrable to
+other software build systems.
+
+These ideas may seem blindingly obvious to some readers, but I suspect
+they'll appear new-and-strange, and perhaps even bad-and-wrong, to others.
+In any event, I hope to trigger some thought/discussion.
+
+== Principles
+
+My build approach is based on two simple principles:
+
+- *Efficiency* - don't rebuild up-to-date outputs
+- *Safety* - do rebuild out-of-date outputs
+
+(By "output", I mean some artifact produced by the build.  I'm avoiding the
+word "target" here, since it has specific meaning in Ant.)
+
+=== *Efficiency* - DON'T rebuild up-to-date outputs
+
+Quick builds, and rapid feedback, are important for developer productivity.
+Using a build system that recreates everything from scratch after even a
+minor change is a great way to kill productivity.
+
+Re-executing a single build step is typically not the end of the world, but
+many outputs are also /inputs/ to other build steps, so unnecessarily
+rebuilding an output early on during the build can trigger rework all the
+way through.
+
+=== *Safety* - DO rebuild out-of-date outputs
+
+On the flip side, when a key input DOES change, you need to ensure that all
+the derived outputs are rebuilt, or at least revalidated.  Otherwise, your
+build becomes "flaky" and unpredictable.
+
+A flaky build forces developers to compensate somehow, e.g. by explicitly
+running "clean" builds every time, whch impacts productivity.
+
+== Tips
+
+=== Explicitly declare dependencies between your targets
+
+Some people are reluctant to declare dependencies, because declaring them
+introduces overhead.  But not doing so is unsafe, because it opens the door
+to build steps being executed with stale inputs, resulting in confusing,
+frustrating, non-deterministic build behaviour.
+
+If you've followed the "Don't rebuild up-to-date outputs" rule, then
+dependencies should be safe/cheap, ie. there's minimal overhead, and no
+reason not to declare them.
+
+=== Targets should be Nouns, not Verbs
+
+Typically, programmers name Ant targets by what they *do*,
+e.g. "+compile+", "+test+".  However, this tends to produce very procedural
+builds.
+
+So instead, I recommend choosing names describing what the target
+*produces*, e.g. "+classes+", "+test/report+".  Perhaps it's just because I
+spent so many years automating builds using
+{+make+}@http://en.wikipedia.org/wiki/Make, but I find that such noun-ish
+targets help in various ways:
+
+* it's easier to understand what outputs each target produces (for obvious
+  reasons)
+
+* intermediate targets tend to become useful in their own right
+
+* dependencies become clearer, as it makes more sense to depend on a
+  concrete input, rather than a process
+
+If you've read this far, go read Martin Fowler's
+"{OutputBuildTarget}@http://martinfowler.com/bliki/OutputBuildTarget.html"
+article; he explores the subject more eloquently than I'm capable of.
+
+Some targets might not produce a concrete artifact (or the artifact might
+not be the main point of the target).  In such cases, I'll sometimes name
+them based on the condition they produce, or ensure.  For example, a target
+using {Simian}@http://www.redhillconsulting.com.au/products/simian/ to
+check for duplication might be called "+minimal-duplication+" (as opposed
+to "+simian+").
+
+=== Use <code>""<uptodate>""</code> to avoid unnecessary rework
+
+Most Ant tasks include dependency-checking based on file timestamps, and
+will avoid rework.  But some tasks aren't so clever.  For instance, the
+<code>""<junit>""</code> task will happily re-run all your tests, even if
+they all passed last time, and neither code not tests have changed.
+
+The <a
+href="http://ant.apache.org/manual/CoreTasks/uptodate.html"><code>""<uptodate>""</code></a>
+task can help fill the gap.  It compares the timestamps of specified input
+and output files, and sets a property indicating that work can be avoided.
+
+Here's an example where <code>""<uptodate>""</code> is used to avoid
+unnecessary re-generation of XML-mapping code:
+
+| <target name="xml-module/check"
+|         depends="properties">
+|     <uptodate property="xml-module.uptodate"
+|               targetfile="${xml-module.jar}">
+|         <srcfiles dir="spec" includes="**/*.xsd"/>
+|     </uptodate>
+| </target>
+| 
+| <target name="xml-module"
+|         depends="xml-module/check, xmlbean/taskdef"
+|         unless="xml-module.uptodate">
+|     <xmlbean destfile="${xml-module.jar}"
+|              classpathref="xmlbeans.classpath">
+|         <fileset dir="spec" includes="**/*.xsd"/>
+|     </xmlbean>
+| </target>
+
+=== Use <code>""<touch>""</code> to record a completed task
+
+Although it's unusual, some build steps have no output: they are simply
+processes that must be executed, e.g. validating the format of a file, or
+verifying adherence to coding standards (Checkstyle, Simian).  Other
+build steps can produce /many/ outputs, e.g. code-generation tools.
+
+In these cases, where there's no identifiable /primary/ output, it can be
+useful to invent a placeholder output-file using Ant's <a
+href="http://ant.apache.org/manual/CoreTasks/touch.html"><code>""<touch>""</code></a>
+task.  The resulting file is empty, but it's timestamp can be used for
+dependency-checking, to determine if/when the build step needs to be
+re-run.
+
+<code>""<touch>""</code> is most useful in conjunction with
+<code>""<uptodate>""</code>, as in the following example:
+
+| <target name="libs/check">
+|     <uptodate property="libs.uptodate">
+|         <srcfiles dir="." includes="ivy.xml"/>
+|         <mapper type="merge" to="lib/.done"/>
+|     </uptodate>
+| </target>
+| 
+| <target name="libs" description="retrieve dependencies with ivy"
+|         depends="libs/check" unless="libs.uptodate">
+|     <ivy:retrieve pattern="lib/[conf]/[artifact].[ext]" />
+|     <touch file="lib/.done" />
+| </target>    
+
+Here we're using {Ivy}@http://ant.apache.org/ivy/ to download third-party
+libraries.  After download, we create a touch-file to mark the job as done.
+On subsequent runs, the library resolution and download process will be
+skipped, unless the "ivy.xml" control-file has been changed.
+
+As I alluded to earlier, I have also used the combination of <code>""<touch>""</code> and 
+<code>""<uptodate>""</code> to:
+
+* skip code-style checks when code hasn't changed
+
+* skip tests when neither code nor tests have changed
+
+=== Use <code>""<dependset>""</code> to remove out-of-date outputs
+
+When Ant is not clever enough to determine when something needs re-doing,
+the <a
+href="http://ant.apache.org/manual/CoreTasks/dependset.html"><code>""<dependset>""</code></a>
+task is useful for mopping up stale outputs. 
+
+== Pitfalls
+
+=== Avoid "private" targets
+
+Many builds include "private" or "hidden" targets, that are unsafe to call
+directly.  A common convention in the Ant world is name these targets
+starting with '-', since that makes them inaccessible from the
+command-line.
+
+I think private targets are a smell: they indicate that implicit
+dependencies are present in the build.  Hiding the unsafe targets makes
+sense, in a way ... but I much prefer to make the dependencies explicit, as
+described above, at which point it's safe to let every target be called
+directly (which often comes in handy when testing some aspect of the build
+process).
+
+=== Avoid targets depending on "clean"
+
+Having popular targets depend on "+clean+" is a bad smell.  You DO need to
+avoid using artifacts from previous builds which have passed their use-by
+date, but starting the whole build from scratch is overkill, when proper
+dependencies and careful timestamp-checking can ensure that _just_ the
+stale stuff is rebuilt.
+
+=== Avoid <code>""<copy overwrite="true">""</code>
+
+An anti-pattern I often encounter (and a pet peeve) is:
+
+| <copy overwrite="true" ...>
+|     ...
+|     <filterset>
+|         <filter token="PASSWORD" value="${db.password}"/>
+|         ...
+|     </filterset>
+| </copy>
+
+The "overwrite" attribute causes Ant to copy files every time, ignoring the
+usual timestamp-checking that prevents re-generation of up-to-date files.
+Using "overwrite" can easily cause most of your jars/wars/ears/etc to be
+updated with every build.  
+
+Instead, use <code>""<dependset>""</code> to invalidate the outputs in the
+case that ""${db.password}"" has changed.
+
+<small>
+
+== See Also
+
+- /Martin Fowler/ on
+  {OutputBuildTargets}@http://martinfowler.com/bliki/OutputBuildTarget.html
+  and {TouchFiles}@http://martinfowler.com/bliki/TouchFile.html.
+
+- {Incremental and fast builds using
+  Ant}@http://www.javaworld.com/javaworld/jw-11-2005/jw-1107-build.html by
+  /Arin Ghazarian/.
+
+</small>

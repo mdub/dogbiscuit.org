@@ -1,0 +1,14 @@
+# --- 
+# title: In praise of the Java Generics FAQ
+# published: 2-Nov-2004, 21:10
+# ...
+
+I've been attempting to make {QDox}@http://qdox.codehaus.org/ a little more
+tolerant of Java code containing {generic
+types}@http://jcp.org/en/jsr/detail?id=14.  In the process I found Angelika
+Langer's {Java Generics
+FAQ}@http://www.langer.camelot.de/GenericsFAQ/JavaGenericsFAQ.html.
+There's a wealth of information here about the subject, but it's extremely
+well-organised and a joy to navigate.
+
+Great job, Angelika ... thank you very much for your help.

@@ -1,0 +1,23 @@
+# --- 
+# title: Dynamic Typing is becoming fashionable
+# published: 3 May 2003
+# ...
+
+With the rise in popularity of test-driven design, people are starting to
+wonder whether the type-safety provided by compiled languages is redundant.
+Does having good unit-tests mean that it's safe to develop large systems in
+dynamically-typed languages like {Ruby}@http://www.ruby-lang.org and
+Python?
+
+I trace the meme back to an +artima.com+ interview with Guido van Rossum,
+discussing {Strong versus Weak
+Typing}@http://www.artima.com/intv/strongweakP.html.
+More recently, Uncle Bob Martin posted an article asking {Are Dynamic
+Languages Going to Replace Static
+Languages?}@http://www.artima.com/weblogs/viewpost.jsp?thread=4639.  And
+now, even Bruce ("Thinking in Java") Eckel is
+{questioning}@http://mindview.net/WebLog/log-0025 whether strong
+type-checking is all that necessary.
+
+Anyway, as Dave Thomas says, even {Java is
+Untyped}@http://www.pragmaticprogrammer.com/cgi-local/pragprog?JavaIsUntyped.

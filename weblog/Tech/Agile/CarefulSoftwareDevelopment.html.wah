@@ -1,0 +1,108 @@
+# --- 
+# title: Careful Software Development
+# published: 3-Sep-2009, 22:00
+# ...
+
+Enough with this seat-of-your pants "eXtreme Programming", this twisty-turny "Agile" bollocks, and this anorexic "Lean"!  
+You're all a bunch of cowboys!
+
+The time has come for a return to a more sensible, conservative approach.  Just be a little more careful, okay?
+
+==== Careful, don't waste your money (and time)
+
+It's sensible to ensure that what you're building has _real business value_.
+Ideally, you should be building the highest-value stuff first.
+Anything less, and you're being careless with your (or someone else's) money.
+
+==== Careful, make sure it's useful
+
+It's worth saying again ...
+
+If you build stuff that users don't want, nobody's going to end up happy.  
+I suggest you keep in close contact with them.
+Show them what you're building for them as soon as possible (yes, even before it's "finished"), 
+so they can help keep you pointed in the right direction.
+
+It's important to listen to your users, but don't forget that they (like you) only have part of the picture.
+You need to work _with_ them to find the best way to solve their problems, 
+rather than just implementing their proposed solutions without question.
+
+Even when _you_ eventually understand what the requirements are, the rest of the team might not.
+So you'd best write the requirements down somewhere.  Somewhere safe.
+Code (in the form of automated tests) is an excellent way to express requirements, because (unlike other options) it's hard to misinterpret.
+
+==== Careful, don't miss the turn-off
+
+Plans are great; make sure you have one.  But don't follow it blindly.
+Once you get going, you'll probably discover lots of things you didn't know when you made the plan.
+You may even stumble upon some useful short-cuts: ways to deliver more value, for less cost!  
+Don't let the plan prevent you from taking those opportunities.
+
+After all, even if you have a map, it's still useful to look at the road ahead.
+Where'd you get that map, anyway?  Oh, you drew it yourself?!
+Well, why not slip that back into it's protective plastic cover, so it doesn't get grubby. There ya go.
+And keep an eye out for road signs, okay?  Excellent.
+
+==== Careful, free stuff isn't always cheap
+
+You may find something that looks like it might solve all (or some) of your problems.
+Perhaps some free software, or a product you already have licenses for.
+That would be nice.
+
+But beware!  Adapting your problem to someone else's solution is hard, 
+and if you fail, leaves you in a delicate situation.  
+In some situations, rolling your own solution works out cheaper in the long run.
+
+==== Careful, don't bite off more than you can chew
+
+Q. How do you eat an elephant?  A. One bite at a time.
+
+For god's sake, don't give yourself indigestion by tackling the whole trunk at once!
+I had a cousin who did that, and she still can't ride a bike properly.
+
+Slow and steady wins the race.
+
+==== Careful, don't break the stuff that's already working
+
+Software's not easy, you know.  It gets complicated inside that big box.  And hot.  
+You might accidently trip over some important wires while you're in there installing the new 
+fnord-wangling module.
+
+You know those automated tests, ummm I mean requirements, you captured earlier?  Just run them again.  
+Actually, run them as frequently as you can; that should alert you to any inadvertent mistakes as soon as they occur.
+
+==== Careful, don't let it fail in production
+
+Oh boy, if it goes wrong in production, your users are going to be mighty grumpy.
+That's embarassing.
+And these things tend to happen whenever it's least convenient. 
+You might just have to cancel that ski-trip.
+
+Careful, too, to have good processes for finding and fixing production issues if and when they do occur.
+Make sure you can turn fixes around quickly.  You may make the ski-fields yet!
+
+==== Careful, don't step on your own toes
+
+Make sure that the team is all working towards the same goal; all pulling in the same direction.
+Yeah, unfortunately that means talking to each other.  All the time.
+But otherwise, you'll just get in each other's way.
+
+==== Careful, don't be left holding the (ugly, vomiting) baby
+
+There's a chance (actually, let's call it a certainty), that the rest of the project team will desert you.
+The clever ones are likely to leave first.
+
+So, I suggest you ensure you have a decent understanding of the system before they go.
+Documentation might help.  But probably not: most of it tends to be kind of useless.
+You're probably better off working with them a bit while they're still around.
+That way you can ask them questions.  
+
+And if you work together, you'll likely produce a more maintainable result, anyway.
+
+==== Okay, then
+
+In the immortal words of Sergeant Phil Esterhaus:
+
+  "Let's be careful out there."
+
+Thanks for listening.

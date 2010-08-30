@@ -1,0 +1,23 @@
+# --- 
+# title: Open-Source == Agile?
+# published: 18 June 2003
+# ...
+
+In {Hacking and
+Refactoring}@http://www.artima.com/weblogs/viewpost.jsp?thread=5342, Eric
+S. Raymond argues that there's a strong similarity between the Open Source
+and Agile Development movements.
+
+In general, I agree: there are many values shared between the two
+communities.  And, there are also some important differences ...
+
+As Eric notes, in OSS projects there is no distinction between "developer"
+and "customer": projects typically arise because the developers have an
+itch to scratch.  In contrast, an Agile project involves a business-focused
+customer who can set priorities.
+
+Testing is another point of difference.  Some OSS projects include
+excellent regression-tests (the Perl interpreter springs immediately to
+mind), but most don't.  The emerging popularity of Test-Driven Design (not
+just pervasive unit-testing, but writing tests *first*) is an Agile
+innovation.

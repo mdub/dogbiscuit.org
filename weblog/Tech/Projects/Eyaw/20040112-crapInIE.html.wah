@@ -1,0 +1,16 @@
+# --- 
+# title: Looks crap in IE
+# published: 12 Jan 2004
+# ...
+
+DogBiscuit looks crap in Internet Explorer.  Unbelievably, today is the
+first time I've browsed this way with TheBorg's OneTrueBrowser (I'm
+typically a Konqueror/Firebird user).  Under IE, the entry titles gradually
+creep to the left! By about 2-pixels/entry, from what I can tell.  Weird.
+Better do some CSS debugging.
+
+Digging into it, it looks like I've hit the {Magik Creeping Text
+bug}@http://www.positioniseverything.net/explorer/creep.html.  Removing the
+border-left on the blog-entries fixed it.
+
+Phew ... lucky no-one reads this stuff!

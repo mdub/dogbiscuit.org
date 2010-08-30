@@ -1,0 +1,33 @@
+# --- 
+# title: Build-scripting
+# published: 20-Jan-2004
+# ...
+
+Martin Fowler writes {about build
+languages}@http://martinfowler.com/bliki/BuildLanguage.html:
+
+  ... more complex builds require conditional logic, and that requires more
+  general programming language constructs - and that's where ant/make fall
+  down.
+
+Absolutely.  I touched on this in {a previous posting on
+Pynt}@20030722-pynt.
+
+Pynt seems to have died, by the way; perhaps they realised that leveraging
+a real, existing scripting language was a better idea.  Like Ruby, for
+example.
+
+Fowler has been playing with {Rake}@http://rake.rubyforge.org/, a
+Ruby-based build scripting framework.  The nice thing about Rake is that
+you can fall back on the full OO-scripting power of Ruby when things get
+complex.
+
+Jon Tirsen has developed similar capabilities in his Ruby-based build
+system, which he describes in {"Using Ruby to build Java
+systems"}@http://blogs.codehaus.org/people/jutopia/archives/000562_using_ruby_to_build_java_systems.html.
+His "Ant-server" is an nice idea, and could allow scripting of Ant using
+arbitrary languages.
+
+In the meantime, Ant-1.6 has gone some way to addressing the need with it's
+{macrodef}@http://ant.apache.org/manual/CoreTasks/macrodef.html task.  But
+this is still not as usable as a real scripting language, IMHO.

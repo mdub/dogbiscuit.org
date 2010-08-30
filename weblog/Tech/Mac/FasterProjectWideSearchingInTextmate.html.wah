@@ -1,0 +1,30 @@
+# --- 
+# title: Faster project-wide searching in Textmate
+# published: 9-Feb-2008
+# Updated: 16-Nov-2008
+# ...
+
+<em>
+Update: I'm now using {Ack in Project}@http://github.com/protocool/ack-tmbundle/tree/master, which is even better!
+</em>
+
+Textmate is a nice editor, but it's "Find in Project" (&#x21E7;&#x2318;F) function is annoying slow in large projects.
+
+So, I'm happy to have found an alternative: {GrepInProject++}@http://soup.robert42.com/post/20644, which leverages the raw power of <tt>find(1)</tt> and <tt>grep(1)</tt> for super fast searching.  The original {GrepInProject}@http://henrik.nyh.se/2007/06/grep-in-project-command-for-textmate was created by 
+Henrik Nyh; Robert Thurnher added a better UI and some other features.
+
+Enjoy it thusly:
+
+* Download and unpack {+GrepInProject.zip+}@/../resources/GrepInProject.zip
+
+* Install the UI support files as follows:
+
+| $ sudo mv GrepInProjectSearch.nib /Applications/TextMate.app/Contents/SharedSupport/Support/nibs/
+
+* Open +GrepInProject.tmCommand+ with Textmate
+
+By default the "Grep in Project" command is bound to &#x21E7;&#x2318;F, replacing the built-in "Find in Project" command.
+
+<small>
+Note: my version is ever-so-slightly different to Robert's; I changed the +find+ to use +name+ rather than +path+ matching (saving a few precious milliseconds), and removed a redundant "recursive" option from the +grep+.
+</small>
