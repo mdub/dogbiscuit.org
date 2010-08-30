@@ -1,7 +1,7 @@
-# --- 
-# title: How to hide CVS files
-# published: 14 Apr 2003, 13:00
-# ...
+--- 
+title: How to hide CVS files
+published: 14 Apr 2003, 13:00
+...
 
 I use CVS to manage my web-content, so that I can edit it and upload
 changes.  An unfortunate side-effect is that my web content-directory is

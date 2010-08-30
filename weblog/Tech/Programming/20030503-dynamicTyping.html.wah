@@ -1,7 +1,7 @@
-# --- 
-# title: Dynamic Typing is becoming fashionable
-# published: 3 May 2003
-# ...
+--- 
+title: Dynamic Typing is becoming fashionable
+published: 3 May 2003
+...
 
 With the rise in popularity of test-driven design, people are starting to
 wonder whether the type-safety provided by compiled languages is redundant.

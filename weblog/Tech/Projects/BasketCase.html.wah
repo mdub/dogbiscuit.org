@@ -1,7 +1,7 @@
-# --- 
-# title: BasketCase
-# published: 25 Jun 2006
-# ...
+--- 
+title: BasketCase
+published: 25 Jun 2006
+...
 
 The project I'm currently on uses {Rational
 ClearCase}@http://www.ibm.com/software/awdtools/clearcase/ to manage it's

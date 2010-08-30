@@ -1,7 +1,7 @@
-# --- 
-# title: A Python-esque alternative to Ant
-# published: 22 July 2003
-# ...
+--- 
+title: A Python-esque alternative to Ant
+published: 22 July 2003
+...
 
 {Pynt}@http://pynt.sf.net is "a scripting language designed to simplify
 running builds".  Nice.  It's similar in intent to Ant, but has a

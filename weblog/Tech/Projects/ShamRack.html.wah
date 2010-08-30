@@ -1,7 +1,7 @@
-# --- 
-# title: Introducing ShamRack
-# published: 3-July-2009, 15:50
-# ...
+--- 
+title: Introducing ShamRack
+published: 3-July-2009, 15:50
+...
 
 The system I'm currently working on integrates with several external systems, over HTTP, using simple (RESTish) web-services.  I really don't want to involve those external systems while testing my own, though; I want to stub 'em out.
 

@@ -1,7 +1,7 @@
-# --- 
-# title: Rake profiling
-# published: 1-Feb-2008
-# ...
+--- 
+title: Rake profiling
+published: 1-Feb-2008
+...
 
 Where's the bottleneck in your {Rake}@http://rake.rubyforge.org build?  Let's find out.  Drop (or include) this in your Rakefile:
 

@@ -1,7 +1,7 @@
-# --- 
-# title: Spying on your code with RR
-# published: 27 May 2009, 22:39
-# ...
+--- 
+title: Spying on your code with RR
+published: 27 May 2009, 22:39
+...
 
 A while back, Melbourne's own Pete Yandell created {Not A Mock}@http://notahat.com/not_a_mock/, an extension to RSpec that supports {/test-spies/}@http://xunitpatterns.com/Test%20Spy.html.  And a damn fine idea it was, too.
 

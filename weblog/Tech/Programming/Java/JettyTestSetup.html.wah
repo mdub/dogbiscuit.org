@@ -1,7 +1,7 @@
-# --- 
-# title: Jetty as a test-suite decorator
-# published: 9-Jul-2004 4:30pm
-# ...
+--- 
+title: Jetty as a test-suite decorator
+published: 9-Jul-2004 4:30pm
+...
 
 {Marty Andrews}@http://www.wrytradesman.com/blog/ and I have been working
 on a small project together.  It's primarily intended as a demo of

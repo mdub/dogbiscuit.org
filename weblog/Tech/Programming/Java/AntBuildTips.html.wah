@@ -1,7 +1,7 @@
-# --- 
-# title: Ant build tips
-# published: 25-Nov-2007, 23:00
-# ...
+--- 
+title: Ant build tips
+published: 25-Nov-2007, 23:00
+...
 
 During my past few Java projects, I've developed some guidelines which I
 find make builds faster, more reliable and easier to maintain.  The details

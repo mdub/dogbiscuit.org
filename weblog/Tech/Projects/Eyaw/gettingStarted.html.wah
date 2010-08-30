@@ -1,7 +1,7 @@
-# --- 
-# title: Even Yet Another WebLog
-# published: 13 Apr 2003 23:00
-# ...
+--- 
+title: Even Yet Another WebLog
+published: 13 Apr 2003 23:00
+...
 
 So, I'm messing around trying to craft a weblog CGI-script using Ruby.  I've
 been very much influenced by +blosxom+, and by Dave Thomas's work on

@@ -1,7 +1,7 @@
-# --- 
-# title: Refactoring "support" for Ruby?
-# published: 10-Apr-2005 23:00
-# ...
+--- 
+title: Refactoring "support" for Ruby?
+published: 10-Apr-2005 23:00
+...
 
 These days, there a number of pretty damn good IDEs for Java, with features
 like intelligent code-completion (aka "intellisense") and automated

@@ -1,7 +1,7 @@
-# --- 
-# title: "\"Ideal time\" estimates invite bad assumptions"
-# published: 15-Sep-2004, 21:15
-# ...
+--- 
+title: "\"Ideal time\" estimates invite bad assumptions"
+published: 15-Sep-2004, 21:15
+...
 
 When developing using {XP}@http://extremeprogramming.org/, the development
 team estimates the work using some arbitrary unit of time, which is then

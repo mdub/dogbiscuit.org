@@ -1,7 +1,7 @@
-# --- 
-# title: Splitting email into IMAP folders
-# published: 26-Jun-2004, 22:30
-# ...
+--- 
+title: Splitting email into IMAP folders
+published: 26-Jun-2004, 22:30
+...
 
 After years of using Emacs-based {Gnus}@http://gnus.org/about.html to read
 my email, I've recently switched to IMAP, and

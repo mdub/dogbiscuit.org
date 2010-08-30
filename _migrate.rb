@@ -26,9 +26,8 @@ Pathname.glob("#{old_blog_dir}/**/*.txt").each do |old_entry|
       headers["title"] = headers.delete("Subject")
       headers["published"] = headers.delete("Date")
       
-      out.puts YAML.dump(headers).gsub(/^/, "# ")
-      out.puts "# ..."
-      out.puts ""
+      out.puts YAML.dump(headers)
+      out.puts "...\n\n"
 
       out.puts(old.read)
       

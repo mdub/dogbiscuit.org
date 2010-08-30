@@ -1,7 +1,7 @@
-# --- 
-# title: New Inversion of Control framework(s)
-# published: 23 Jun 2003, 22:58
-# ...
+--- 
+title: New Inversion of Control framework(s)
+published: 23 Jun 2003, 22:58
+...
 
 {PicoContainer}@http://picocontainer.org and
 {NanoContainer}@http://nanocontainer.org are a brand-new implementations of

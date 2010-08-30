@@ -1,7 +1,7 @@
-# --- 
-# title: Exploring the Java Heap (with Ruby and Graphviz)
-# published: 21-4-2004
-# ...
+--- 
+title: Exploring the Java Heap (with Ruby and Graphviz)
+published: 21-4-2004
+...
 
 Recently, I needed to track down a rather nasty memory-leak in a Java app,
 and ended up rolling together a simple heap-dump explorer.

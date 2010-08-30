@@ -1,7 +1,7 @@
-# --- 
-# title: RMagick for Debian
-# published: 10 Jun 2003
-# ...
+--- 
+title: RMagick for Debian
+published: 10 Jun 2003
+...
 
 {RMagick}@http://rmagick.rubyforge.org/ is an ImageMagick binding for
 Ruby.  I've been happily using RMagick to produce thumbnails for my

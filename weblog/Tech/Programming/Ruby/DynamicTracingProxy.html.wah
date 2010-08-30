@@ -1,7 +1,7 @@
-# --- 
-# title: Tracing with a dynamic Proxy, in Ruby
-# published: 12-May-2005 13:45
-# ...
+--- 
+title: Tracing with a dynamic Proxy, in Ruby
+published: 12-May-2005 13:45
+...
 
 Recently, I was writing a ({Ruby}@http://ruby-lang.org) script to sync
 email between two IMAP servers.  My unit-tests were all working, but

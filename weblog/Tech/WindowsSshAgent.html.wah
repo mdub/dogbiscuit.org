@@ -1,7 +1,7 @@
-# --- 
-# title: Using ssh-agent under Windows
-# published: 17-Jun-2004, 16:20
-# ...
+--- 
+title: Using ssh-agent under Windows
+published: 17-Jun-2004, 16:20
+...
 
 Thanks to Ovidiu Predescu for his blog entry on "{Setting up ssh-agent on
 Windows

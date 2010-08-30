@@ -1,7 +1,7 @@
-# --- 
-# title: Dealing with Recategorisation
-# published: 14-Apr-2003 13:54
-# ...
+--- 
+title: Dealing with Recategorisation
+published: 14-Apr-2003 13:54
+...
 
 A {new feature in RubLog}@http://pragprog.com/pragdave/Tech/Blog/MoreWikiBlog.rdoc,v 
 allows "global" URIs for articles to be constructed using WikiWords.  Such

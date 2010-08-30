@@ -1,8 +1,8 @@
-# --- 
-# title: Faster project-wide searching in Textmate
-# published: 9-Feb-2008
-# Updated: 16-Nov-2008
-# ...
+--- 
+title: Faster project-wide searching in Textmate
+published: 9-Feb-2008
+Updated: 16-Nov-2008
+...
 
 <em>
 Update: I'm now using {Ack in Project}@http://github.com/protocool/ack-tmbundle/tree/master, which is even better!

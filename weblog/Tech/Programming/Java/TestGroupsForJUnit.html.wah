@@ -1,7 +1,7 @@
-# --- 
-# title: TestGroups for JUnit
-# published: 19-Dec-2004, 23:00
-# ...
+--- 
+title: TestGroups for JUnit
+published: 19-Dec-2004, 23:00
+...
 
 New users of {JUnit}@http://www.junit.org often assume that there will only
 be one instance of their TestCase class (I did, at first).

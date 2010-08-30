@@ -1,7 +1,7 @@
-# --- 
-# title: ReadOnlyFormBuilder
-# published: 8-Mar-2008, 22:00
-# ...
+--- 
+title: ReadOnlyFormBuilder
+published: 8-Mar-2008, 22:00
+...
 
 For RubyOnRails developers, {+form_for+ and +fields_for+}@http://api.rubyonrails.org/classes/ActionView/Helpers/FormHelper.html
 are the accepted way of DRYing up form templates. You know the deal; you code

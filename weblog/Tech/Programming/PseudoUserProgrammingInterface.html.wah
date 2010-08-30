@@ -1,7 +1,7 @@
-# --- 
-# title: "Pattern: Pseudo-User Programming Interface"
-# published: 
-# ...
+--- 
+title: "Pattern: Pseudo-User Programming Interface"
+published: 
+...
 
   Abstract: User-interface-based automated tests become more maintainable
   if you add a layer insulating the tests from the testing tool.

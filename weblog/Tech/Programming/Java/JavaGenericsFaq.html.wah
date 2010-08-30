@@ -1,7 +1,7 @@
-# --- 
-# title: In praise of the Java Generics FAQ
-# published: 2-Nov-2004, 21:10
-# ...
+--- 
+title: In praise of the Java Generics FAQ
+published: 2-Nov-2004, 21:10
+...
 
 I've been attempting to make {QDox}@http://qdox.codehaus.org/ a little more
 tolerant of Java code containing {generic

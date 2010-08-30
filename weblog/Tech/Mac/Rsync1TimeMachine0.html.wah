@@ -1,7 +1,7 @@
-# --- 
-# title: "Rsync: 1, Time Machine: 0"
-# published: "11-Nov-2008, 23:30 "
-# ...
+--- 
+title: "Rsync: 1, Time Machine: 0"
+published: "11-Nov-2008, 23:30 "
+...
 
 I recently bought a Mac Mini to serve various purposes about the house - not least of which, as a
 remote backup server for my MacBook Pro.
