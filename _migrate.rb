@@ -25,7 +25,7 @@ Pathname.glob("#{old_blog_dir}/**/*.txt").each do |old_entry|
       end
       headers["title"] = headers.delete("Subject")
       headers["published"] = headers.delete("Date")
-      
+      headers["layout"] = "/_layouts/article.haml"
       out.puts YAML.dump(headers)
       out.puts "...\n\n"
 

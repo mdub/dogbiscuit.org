@@ -1,4 +1,5 @@
 --- 
+layout: /_layouts/article.haml
 title: Object-Oriented Web User-Interfaces
 published: 18 June 2003 21:00
 ...

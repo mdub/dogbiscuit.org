@@ -1,4 +1,5 @@
 --- 
+layout: /_layouts/article.haml
 title: First days at ThoughtWorks
 published: 17-Jun-2004, 17:30
 ...

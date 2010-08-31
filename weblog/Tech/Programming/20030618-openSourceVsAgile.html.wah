@@ -1,4 +1,5 @@
 --- 
+layout: /_layouts/article.haml
 title: Open-Source == Agile?
 published: 18 June 2003
 ...
