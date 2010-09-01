@@ -1,0 +1,4 @@
+%ul
+  - project.inputs.each do |input|
+    - if input.path.to_s =~ %r{^weblog/.*\.wah$}
+      %li= link(input.output_path, input.title)
