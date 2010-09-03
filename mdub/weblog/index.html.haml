@@ -3,9 +3,9 @@ layout: "/_layouts/base.haml"
 ...
 
 %ul
-  - blog_entries.each do |entry|
+  - published_pages.each do |entry|
     %li
-      = link(entry.output_path.to_s.sub(/\.html$/,''), entry.title)
+      = link(entry)
       -
       %span.publication_date
         = entry.publication_date.strftime("%e %b, %Y")
