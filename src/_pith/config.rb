@@ -27,9 +27,10 @@ end
 
 project.helpers do
 
-  def published_pages
+  def published_pages(dir_path = current_input.path.parent)
+    dir_path = Pathname(dir_path)
     project.inputs.select do |input|
-      input.path.within?(current_input.path.parent)
+      input.path.within?(dir_path)
     end.select do |input|
       input.respond_to?(:publication_date) && !input.publication_date.nil?
     end.compact.sort_by do |input|
