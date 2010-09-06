@@ -2,13 +2,18 @@
 %html
 
   %head
-    %title Dog biscuits for everybody!
+    %title= page.title || "dogbiscuit"
     %link{ :href=>href("/style/dogbiscuit.css"), :rel=>"stylesheet", :type=>"text/css" }
 
   %body
 
     #header
-      %h1 mdub@dogbiscuit.org
+      
+      %ol.menu
+        %li= link("/mdub/weblog", "weblog")
+        %li= link("/mdub/about", "about")
+        
+      %p.title dogbiscuit
       %p.subtitle ... mmm, crunchy!
 
     #content

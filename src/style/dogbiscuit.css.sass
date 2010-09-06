@@ -5,7 +5,7 @@ body
   margin: 0 auto
   padding: 0
   min-width: 30em
-  max-width: 55em
+  max-width: 50em
 
 div
   margin: 0
@@ -14,18 +14,28 @@ div
   padding: 0.5em
   
 #header
-  border-bottom: 1px solid $line
+  margin: 0 0.5em
+  border-radius: 0 0 10px 10px
+  border: 1px solid #333
+  border-top: 0
+  background: #ccc
   padding: 0.5em
-    
-  h1
+  
+  .title
     margin: 0
+    font-size: 150%
+    font-weight: bold
     
   .subtitle
     margin: 0
     font-style: italic
 
+  .menu
+    float: right
+    
 #content
   margin: 0 auto
+  padding: 0.5em 1em
   
 .publication_date
   color: #666
@@ -33,5 +43,27 @@ div
   float: right
 
 #footer
-  border-top: 1px solid $line
+  border-radius: 10px 10px 0 0
+  border: 1px solid #333
+  border-bottom: 0
+  background: #aaa
   padding: 0.5em
+
+ol.menu
+
+  position: relative
+  padding: 0
+  margin: 0
+  
+  list-style-type: none
+      
+  li
+    display: inline-block
+    border: 1px solid grey
+    border-radius: 5px
+    background: #eee
+    padding: 0.5em
+
+    a
+      color: inherit
+      text-decoration: none
