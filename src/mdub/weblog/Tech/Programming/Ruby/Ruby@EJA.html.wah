@@ -1,5 +1,5 @@
 --- 
-layout: /_layouts/article.haml
+layout: /mdub/weblog/_article.html.haml
 title: Presentation on Ruby/Rails at EJA
 published: 28 Sep 2006, 4:10pm
 ...

@@ -1,5 +1,5 @@
 --- 
-layout: /_layouts/article.haml
+layout: /mdub/weblog/_article.html.haml
 title: Fried and Steamed Stuff
 published: 10 Jun 2004, 11:30
 ...

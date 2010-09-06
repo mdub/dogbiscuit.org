@@ -1,5 +1,5 @@
 --- 
-layout: /_layouts/article.haml
+layout: /mdub/weblog/_article.html.haml
 title: New Inversion of Control framework(s)
 published: 23 Jun 2003, 22:58
 ...

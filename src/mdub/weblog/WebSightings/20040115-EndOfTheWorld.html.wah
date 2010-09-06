@@ -1,5 +1,5 @@
 --- 
-layout: /_layouts/article.haml
+layout: /mdub/weblog/_article.html.haml
 title: End of The World
 published: Jan 15, 2004
 ...

@@ -1,5 +1,5 @@
 --- 
-layout: /_layouts/article.haml
+layout: /mdub/weblog/_article.html.haml
 title: "Rsync: 1, Time Machine: 0"
 published: "11-Nov-2008, 23:30 "
 ...

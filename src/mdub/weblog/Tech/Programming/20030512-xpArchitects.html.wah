@@ -1,5 +1,5 @@
 --- 
-layout: /_layouts/article.haml
+layout: /mdub/weblog/_article.html.haml
 title: XP Architects should make themselves redundant
 published: 12 May 2003
 ...

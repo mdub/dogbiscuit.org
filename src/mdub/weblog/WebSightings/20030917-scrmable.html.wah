@@ -1,5 +1,5 @@
 --- 
-layout: /_layouts/article.haml
+layout: /mdub/weblog/_article.html.haml
 title: Scrmable (Ruby does line-noise, too!)
 published: 17-Sep-2003
 ...

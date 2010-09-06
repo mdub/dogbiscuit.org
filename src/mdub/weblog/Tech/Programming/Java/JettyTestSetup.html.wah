@@ -1,5 +1,5 @@
 --- 
-layout: /_layouts/article.haml
+layout: /mdub/weblog/_article.html.haml
 title: Jetty as a test-suite decorator
 published: 9-Jul-2004 4:30pm
 ...

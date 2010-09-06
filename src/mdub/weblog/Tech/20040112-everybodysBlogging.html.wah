@@ -1,5 +1,5 @@
 --- 
-layout: /_layouts/article.haml
+layout: /mdub/weblog/_article.html.haml
 title: Everybody's Blogging
 published: 12 Jan 2004, 23:00
 ...

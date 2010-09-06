@@ -1,5 +1,5 @@
 --- 
-layout: /_layouts/article.haml
+layout: /mdub/weblog/_article.html.haml
 title: Selenium Core 0.8.0
 published: 29 Sep 2006, 16:15
 ...

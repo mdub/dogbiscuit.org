@@ -1,5 +1,5 @@
 --- 
-layout: /_layouts/article.haml
+layout: /mdub/weblog/_article.html.haml
 title: "Pattern: Pseudo-User Programming Interface"
 published: 
 ...

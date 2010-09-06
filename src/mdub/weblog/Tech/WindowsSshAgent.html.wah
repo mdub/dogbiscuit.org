@@ -1,5 +1,5 @@
 --- 
-layout: /_layouts/article.haml
+layout: /mdub/weblog/_article.html.haml
 title: Using ssh-agent under Windows
 published: 17-Jun-2004, 16:20
 ...

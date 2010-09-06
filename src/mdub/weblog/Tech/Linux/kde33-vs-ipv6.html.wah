@@ -1,5 +1,5 @@
 --- 
-layout: /_layouts/article.haml
+layout: /mdub/weblog/_article.html.haml
 title: KDE 3.3 vs IPv6
 published: 3 Feb 2005
 ...

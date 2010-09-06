@@ -1,5 +1,5 @@
 --- 
-layout: /_layouts/article.haml
+layout: /mdub/weblog/_article.html.haml
 title: Tracing with a dynamic Proxy, in Ruby
 published: 12-May-2005 13:45
 ...

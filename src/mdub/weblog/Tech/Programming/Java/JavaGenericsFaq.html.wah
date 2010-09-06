@@ -1,5 +1,5 @@
 --- 
-layout: /_layouts/article.haml
+layout: /mdub/weblog/_article.html.haml
 title: In praise of the Java Generics FAQ
 published: 2-Nov-2004, 21:10
 ...

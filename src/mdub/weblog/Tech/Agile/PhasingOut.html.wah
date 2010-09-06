@@ -1,5 +1,5 @@
 --- 
-layout: /_layouts/article.haml
+layout: /mdub/weblog/_article.html.haml
 title: Phasing myself out
 published: 10 June 2004, 20:00
 ...

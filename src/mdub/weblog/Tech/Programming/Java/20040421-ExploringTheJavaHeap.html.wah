@@ -1,5 +1,5 @@
 --- 
-layout: /_layouts/article.haml
+layout: /mdub/weblog/_article.html.haml
 title: Exploring the Java Heap (with Ruby and Graphviz)
 published: 21-4-2004
 ...

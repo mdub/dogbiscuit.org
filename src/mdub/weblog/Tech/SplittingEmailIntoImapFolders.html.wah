@@ -1,5 +1,5 @@
 --- 
-layout: /_layouts/article.haml
+layout: /mdub/weblog/_article.html.haml
 title: Splitting email into IMAP folders
 published: 26-Jun-2004, 22:30
 ...

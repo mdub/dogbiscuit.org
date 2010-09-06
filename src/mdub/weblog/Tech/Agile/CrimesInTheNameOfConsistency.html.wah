@@ -1,5 +1,5 @@
 --- 
-layout: /_layouts/article.haml
+layout: /mdub/weblog/_article.html.haml
 title: Crimes committed in the name of "Consistency"
 published: 19-Sep-2005, 23:00
 ...

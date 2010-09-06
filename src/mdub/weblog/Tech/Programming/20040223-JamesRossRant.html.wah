@@ -1,5 +1,5 @@
 --- 
-layout: /_layouts/article.haml
+layout: /mdub/weblog/_article.html.haml
 title: James Ross sweats blood
 published: 23-Feb-2004
 ...

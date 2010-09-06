@@ -1,5 +1,5 @@
 --- 
-layout: /_layouts/article.haml
+layout: /mdub/weblog/_article.html.haml
 title: "Monkey-powered cut-and-paste detection "
 published: 23 Jun 2003, 22:47
 ...

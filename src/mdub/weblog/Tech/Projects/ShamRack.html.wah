@@ -1,5 +1,5 @@
 --- 
-layout: /_layouts/article.haml
+layout: /mdub/weblog/_article.html.haml
 title: Introducing ShamRack
 published: 3-July-2009, 15:50
 ...

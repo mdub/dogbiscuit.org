@@ -1,5 +1,5 @@
 --- 
-layout: /_layouts/article.haml
+layout: /mdub/weblog/_article.html.haml
 title: Spying on your code with RR
 published: 27 May 2009, 22:39
 ...

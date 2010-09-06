@@ -1,5 +1,5 @@
 --- 
-layout: /_layouts/article.haml
+layout: /mdub/weblog/_article.html.haml
 title: Ant build tips
 published: 25-Nov-2007, 23:00
 ...

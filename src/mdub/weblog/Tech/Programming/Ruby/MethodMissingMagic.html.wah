@@ -1,5 +1,5 @@
 --- 
-layout: /_layouts/article.haml
+layout: /mdub/weblog/_article.html.haml
 title: method_missing magic - emulating Groovy's "it" in Ruby
 published: 2 Oct 2006, 13:55
 Updated: 5 Oct 2006, 10:25

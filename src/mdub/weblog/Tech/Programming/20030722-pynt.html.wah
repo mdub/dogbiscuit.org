@@ -1,5 +1,5 @@
 --- 
-layout: /_layouts/article.haml
+layout: /mdub/weblog/_article.html.haml
 title: A Python-esque alternative to Ant
 published: 22 July 2003
 ...

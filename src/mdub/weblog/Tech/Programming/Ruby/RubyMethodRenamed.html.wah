@@ -1,5 +1,5 @@
 --- 
-layout: /_layouts/article.haml
+layout: /mdub/weblog/_article.html.haml
 title: Refactoring "support" for Ruby?
 published: 10-Apr-2005 23:00
 ...

@@ -1,5 +1,5 @@
 --- 
-layout: /_layouts/article.haml
+layout: /mdub/weblog/_article.html.haml
 title: Nine months at home
 published: 13-Jan-2008, 22:35
 ...

@@ -1,5 +1,5 @@
 --- 
-layout: /_layouts/article.haml
+layout: /mdub/weblog/_article.html.haml
 title: I hate "frameworks"
 published: 28 Sep 2006
 ...

@@ -1,5 +1,5 @@
 --- 
-layout: /_layouts/article.haml
+layout: /mdub/weblog/_article.html.haml
 title: Even Yet Another WebLog
 published: 13 Apr 2003 23:00
 ...

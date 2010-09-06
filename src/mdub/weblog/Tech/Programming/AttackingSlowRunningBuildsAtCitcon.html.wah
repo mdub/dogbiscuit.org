@@ -1,5 +1,5 @@
 --- 
-layout: /_layouts/article.haml
+layout: /mdub/weblog/_article.html.haml
 title: Attacking slow-running builds (notes from CITCON)
 published: 1-Jul-2008, 22:20
 ...
