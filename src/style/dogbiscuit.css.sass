@@ -1,10 +1,11 @@
-$grey: #333
+$line: #aaa
+$light_grey: #aaa
 
 body
-  margin: 0
+  margin: 0 auto
   padding: 0
-  background: $grey
-  color: white
+  min-width: 30em
+  max-width: 55em
 
 div
   margin: 0
@@ -13,21 +14,18 @@ div
   padding: 0.5em
   
 #header
-  background: black
-  color: white
-  border: 1px solid black
+  border-bottom: 1px solid $line
   padding: 0.5em
     
   h1
     margin: 0
     
   .subtitle
-    margin: 0 0 1em 0
+    margin: 0
     font-style: italic
 
 #content
-  background: white
-  color: black
+  margin: 0 auto
   
 .publication_date
   color: #666
@@ -35,6 +33,5 @@ div
   float: right
 
 #footer
-  background: $grey
-  border: 1px solid $grey
+  border-top: 1px solid $line
   padding: 0.5em
