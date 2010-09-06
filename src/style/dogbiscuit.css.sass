@@ -5,7 +5,7 @@ body
   margin: 0 auto
   padding: 0
   min-width: 30em
-  max-width: 50em
+  max-width: 60em
 
 div
   margin: 0
@@ -14,10 +14,10 @@ div
   padding: 0.5em
 
 #header, #footer
+  margin: 0 0.5em
   -webkit-box-shadow: 5px 5px 10px #999
   
 #header
-  margin: 0 0.5em
   border-radius: 0 0 10px 10px
   border: 1px solid #333
   border-top: 0
@@ -37,20 +37,31 @@ div
     float: right
     
 #content
+  float: left
+  width: 70%
   margin: 0 auto
   padding: 0.5em 1em
-  
+
+#sidebar
+  float: right
+  margin: 2em 0 0 0
+  width: 25%
+    
 .publication_date
   color: #666
   font-size: 75%
   float: right
 
 #footer
+  clear: both
   border-radius: 10px 10px 0 0
   border: 1px solid #333
   border-bottom: 0
   background: #aaa
   padding: 0.5em
+
+h1
+  border-bottom: 1px dotted #999
 
 pre
   border: 1px solid #ccc

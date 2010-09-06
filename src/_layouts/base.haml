@@ -9,7 +9,7 @@
 
     #header
       
-      %ol.menu
+      %ol.menu 
         %li= link("/mdub/weblog", "weblog")
         %li= link("/mdub/about", "about")
         
@@ -23,4 +23,4 @@
       = content_for[:sidebar]
 
     #footer
-      FOOTER
+      = include("elsewhere.html.haml")
