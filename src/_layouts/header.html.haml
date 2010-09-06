@@ -1,0 +1,11 @@
+%form.search
+  %label
+    Search: 
+    %input{:type => "text", :name => "q", :width => 20}
+
+%ol.breadcrumbs 
+  %li.title dogbiscuit
+  - breadcrumbs.each do |breadcrumb|
+    %li= breadcrumb
+
+%p.subtitle ... mmm, crunchy!

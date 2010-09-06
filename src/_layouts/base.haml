@@ -8,14 +8,8 @@
   %body
 
     #header
+      ~ include("header.html.haml")
       
-      %ol.menu 
-        %li= link("/mdub/weblog/", "weblog")
-        %li= link("/mdub/", "about")
-        
-      %p.title dogbiscuit
-      %p.subtitle ... mmm, crunchy!
-
     #content
       ~ yield
 

@@ -2,6 +2,9 @@
 layout: base.haml
 ...
 
+- breadcrumbs << link("/mdub/weblog/", "weblog")
+- breadcrumbs << page.title
+
 - content_for[:footer] += capture_haml do
   = include("elsewhere.html.haml")
 

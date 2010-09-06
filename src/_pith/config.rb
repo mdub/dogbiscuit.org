@@ -38,4 +38,8 @@ project.helpers do
     end.reverse
   end
   
+  def breadcrumbs
+    @breadcrumbs ||= []
+  end
+  
 end
