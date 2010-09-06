@@ -6,4 +6,16 @@
     %link{ :href=>href("/style/dogbiscuit.css"), :rel=>"stylesheet", :type=>"text/css" }
 
   %body
-    = yield
+
+    #header
+      %h1 mdub@dogbiscuit.org
+      %p.subtitle ... mmm, crunchy!
+
+    #content
+      = yield
+
+    #sidebar
+      = content_for[:sidebar]
+
+    #footer
+      FOOTER
