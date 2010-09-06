@@ -2,6 +2,9 @@
 layout: base.haml
 ...
 
+- content_for[:footer] += capture_haml do
+  = include("elsewhere.html.haml")
+
 %h1= page.title
 
 ~ yield

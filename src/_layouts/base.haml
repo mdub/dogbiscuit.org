@@ -10,17 +10,17 @@
     #header
       
       %ol.menu 
-        %li= link("/mdub/weblog", "weblog")
-        %li= link("/mdub/about", "about")
+        %li= link("/mdub/weblog/", "weblog")
+        %li= link("/mdub/", "about")
         
       %p.title dogbiscuit
       %p.subtitle ... mmm, crunchy!
 
     #content
-      = yield
+      ~ yield
 
     #sidebar
-      = content_for[:sidebar]
+      ~ content_for[:sidebar]
 
     #footer
-      = include("elsewhere.html.haml")
+      ~ content_for[:footer]
