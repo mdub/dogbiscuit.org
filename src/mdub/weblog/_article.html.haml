@@ -8,7 +8,7 @@ layout: "/mdub/_layout.html.haml"
 
 %h1= page.title
 
-%p.publication_date
-  = initial_input.publication_date.strftime("%e %b, %Y")
+- if page.publication_date
+  %p.publication_date= page.publication_date.strftime("%e %b, %Y")
 
 ~ yield
