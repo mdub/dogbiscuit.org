@@ -2,9 +2,13 @@
 layout: "/mdub/_layout.html.haml"
 ...
 
+- @body_class = "article"
 - content_for[:footer] += capture_haml do
   = include("../_elsewhere.html.haml")
 
 %h1= page.title
+
+%p.publication_date
+  = initial_input.publication_date.strftime("%e %b, %Y")
 
 ~ yield

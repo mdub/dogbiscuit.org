@@ -51,8 +51,6 @@ div
         &:before
           content: ""
           
-  a
-    text-decoration: none
     
   .subtitle
     margin: 0
@@ -69,11 +67,6 @@ div
   margin: 2em 0 0 0
   width: 25%
     
-.publication_date
-  color: #666
-  font-size: 75%
-  float: right
-
 #footer
   clear: both
   border-radius: 10px 10px 0 0
@@ -92,6 +85,21 @@ pre
   overflow: auto
   -webkit-box-shadow: 5px 5px 10px #999
 
+a
+  text-decoration: none
+
+.articles 
+
+  li .teaser
+    visibility: hidden
+
+  li:hover .teaser
+    visibility: visible
+
+.publication_date
+  color: #666
+  font-size: 75%
+    
 ol.menu
 
   position: relative

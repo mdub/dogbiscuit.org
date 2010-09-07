@@ -4,9 +4,11 @@ layout: "../_layout.html.haml"
 
 %h1 Archive
 
-%ul
+%ul.articles
   - published_pages.each do |entry|
     %li
       = link(entry).sub(/.html"/, '"')
-      %span.publication_date
-        = entry.publication_date.strftime("%e %b, %Y")
+      %span.teaser
+        %span.publication_date
+          on
+          = entry.publication_date.strftime("%e %b, %Y")
