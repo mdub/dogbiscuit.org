@@ -7,8 +7,9 @@ layout: "../_layout.html.haml"
 %ul.articles
   - published_pages.each do |entry|
     %li
-      = link(entry).sub(/.html"/, '"')
-      %span.teaser
-        %span.publication_date
-          on
-          = entry.publication_date.strftime("%e %b, %Y")
+      %p
+        = link(entry).sub(/.html"/, '"')
+        %span.teaser
+          %span.publication_date
+            on
+            = entry.publication_date.strftime("%e %b, %Y")
