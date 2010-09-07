@@ -38,8 +38,18 @@ project.helpers do
     end.reverse
   end
   
-  def breadcrumbs
-    @breadcrumbs ||= []
+  def breadcrumb_trail
+    trail = [link("/mdub/", %{<span class="title">dogbiscuit</span>})]
+    current_path = []
+    page.output_path.to_str.split("/").each do |path_component|
+      current_path << path_component
+      trail << breadcrumb_link(path_component, current_path.join("/"))
+    end
+    trail.join("/")
+  end
+  
+  def breadcrumb_link(name, path)
+    name
   end
   
 end
