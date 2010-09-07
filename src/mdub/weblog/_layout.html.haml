@@ -1,0 +1,8 @@
+---
+layout: "../_layout.html.haml"
+...
+
+- content_for[:head] += capture_haml do
+  %link{ :href=>href("weblog.css"), :rel=>"stylesheet", :type=>"text/css" }
+
+~ yield
