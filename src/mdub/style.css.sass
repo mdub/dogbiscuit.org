@@ -67,6 +67,17 @@ div
   background: $light_grey
   padding: 0.5em
 
+  #elsewhere
+
+    font-size: 80%
+    
+    li
+      list-style: none
+      padding: 0.2em
+      
+      img
+        vertical-align: middle
+      
 h1
   border-bottom: 1px dotted #999
 
@@ -79,7 +90,18 @@ pre
 
 a
   text-decoration: none
+  border-bottom: 1px dotted #999
+  color: #00f
+  
+  &:visited
+    color: #00a
+    
+  &:hover
+    border-bottom: 1px solid #999
 
+  &:active
+    color: #082
+        
 ol.menu
 
   position: relative
