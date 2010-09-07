@@ -49,7 +49,7 @@ As you can see, it contains info about each object (or array, or class),
 including size, and references to other objects.  If you have time on your
 hands, you can search around this with a text editor, and get some idea of
 what's going on.  With that many objects to deal with, I wrote a
-Ruby script ({+hprofexplore.rb+}@//mdub/software/hprofexplore/hprofexplore.rb) to help me out.
+Ruby script ({+hprofexplore.rb+}@/mdub/software/hprofexplore/hprofexplore.rb) to help me out.
 
 Usage is fairly simple; first, you point the script at the +hprof+ output,
 from which it extracts the heap data.  
@@ -126,7 +126,7 @@ the visited objects, in "DOT" format:
 | d graph.dot
 | wrote graph.dot
 
-(see {+graph.dot+}@//mdub/software/hprofexplore/graph.dot)
+(see {+graph.dot+}@/mdub/software/hprofexplore/graph.dot)
 
 You can then use the "+dot+" tool from AT&T's
 {GraphViz}@http://www.research.att.com/~erg/graphviz/info/lang.html

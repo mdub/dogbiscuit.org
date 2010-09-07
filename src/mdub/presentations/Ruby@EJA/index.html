@@ -1,0 +1,930 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Ruby@EJA</title>
+  <link rel="stylesheet" href="slidy.css" type="text/css" media="screen, projection, print" />
+  <link rel="stylesheet" href="mdub-slides.css" type="text/css" media="screen, projection, print" />
+  <script src="./slidy.js" type="text/javascript">
+</script>
+</head>
+<body>
+<div class="titlepage slide">
+<meta name="font-size-adjustment" content="-1"/>
+<script language="javascript">
+mouseClickEnabled = false;
+</script>
+
+	<p><img src="twlogo.jpg" style="height: 111px;" title="ThoughtWorks" alt="ThoughtWorks" /></p>
+
+
+	<h1>Ruby and Ruby on Rails</h1>
+
+	<p class="author">Mike Williams <br/> &lt;<a href="mailto:mwilliams@thoughtworks.com">mwilliams@thoughtworks.com</a>&gt;</p>
+        <p>18 July, 2006</p>
+
+</div>
+<div class="pitch slide">
+<h1>Elevator pitch</h1>
+
+
+<div class="incremental">
+
+	<p style="text-align:center;">Step 1: <strong>Expressiveness</strong> (less code)</p>
+
+
+	<p style="text-align:center;" class="small">... promotes &#8230;</p>
+
+
+	<p style="text-align:center;">Step 2: <strong>Productivity</strong></p>
+
+
+	<p style="text-align:center;" class="small">... leading to &#8230;</p>
+
+
+	<p style="text-align:center;">Step 3: <strong>Business value</strong> (profit!)</p>
+
+
+	<p style="margin-top: 2em;text-align:center;">
+<img height="198" src="images/expressive.jpg"/>
+&nbsp;
+<img height="198" src="images/productivity.jpg"/>
+&nbsp;
+<img height="198" src="images/happy-man.jpg"/></p>
+
+
+</div>
+</div>
+<div class="pitch slide">
+<h1>In other words</h1>
+
+
+	<p style="text-align:center;">Side-step the technical problems</p>
+
+
+	<p style="text-align:center;" class="small">... and &#8230;</p>
+
+
+	<p style="text-align:center;">Concentrate on the <strong>business</strong> problems</p>
+</div>
+<div class=" slide">
+<h1>Introducing Ruby</h1>
+
+
+	<blockquote>
+		<p style="text-align:center;">&#8220;like Smalltalk plus Perl <br/> ... but with better syntax&#8221;</p>
+	</blockquote>
+
+
+	<ul>
+	<li>a general-purpose programming language</li>
+		<li>truly object-oriented</li>
+		<li>dynamic typing</li>
+		<li>exception-handling</li>
+		<li>garbage-collection</li>
+		<li>multi-threading</li>
+	</ul>
+
+
+	<blockquote>
+		<p style="text-align:center;">&#8220;quick and clean &#8230; <br/> the glue that doesn&#8217;t set&#8221;</p>
+	</blockquote>
+
+
+	<ul>
+	<li>not just for &#8220;scripting&#8221; </li>
+		<li>strives to be programmer-friendly</li>
+		<li>following &#8220;the Principle of Least Surprise&#8221;</li>
+	</ul>
+</div>
+<div class=" slide">
+<h1>The rise of Ruby</h1>
+
+
+	<table>
+		<tr>
+			<td style="text-align:right;">1993: </td>
+			<td> Yukihiro &#8220;Matz&#8221; Matsumoto creates Ruby </td>
+		</tr>
+		<tr>
+			<td style="text-align:right;">~1995: </td>
+			<td> first release of Ruby (in Japan) </td>
+		</tr>
+		<tr>
+			<td style="text-align:right;">1998: </td>
+			<td> Matz&#8217;s first official Ruby announcement in English on <code>comp.lang.misc</code> </td>
+		</tr>
+		<tr>
+			<td style="text-align:right;">2001: </td>
+			<td> <strong>&#8220;Programming Ruby&#8221;</strong> (aka &#8220;the Pickaxe book&#8221;) published </td>
+		</tr>
+		<tr>
+			<td style="text-align:right;">&nbsp;</td>
+			<td> inaugural <strong>RubyConf</strong> </td>
+		</tr>
+		<tr>
+			<td style="text-align:right;">2003: </td>
+			<td> <strong>Ruby-1.8.0</strong> released </td>
+		</tr>
+		<tr>
+			<td style="text-align:right;">2004: </td>
+			<td> (April) first release of Rails </td>
+		</tr>
+		<tr>
+			<td style="text-align:right;">2005: </td>
+			<td> (July) <strong>&#8220;Agile Web Development with Rails&#8221;</strong> published </td>
+		</tr>
+		<tr>
+			<td style="text-align:right;">&nbsp;</td>
+			<td> (December) <strong>Rails-1.0</strong> released </td>
+		</tr>
+		<tr>
+			<td style="text-align:right;">2006: </td>
+			<td> (June) inaugural <strong>RailsConf</strong> </td>
+		</tr>
+	</table>
+</div>
+<div class=" slide">
+<h1>Ruby compared to Java</h1>
+
+
+	<p style="float:right"><img src="images/ruby-gem.png" alt="" /></p>
+
+
+	<ul>
+	<li><ins>everything</ins> is an object
+	<ul>
+	<li>even &#8220;primitives&#8221;, and classes, and methods</li>
+	</ul></li>
+	</ul>
+
+
+	<ul>
+	<li>dynamic typing
+	<ul>
+	<li>variables don&#8217;t have types&#8212;values (ie. objects) do</li>
+		<li>no such thing as an &#8220;interface&#8221;</li>
+	</ul></li>
+	</ul>
+
+
+	<ul>
+	<li>interpreted, not compiled
+	<ul>
+	<li>can change code at runtime!</li>
+	</ul></li>
+	</ul>
+
+
+	<ul>
+	<li>Ruby has:
+	<ul>
+	<li>blocks (anonymous functions) and closures (like Lisp)</li>
+		<li>&#8220;mix-in&#8221; modules (multiple inheritance of implementation)</li>
+		<li>operator overloading</li>
+		<li>reflection and &#8220;meta-programming&#8221; features</li>
+	</ul></li>
+	</ul>
+
+
+	<p style="float:right"><img src="images/java-logo.png" alt="" /></p>
+
+
+	<ul>
+	<li>Java has:
+	<ul>
+	<li>a virtual-machine</li>
+		<li>compilation to byte-code</li>
+		<li>class-loaders</li>
+		<li>security managers</li>
+	</ul></li>
+	</ul>
+</div>
+<div class=" slide">
+<h1>Hello, world!</h1>
+
+
+<div class="incremental">
+
+<pre class="java">
+class Greeting { 
+    public static void main(String args[]) { 
+        System.out.println("Hello, world!"); 
+    } 
+} 
+</pre>
+
+<pre class="ruby">
+puts "Hello, world!" 
+</pre>
+
+</div>
+</div>
+<div class=" slide">
+<h1>Making a Point</h1>
+
+
+<div class="incremental">
+
+<pre class="java">
+class Point { 
+    private float x, y;
+    public Point(float x, float y) { setX(x); setY(y); }
+    public float getX() { return this.x; } 
+    public void setX(float x) { this.x = x; } 
+    public float getY() { return this.y; } 
+    public void setY(float y) { this.y = y; } 
+}
+
+Point p = new Point(1,2);
+p.setX(10);
+</pre>
+
+<pre class="ruby">
+class Point 
+    def initialise(x, y); @x=x; @y=y; end
+    def x(); @x; end
+    def x=(x); @x = x; end
+    def y(); @y; end
+    def y=(y); @y = y; end
+end 
+
+p = Point.new(1,2)
+p.x = 10
+</pre>
+
+</div>
+</div>
+<div class=" slide">
+<h1>Making a Point</h1>
+
+
+<pre class="java">
+class Point { 
+    private float x, y;
+    public Point(float x, float y) { setX(x); setY(y); }
+    public float getX() { return this.x; } 
+    public void setX(float x) { this.x = x; } 
+    public float getY() { return this.y; } 
+    public void setY(float y) { this.y = y; } 
+}
+
+Point p = new Point(1,2);
+p.setX(10);
+</pre>
+
+<pre class="ruby">
+class Point 
+    def initialise(x, y); @x=x; @y=y; end
+    attr_accessor :x, :y
+end 
+
+p = Point.new(1,2)
+p.x = 10
+</pre>
+</div>
+<div class=" slide">
+<h1>Making a Point</h1>
+
+
+<pre class="java">
+class Point { 
+    private float x, y;
+    public Point(float x, float y) { setX(x); setY(y); }
+    public float getX() { return this.x; } 
+    public void setX(float x) { this.x = x; } 
+    public float getY() { return this.y; } 
+    public void setY(float y) { this.y = y; } 
+}
+
+Point p = new Point(1,2);
+p.setX(10);
+</pre>
+
+<pre class="ruby">
+Point = Struct.new(:x, :y)
+
+p = Point.new(1,2)
+p.x = 10
+</pre>
+</div>
+<div class=" slide">
+<h1>Kicking goals</h1>
+
+
+<div class="incremental">
+
+<pre class="java">
+Map fifaTitlesByTeam = new HashMap();
+fifaTitlesByTeam.put("Brazil",    new Integer(5));
+fifaTitlesByTeam.put("Italy",     new Integer(3));
+fifaTitlesByTeam.put("Germany",   new Integer(3));
+fifaTitlesByTeam.put("Argentina", new Integer(2));
+fifaTitlesByTeam.put("Uruguay",   new Integer(2));
+fifaTitlesByTeam.put("France",    new Integer(1));
+fifaTitlesByTeam.put("England",   new Integer(1));
+</pre>
+
+<pre class="ruby">
+fifa_titles_by_team = {
+    "Brazil"    =&gt; 5,
+    "Italy"     =&gt; 3,
+    "Germany"   =&gt; 3,
+    "Argentina" =&gt; 2,
+    "Uruguay"   =&gt; 2,
+    "France"    =&gt; 1,
+    "England"   =&gt; 1
+}
+</pre>
+
+</div>
+</div>
+<div class=" slide">
+<h1>Going loopy</h1>
+
+
+<div class="incremental">
+
+<pre class="java">
+Collection teams = new ArrayList();
+
+for (Iterator i = fifaTitlesByTeam.keySet().iterator(); i.hasNext();) {
+    String team = (String) i.next();
+    int titles = ((Integer) fifaTitlesByTeam.get(team)).intValue();
+    if (titles &gt; 1) {
+        teams.add(team);
+    }
+}
+
+System.out.println(StringUtils.join(teams.iterator(), ", "));
+</pre>
+
+<pre class="ruby">
+teams = []
+
+fifa_titles_by_team.each do |team, titles|
+  teams &lt;&lt; team if (titles &gt; 1)
+end
+
+puts teams.join(", ")
+</pre>
+
+</div>
+</div>
+<div class=" slide">
+<h1>Blocks</h1>
+
+
+	<p>iterating</p>
+
+
+<pre class="ruby">
+files.each do |f| 
+    message.attach(f)
+end
+</pre>
+
+	<p>delineating database transactions</p>
+
+
+<pre class="ruby">
+db.transaction do |t|
+  t.execute("update EMPLOYEES set SALARY = 1000000")
+end
+</pre>
+
+	<p>file processing</p>
+
+
+<pre class="ruby">
+File.open(log_file) do |log_file_handle|
+    log_file_handle.each_line do |line|
+        cksum &lt;&lt; line
+    end
+end
+</pre>
+</div>
+<div class=" slide">
+<h1>Introducing Ruby on Rails</h1>
+
+
+	<ul>
+	<li>The current Ruby &#8220;killer app&#8221;</li>
+	</ul>
+
+
+	<ul>
+	<li>a Ruby web application framework, comprising:
+	<ul>
+	<li>Model-View-Controller separation</li>
+		<li>object/relational mapping</li>
+		<li>page templating</li>
+	</ul></li>
+	</ul>
+
+
+	<ul>
+	<li>plus support for:
+	<ul>
+	<li><span class="caps">AJAX</span></li>
+		<li>web services (SOAP, <span class="caps">XML</span>-RPC, <span class="caps">REST</span>)</li>
+		<li>sending email</li>
+		<li>automated testing</li>
+		<li>evolving your database schema</li>
+	</ul></li>
+	</ul>
+</div>
+<div class=" slide">
+<h1>Rails: &#8220;Opinionated software&#8221;</h1>
+
+
+	<p style="float:right"><img src="images/opinion.jpg" alt="" /></p>
+
+
+	<ul>
+	<li>Simplicitly, with attitude</li>
+		<li><strong>Convention over configuration</strong>
+	<ul>
+	<li>sensible defaults</li>
+		<li>standardised source-directory layout
+	<ul>
+	<li>models go <em>here</em></li>
+		<li>views go <em>here</em></li>
+		<li>controllers go <em>here</em></li>
+		<li>configuration goes <em>here</em></li>
+		<li>tests go <em>here</em></li>
+	</ul>
+	</li>
+		<li>tables should have surrogate keys</li>
+		<li>class &#8220;Person&#8221; maps to table &#8220;PEOPLE&#8221; </li>
+		<li>stored-procs are evil</li>
+	</ul></li>
+	</ul>
+</div>
+<div class=" slide">
+<h1>Rails vs the <span class="caps">J2EE</span> technology stack</h1>
+
+
+	<p style="text-align:center;"><img src="images/book-stacks.jpg" alt="" /></p>
+</div>
+<div class=" slide">
+<h1>Hello World &#8211; Struts Action Framework</h1>
+
+
+<pre class="java">
+&lt;!DOCTYPE xwork PUBLIC "-//OpenSymphony Group//XWork 1.0//EN" 
+                       "http://www.opensymphony.com/xwork/xwork-1.0.dtd"&gt;
+&lt;xwork&gt;
+    &lt;include file="action-default.xml"/&gt;
+    &lt;package name="default" extends="action-default"&gt;
+        &lt;action name="helloWorld" class="eg.HelloWorld"&gt;
+            &lt;result name="success"&gt;helloWorld.jsp&lt;/result&gt;
+        &lt;/action&gt;
+    &lt;/package&gt;
+&lt;/xwork&gt;
+</pre>
+
+<pre class="java">
+package eg;
+
+import com.opensymphony.xwork.Action;
+import java.util.*;
+
+public class HelloWorld implements Action {
+
+    private String greeting;
+    private String subject;
+
+    public void setGreeting() {
+        this.greeting = greeting;
+    }
+
+    public void setSubject() {
+        this.subject = subject;
+    }
+
+    public String execute() {
+        if (greeting == null) {
+            greeting = "Hello";
+        }
+        if (subject == null) {
+            subject = "world";
+        }
+        return SUCCESS;
+    }
+
+    public String getGreeting() {
+        return this.greeting;
+    }
+
+    public String getSubject() {
+        return this.subject;
+    }
+
+}
+</pre>
+
+<pre class="java">
+&lt;%@ taglib prefix="saf" uri="action2" %&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h1&gt;&lt;saf:property value="greeting"/&gt;, &lt;saf:property value="subject"/&gt;!&lt;/h1&gt;    
+
+&lt;/body&gt;
+&lt;/html&gt;
+</pre>
+</div>
+<div class=" slide">
+<h1>Hello World &#8211; Rails</h1>
+
+
+<pre class="ruby">
+class HelloController &lt; ApplicationController
+
+  def index
+    @greeting = params['greeting'] || "Hello" 
+    @subject  = params['subject']  || "world" 
+  end
+
+end
+</pre>
+
+<pre class="ruby">
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h1&gt;&lt;%=h @greeting %&gt;, &lt;%=h @subject %&gt;!&lt;/h1&gt;    
+
+&lt;/body&gt;
+&lt;/html&gt;
+</pre>
+</div>
+<div class=" slide">
+<h1>Object/Relational mapping &#8211; Hibernate</h1>
+
+
+<pre class="java">
+&lt;hibernate-mapping&gt;
+    &lt;class name="events.Event" table="EVENTS"&gt;
+        &lt;id name="id"&gt;
+            &lt;generator class="native"/&gt;
+        &lt;/id&gt;
+        &lt;property name="title"/&gt;
+        &lt;property name="date" type="timestamp"/&gt;
+        &lt;set name="participants" table="EVENT_PARTICIPANT"&gt;
+            &lt;key column="EVENT_ID"/&gt;
+            &lt;many-to-many column="PERSON_ID" class="events.Person"/&gt;
+        &lt;/set&gt;
+    &lt;/class&gt;
+&lt;/hibernate-mapping&gt;
+</pre>
+
+<pre class="java">
+&lt;hibernate-mapping&gt;
+    &lt;class name="events.Person" table="PERSON"&gt;
+        &lt;id name="id" column="PERSON_ID"&gt;
+            &lt;generator class="native"/&gt;
+        &lt;/id&gt;
+        &lt;property name="age"/&gt;
+        &lt;property name="firstname"/&gt;
+        &lt;property name="lastname"/&gt;
+    &lt;/class&gt;
+&lt;/hibernate-mapping&gt;
+</pre>
+
+	<ul>
+	<li>Not shown:
+	<ul>
+	<li><code>Event</code> and <code>Person</code> classes</li>
+		<li>Hibernate SessionFactory configuration</li>
+		<li>table definitions</li>
+	</ul></li>
+	</ul>
+</div>
+<div class=" slide">
+<h1>Object/Relational mapping &#8211; Rails</h1>
+
+
+<pre class="ruby">
+class Person &lt; ActiveRecord::Base
+end
+</pre>
+
+<pre class="ruby">
+class Event &lt; ActiveRecord::Base
+
+  has_and_belongs_to_many :participants, 
+      :class_name =&gt; "Person" 
+
+end
+</pre>
+
+	<ul>
+	<li>Not shown:
+	<ul>
+	<li>table definitions</li>
+	</ul></li>
+	</ul>
+</div>
+<div class=" slide">
+<h1>Meta-Programming and Domain-Specific Languages</h1>
+
+
+	<ul>
+	<li>Meta-programming: programs that write/manipulate other programs</li>
+	</ul>
+
+
+	<ul>
+	<li>Domain-Specific Languages: programming in your problem domain
+	<ul>
+	<li>&#8220;external&#8221; <span class="caps">DSL</span> &#8211; parser, interpreter, code-generator</li>
+		<li>&#8220;internal&#8221; <span class="caps">DSL</span> &#8211; leverage an existing language</li>
+	</ul></li>
+	</ul>
+
+
+	<ul>
+	<li>&#8220;internal <span class="caps">DSL</span>&#8221; is synonymous with &#8220;API&#8221;</li>
+	</ul>
+
+
+	<ul>
+	<li>building &#8220;internal&#8221; DSLs in Ruby is easy because of:
+	<ul>
+	<li>blocks</li>
+		<li>dynamic typing</li>
+		<li>meta-programming features</li>
+		<li>did I mention blocks?</li>
+	</ul></li>
+	</ul>
+</div>
+<div class=" slide">
+<h1><span class="caps">DSL</span> example: ActiveRecord Migrations</h1>
+
+
+<pre class="ruby">
+create_table :events do |table|
+  table.column :title,          :string
+  table.column :date,           :date
+end
+
+create_table :people do |table|
+  table.column :first_name,     :string
+  table.column :last_name,      :string
+  table.column :age,            :integer
+end
+
+create_table :events_people, :id =&gt; false do |table|
+  table.column :event_id,       :integer
+  table.column :person_id,      :integer
+end
+</pre>
+</div>
+<div class=" slide">
+<h1>Performance/scalability</h1>
+
+
+	<h3 style="text-align:center;">Myth: &#8220;scripting&#8221; languages can&#8217;t scale</h3>
+
+
+	<ul>
+	<li>Counter-examples:
+	<ul>
+	<li>Slashdot (Perl)</li>
+		<li>Yahoo! (PHP)</li>
+		<li>BitTorrent (Python)</li>
+	</ul></li>
+	</ul>
+
+
+	<ul>
+	<li>Reality:
+	<ul>
+	<li>bottlenecks are typically network, database</li>
+	</ul></li>
+	</ul>
+
+
+	<ul>
+	<li>Rails scales much like <span class="caps">PHP</span>/Perl/Python
+	<ul>
+	<li>across processes, rather than threads</li>
+		<li>front-end web server serves static content</li>
+		<li>&#8220;shared nothing&#8221; architecture
+	<ul>
+	<li>usually means shared database</li>
+		<li>don&#8217;t store state in application servers</li>
+	</ul></li>
+	</ul></li>
+	</ul>
+</div>
+<div class=" slide">
+<h1>One possible Rails deployment architecture</h1>
+
+
+	<p style="text-align:center;"><img src="images/rails-apache-mongrel.png" alt="" /></p>
+</div>
+<div class=" slide">
+<h1>Notable public Rails applications</h1>
+
+
+	<ul>
+	<li><a href="http://37signals.com">37signals</a> &#8211; Basecamp, Campfire, Backpack, Writeboard
+	<ul>
+	<li>home of Rails architect David Heinemeier Hansson</li>
+	</ul></li>
+	</ul>
+
+
+	<ul>
+	<li><a href="http://www.robotcoop.com/">Robot Co-op</a> &#8211; 43things, 43places, 43people
+	<ul>
+	<li>over 2,000,000 hits/day</li>
+	</ul></li>
+	</ul>
+
+
+	<ul>
+	<li><a href="@http://odeo.com">odeo</a> &#8211; podcast aggregator</li>
+	</ul>
+
+
+	<ul>
+	<li><a href="http://www.penny-arcade.com/">Penny Arcade</a> &#8211; popular online comic</li>
+	</ul>
+
+
+	<ul>
+	<li><a href="http://www.alistapart.com/">A List Apart</a> &#8211; popular online web development magazine</li>
+	</ul>
+</div>
+<div class=" slide">
+<h1>Some Ruby/Java integration options</h1>
+
+
+	<ul>
+	<li>Web services
+	<ul>
+	<li><span class="caps">XML</span> over <span class="caps">HTTP</span> is easy</li>
+		<li>WS-* support is lacking</li>
+		<li>opinion: Rails will become a leading platform for <span class="caps">REST</span> web services</li>
+	</ul></li>
+	</ul>
+
+
+	<ul>
+	<li>Asynchronous messaging</li>
+	</ul>
+
+
+	<ul>
+	<li>JRuby
+	<ul>
+	<li>port of the Ruby interpreter to Java</li>
+		<li>Ruby-1.8.2 compliant (mostly)</li>
+		<li>can (almost) run Rails</li>
+	</ul></li>
+	</ul>
+</div>
+<div class=" slide">
+<h1>Using Rails &#8211; recommendations</h1>
+
+
+	<h3>Use</h3>
+
+
+	<ul>
+	<li>for &#8220;Web 2.0&#8221;, <span class="caps">AJAX</span>-heavy apps</li>
+		<li>for prototypes/pilots</li>
+		<li>when you need to deliver quickly</li>
+		<li>with small, agile teams</li>
+		<li>and you have control of the database</li>
+	</ul>
+
+
+	<h3>Avoid</h3>
+
+
+	<ul>
+	<li>when you&#8217;re stuck with a &#8220;legacy&#8221; database</li>
+		<li>if you don&#8217;t have a testing culture</li>
+		<li>if you fundamentally disagree with the underlying &#8220;opinions&#8221;</li>
+	</ul>
+</div>
+<div class=" slide">
+<h1>Using Ruby &#8211; recommendations</h1>
+
+
+	<h3>Use</h3>
+
+
+	<ul>
+	<li>for text processing</li>
+		<li>for code/test/data generation</li>
+		<li>to automate build/testing tasks</li>
+		<li>wherever you&#8217;re currently using Perl, Python, <span class="caps">PHP</span>, Bourne-shell</li>
+		<li>for general integration&#8212;to &#8220;glue&#8221; things together</li>
+	</ul>
+</div>
+<div class=" slide">
+<h1>Which <span class="caps">IDE</span> do you use?</h1>
+
+
+<div class="incremental">
+
+	<ul>
+	<li>Your favourite text editor:
+	<ul>
+	<li>TextMate</li>
+		<li>IntelliJ</li>
+		<li>Emacs!</li>
+	</ul></li>
+	</ul>
+
+
+	<ul>
+	<li>RadRails (based on Eclipse)</li>
+	</ul>
+
+
+	<ul>
+	<li>Without static type info it&#8217;s hard to implement:
+	<ul>
+	<li>intelligent completion (aka &#8220;content assist&#8221;, aka &#8220;intellisense&#8221;)</li>
+		<li>automated refactoring</li>
+		<li>(though Smalltalk does it)</li>
+	</ul></li>
+	</ul>
+
+
+	<ul>
+	<li>Not such a big deal, because Ruby requires <strong>less code</strong></li>
+	</ul>
+
+
+</div>
+</div>
+<div class=" slide">
+<h1>Finding a Ruby developer</h1>
+
+
+	<blockquote>
+		<p class="cutting">Large global organisation seeks Senior Developer/Architect. <br/>
+2-3 years Ruby/Rails experience required.</p>
+	</blockquote>
+
+
+	<h3>Remember:</h3>
+
+
+	<ul>
+	<li>Ruby is extremely easy to learn</li>
+		<li>most Rails developers were doing <span class="caps">PHP</span>/Java/.Net/Perl a year ago</li>
+	</ul>
+</div>
+<div class=" slide">
+<h1>Finding a Ruby developer</h1>
+
+
+	<h3>Look for transferable skills:</h3>
+
+
+	<ul>
+	<li>object-oriented design skills</li>
+		<li>(for Rails) general web development skills</li>
+		<li>experience with other dynamically-typed languages </li>
+		<li>knowledge of the business domain</li>
+		<li>someone who already works for you</li>
+	</ul>
+</div>
+<div class=" slide">
+<h1>Finding a Ruby consultant</h1>
+
+
+<div class="incremental">
+
+	<p style="margin-top: 10em;text-align:center;"><img src="twlogo-small.jpg" title="ThoughtWorks" alt="ThoughtWorks" /></p>
+
+
+</div>
+</div>
+<div class=" slide">
+<h1>Where to now?</h1>
+
+
+	<p style="text-align:center;"><code>http://www.ruby-lang.org</code></p>
+
+
+	<p style="text-align:center;"><code>http://www.rubyonrails.org</code></p>
+
+
+	<p style="text-align:center;">(recently-formed) <br/> Melbourne Ruby users group</p>
+
+
+	<p style="margin-top: 6em;text-align:center;"><code>THE END</code></p>
+</div>
+</body>
+</html>

@@ -1,0 +1,21 @@
+digraph X {
+  node [
+    fontsize = "9"
+    shape = "record"
+  ];
+  edge [
+    fontsize = "9"
+  ];
+"22029c70" [label="{java.util.WeakHashMap$Entry|{22029c70|3 out|1 in}}"];
+"21fdd888" [label="{foo.ui.model.Repository|{21fdd888|7 out|18 in}}"];
+"21fdd9c8" [label="{java.util.WeakHashMap|{21fdd9c8|2 out|1 in}}"];
+"21fdd888" -> "21fdd9c8" [label="findViewElementCache"];
+"220288b0" [label="{foo.ui.model.AgentData|{220288b0|7 out|4 in}}"];
+"22029c70" -> "220288b0" [label="value"];
+"21f5e2a8" [label="{foo.model.Belief|{21f5e2a8|2 out|3 in}}"];
+"220288b0" -> "21f5e2a8" [label="userObject"];
+"22029c70" -> "21f5e2a8" [label="referent"];
+"21fdda28" [label="{java.util.WeakHashMap$Entry[]|{21fdda28|10 out|1 in}}"];
+"21fdda28" -> "22029c70" [label="[4]"];
+"21fdd9c8" -> "21fdda28" [label="table"];
+}

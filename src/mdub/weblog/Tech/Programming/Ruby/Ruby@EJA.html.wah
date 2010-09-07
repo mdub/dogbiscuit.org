@@ -9,7 +9,7 @@ A couple of months ago I gave a presentation on
 {local Java user-group}@http://www.enterprisejava.org.au/.  My slides are
 now online:
 
-* {Ruby@EJA}@/../presentations/Ruby@EJA/
+* {Ruby@EJA}@/mdub/presentations/Ruby@EJA/
 
 It contains a few examples showing how expressive Ruby can be, when
 compared to Java.

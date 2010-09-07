@@ -6,10 +6,10 @@ published: 10 Jun 2003
 
 {RMagick}@http://rmagick.rubyforge.org/ is an ImageMagick binding for
 Ruby.  I've been happily using RMagick to produce thumbnails for my
-{photo-album}@//photos, and find it to be most excellent.
+photo-album, and find it to be most excellent.
 
-In an attempt to share the joy, I've packaged RMagick for Debian GNU/Linux
--- details on my {software}@//mdub/software/ page.  Eventually, I'm keen to
+In an attempt to share the joy, I've packaged RMagick for Debian GNU/Linux.  
+Eventually, I'm keen to
 get these packages integrated into Debian itself ... but first, I need to
 negotiate their {New Maintainer
 process}@http://www.debian.org/devel/join/newmaint.
