@@ -41,10 +41,14 @@ project.helpers do
     end.reverse
   end
   
+  def interesting_path_components
+    page.output_path.to_str.sub(%r{(/index)?\.html$}, '').split("/")
+  end
+  
   def breadcrumb_trail
     trail = [link("/mdub/", %{<span class="title">dogbiscuit</span>})]
     current_path = []
-    page.output_path.to_str.split("/").each do |path_component|
+    interesting_path_components.each do |path_component|
       current_path << path_component
       trail << breadcrumb_link(path_component, current_path.join("/"))
     end
@@ -52,7 +56,14 @@ project.helpers do
   end
   
   def breadcrumb_link(name, path)
-    name
+    ["/index.html", ".html", ""].each do |suffix|
+      target_path = Pathname("#{path}#{suffix}")
+      begin
+        return link(input(target_path), name)
+      rescue Pith::ReferenceError
+      end
+    end
+    return name
   end
   
 end
