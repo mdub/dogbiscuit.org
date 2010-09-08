@@ -1,34 +1,8 @@
 #elsewhere
 
   %ul
-
-    %li
-      %a{:href=> "mailto:mdub@dogbiscuit.org"}
-        %img{:src => "/images/email_32.png"}
-      %a{:href=> "mailto:mdub@dogbiscuit.org"}
-        mdub@dogbiscuit.org
-
-    %li
-      %a{:href=> "http://twitter.com/woollyams"}
-        %img{:src => "/images/twitter_32.png"}
-      %a{:href=> "http://twitter.com/woollyams"}
-        @woollyams
-
-    %li
-      %a{:href=> "http://github.com/mdub"}
-        %img{:src => "/images/github_32.png"}
-      %a{:href=> "http://github.com/mdub"}
-        github.com/mdub
-
-    %li
-      %a{:href=> "http://au.linkedin.com/in/mdubya"}
-        %img{:src => "/images/linkedin_32.png"}
-      %a{:href=> "http://au.linkedin.com/in/mdubya"}
-        LinkedIn profile
-
-    %li
-      %a{:href=> "http://delicious.com/mdub"}
-        %img{:src => "/images/delicious_32.png"}
-      %a{:href=> "http://delicious.com/mdub"}
-        delicious links
-
+    %li= link_elsewhere("twitter", "http://twitter.com/woollyams", "@woollyams")
+    %li= link_elsewhere("github", "http://github.com/mdub", "github.com/mdub")
+    %li= link_elsewhere("delicious", "http://delicious.com/mdub", "delicious links")
+    %li= link_elsewhere("linkedin", "http://au.linkedin.com/in/mdubya", "LinkedIn profile")
+    %li= link_elsewhere("email", "mailto:mdub@dogbiscuit.org", "mdub@dogbiscuit.org")
