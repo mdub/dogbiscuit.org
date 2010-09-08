@@ -25,6 +25,9 @@ class ::Pathname
   end
 end
 
+project.assume_content_negotiation = true
+project.assume_directory_index = true
+
 project.helpers do
 
   def published_pages(dir_path = current_input.path.parent)
