@@ -5,7 +5,7 @@ RewriteEngine on
 RewriteRule   ^$                    /mdub/                              [R]
 
 RewriteCond   %{QUERY_STRING}       ^format=atom$
-RewriteRule   ^mdub/weblog/         /mdub/weblog/feed.atom?             [R]
+RewriteRule   ^mdub/weblog/         /mdub/weblog/feed.atom?             [R=301]
 
 RewriteCond   %{QUERY_STRING}       ^format=rss$
-RewriteRule   ^mdub/weblog/         /mdub/weblog/feed.atom?             [R]
+RewriteRule   ^mdub/weblog/         /mdub/weblog/feed.atom?             [R=303]
