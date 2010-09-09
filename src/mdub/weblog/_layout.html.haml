@@ -7,7 +7,7 @@ layout: "../_layout.html.haml"
   %link{ :rel=>"alternate", :href=>href("feed.atom"), :type=>"application/atom+xml" }
 
 - content_for[:header_icons] += capture_haml do
-  %a{:href=>href("weblog/feed.atom"), :type=>"application/atom+xml"}
+  %a{:href=>href("feed.atom"), :type=>"application/atom+xml"}
     %img{:src=>href("/images/social/rss_16.png")}
 
 ~ yield
