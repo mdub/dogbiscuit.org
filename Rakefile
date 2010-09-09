@@ -1,3 +1,9 @@
+task "default" => "build"
+
+task "build" do
+  sh "pith -i src -o out build"
+end
+
 task "watch" do
   sh "pith -i src -o out watch"
 end
