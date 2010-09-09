@@ -26,7 +26,4 @@ Older projects
 [Selenium](http://openqa.org/selenium/) is a web-testing tool.  I was an active contributer in the early days.
 
 [vDoclet](http://vdoclet.sourceforge.net/) is Java tool used to generate J2EE code, based on
-Javadoc comments.  
-
-I also contributed to [QDox](http://qdox.codehaus.org/) - a fast JavaDoc parser, used by
-vDoclet.
+Javadoc comments.  I also contributed to [QDox](http://qdox.codehaus.org/) - a fast JavaDoc parser, used by vDoclet.
