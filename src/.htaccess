@@ -2,4 +2,10 @@ Options +MultiViews +Indexes
 
 RewriteEngine on
 
-RewriteRule   ^$            /mdub/     [R]
+RewriteRule   ^$                    /mdub/                              [R]
+
+RewriteCond   %{QUERY_STRING}       ^format=atom$
+RewriteRule   ^mdub/weblog/         /mdub/weblog/feed.atom?             [R]
+
+RewriteCond   %{QUERY_STRING}       ^format=rss$
+RewriteRule   ^mdub/weblog/         /mdub/weblog/feed.rss?              [R]
