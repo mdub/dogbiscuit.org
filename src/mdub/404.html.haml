@@ -1,0 +1,25 @@
+---
+layout: "_layout.html.haml"
+...
+
+- content_for[:head] += capture_haml do
+  %base{:href=>"/mdub/404.html"}
+
+%h1 Page Not Found!
+
+%p
+  Sorry, the page you requested doesn't exist.
+
+%h2 What happened?
+
+%ul
+  %li Maybe the link you followed was wrong or out-of-date.
+  %li Maybe the page was here, but then I moved it somewhere else, just to annoy people.
+
+%h2 Suggestions
+
+%ol
+  %li Try browsing from this site's <a href="/mdub/">home-page</a>.
+  %li Hit the "Back" button on your browser, and try another link.
+  %li If you followed a link from within this site, complain to Mike.
+  %li If you followed a link from another site, complain to the webmaster there.
