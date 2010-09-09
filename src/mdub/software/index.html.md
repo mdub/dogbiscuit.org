@@ -23,8 +23,7 @@ Older projects
 
 [BasketCase](http://github.com/mdub/basketcase) makes Rational ClearCase ever-so-slightly less painful to use.
 
-[Selenium](http://openqa.org/selenium/) is a web-testing tool, which leverages JavaScript to
-execute tests within a web-browser.  I was an active contributer in the early days.
+[Selenium](http://openqa.org/selenium/) is a web-testing tool.  I was an active contributer in the early days.
 
 [vDoclet](http://vdoclet.sourceforge.net/) is Java tool used to generate J2EE code, based on
 Javadoc comments.  
