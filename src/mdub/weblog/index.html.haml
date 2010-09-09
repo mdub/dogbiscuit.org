@@ -10,6 +10,6 @@ layout: "_layout.html.haml"
       %p
         = link(entry)
         %span.teaser
-          %span.publication_date
+          %span.published_at
             on
-            = entry.publication_date.strftime("%e %b, %Y")
+            = entry.published_at.strftime("%e %b, %Y")
