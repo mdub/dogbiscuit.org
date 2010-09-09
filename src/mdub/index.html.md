@@ -1,6 +1,6 @@
 ---
 layout: "_layout.html.haml"
-title: "mdub"
+title: "about"
 ...
 
 mdub

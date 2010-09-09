@@ -1,5 +1,7 @@
 Options +MultiViews +Indexes
 
+ErrorDocument 404 /mdub/404.html
+
 RewriteEngine on
 
 RewriteRule   ^$                    /mdub/                              [R]
