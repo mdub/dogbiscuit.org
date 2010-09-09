@@ -1,24 +1,24 @@
-$LOAD_PATH << "#{ENV['HOME']}/Projects/pith/lib"
+$LOAD_PATH << "."
 
-require "pith/console_logger"
-require "pith/project"
-require "pith/watcher"
-
-def project
-  @project ||= Pith::Project.new(:input_dir => "src", :output_dir => "out", :logger => Pith::ConsoleLogger.new)
-end
+require "dogbiscuit"
 
 task "default" => "build"
 
 task "build" do
-  project.build
+  dogbiscuit.build
 end
 
 task "watch" do
+  require "pith/watcher"
   Pith::Watcher.new(project).call
 end
 
 desc "Publish to dogbiscuit.org"
 task "push" do
   sh "rsync -av out/ dogbiscuit:dogbiscuit.org/"
+end
+
+desc "Start an IRB session, with project pre-loaded"
+task "console" do
+  sh("irb -I . -r dogbiscuit")
 end
