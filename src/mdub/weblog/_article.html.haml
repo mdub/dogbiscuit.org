@@ -8,6 +8,6 @@ layout: "_layout.html.haml"
 
 - if page.published_at
   %p.published_at
-    = page.published_at.strftime("%e %b, %Y")
+    %em= page.published_at.strftime("%e %b, %Y")
 
 ~ yield
