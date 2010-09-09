@@ -4,9 +4,18 @@ require "wikiwah/tilt_integration" # for legacy blog-entries in "WikiWah" format
 
 class Pith::Input::Template 
   
-  def publication_date
-    published = meta["published"]
-    Time.parse(published) if published
+  def published_at
+    parse_date(meta["published"])
+  end
+
+  def updated_at
+    parse_date(meta["updated"]) || published_at
+  end
+
+  private
+  
+  def parse_date(date_string)
+    Time.parse(date_string) if date_string
   end
   
 end
@@ -34,9 +43,9 @@ project.helpers do
     project.inputs.select do |input|
       input.path.within?(dir_path)
     end.select do |input|
-      input.respond_to?(:publication_date) && !input.publication_date.nil?
+      input.respond_to?(:published_at) && !input.published_at.nil?
     end.compact.sort_by do |input|
-      input.publication_date
+      input.published_at
     end.reverse
   end
   
