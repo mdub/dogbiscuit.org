@@ -65,10 +65,13 @@ project.helpers do
     return name
   end
   
-  def link_elsewhere(type, uri, label)
-    icon_uri = href("/images/#{type}_32.png")
-    %{<a href="#{uri}"><img src="#{icon_uri}" /></a> } +
-    %{<a href="#{uri}">#{label}</a>}
+  def link_elsewhere(type, uri, label = nil)
+    icon_uri = href("/images/social/#{type}_32.png")
+    link = %{<a href="#{uri}"><img src="#{icon_uri}" /></a>}
+    if label
+      link += %{ <a href="#{uri}">#{label}</a>}
+    end
+    link
   end
   
 end
