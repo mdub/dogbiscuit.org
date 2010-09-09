@@ -1,7 +1,6 @@
-# Handle legacy blog-entries in "WikiWah" format
-require 'wikiwah/tilt_integration'
-
+require "builder/xmlmarkup"
 require "time"
+require "wikiwah/tilt_integration" # for legacy blog-entries in "WikiWah" format
 
 class Pith::Input::Template 
   
