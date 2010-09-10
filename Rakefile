@@ -2,7 +2,7 @@ $LOAD_PATH << "."
 
 require "dogbiscuit"
 
-task "default" => "build"
+task "default" => "watch"
 
 task "build" do
   dogbiscuit.build
