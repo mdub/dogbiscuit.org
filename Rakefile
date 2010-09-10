@@ -17,7 +17,6 @@ desc "Publish to dogbiscuit.org"
 task "push" => ["build", "upload"]
 
 task "upload" do
-  sh "git tag -f live"
   sh "rsync -av out/ dogbiscuit:dogbiscuit.org/"
 end
 
