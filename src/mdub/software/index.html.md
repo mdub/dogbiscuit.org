@@ -1,9 +1,7 @@
 ---
 layout: "../_layout.html.haml"
+title: Software
 ...
-
-Software
-========
 
 Active projects
 ---------------

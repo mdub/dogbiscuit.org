@@ -4,8 +4,6 @@ layout: "_layout.html.haml"
 
 - @body_class = "article"
 
-%h1= page.title
-
 - if page.published_at
   %p.published_at
     %em= page.published_at.strftime("%e %b, %Y")

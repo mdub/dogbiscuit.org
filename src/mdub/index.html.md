@@ -3,9 +3,6 @@ layout: "_layout.html.haml"
 title: "about"
 ...
 
-mdub
-====
-
 "mdub" is Mike Williams.
 
 I live in Melbourne, Australia, and work for [Cogent Consulting][cogent]. 
