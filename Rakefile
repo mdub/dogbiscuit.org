@@ -10,7 +10,7 @@ end
 
 task "watch" do
   require "pith/watcher"
-  Pith::Watcher.new(project).call
+  Pith::Watcher.new(dogbiscuit).call
 end
 
 desc "Publish to dogbiscuit.org"
