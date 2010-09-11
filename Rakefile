@@ -4,6 +4,7 @@ require "dogbiscuit"
 
 task "default" => "watch"
 
+desc "build the site"
 task "build" do
   dogbiscuit.build
 end
