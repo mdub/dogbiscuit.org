@@ -1,6 +1,18 @@
 #comments
 
-  %h2 COMMENTS
+  :javascript
+    var disqus_developer = 1;
+    if (window.location.host.match(/dogbiscuit\.org$/)) {
+      disqus_developer = 0;
+    }
+    console.log("disqus_developer = " + disqus_developer);
+
+  .powered_by    
+    %a.dsq-brlink{:href=>"http://disqus.com"}
+      powered by
+      %span.logo-disqus Disqus
+
+  %h2 Feedback
 
   #disqus_thread
 
@@ -11,6 +23,3 @@
       %a{:href=>"http://dogbiscuit.disqus.com/?url=ref"}
         View the discussion thread.
 
-  %a.dsq-brlink{:href=>"http://disqus.com"} 
-    blog comments powered by
-    %span.logo-disqus Disqus
