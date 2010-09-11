@@ -1,0 +1,19 @@
+#comments
+
+  :javascript
+    var disqus_developer = 1;
+    
+  %h2 COMMENTS
+
+  #disqus_thread
+
+  %script{:type=>"text/javascript", :src=>"http://dogbiscuit.disqus.com/embed.js"}
+
+  %noscript
+    %p
+      %a{:href=>"http://dogbiscuit.disqus.com/?url=ref"}
+        View the discussion thread.
+
+  %a.dsq-brlink{:href=>"http://disqus.com"} 
+    blog comments powered by
+    %span.logo-disqus Disqus

@@ -9,3 +9,7 @@ layout: "_layout.html.haml"
     %em= page.published_at.strftime("%e %b, %Y")
 
 ~ yield
+
+%hr/
+
+= include("_comments.html")
