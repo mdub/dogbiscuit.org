@@ -4,6 +4,9 @@ ErrorDocument 404 /mdub/404.html
 
 RewriteEngine on
 
+RewriteCond     %{HTTP_HOST}            ^www.dogbiscuit\.org$
+RewriteRule     .*                      http://dogbiscuit.org/$0    [R=permanent]
+
 RewriteRule   ^$                    /mdub/                              [R]
 
 RewriteCond   %{QUERY_STRING}       ^format=atom$
