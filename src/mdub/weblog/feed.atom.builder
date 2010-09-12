@@ -14,8 +14,8 @@ xml.feed :xmlns=>'http://www.w3.org/2005/Atom' do
     xml.email "mdub@dogbiscuit.org"
   end
   entries.each do |entry|
-    xml.entry do
-      entry_uri = "#{weblog_uri}/#{href(entry)}"
+    entry_uri = "#{weblog_uri}/#{href(entry)}"
+    xml.entry("xml:base" => entry_uri) do
       xml.id entry_uri
       xml.title entry.title
       xml.link :rel=>"alternate", :type=>"text/html", :href=>entry_uri
