@@ -15,13 +15,13 @@ xml.feed :xmlns=>'http://www.w3.org/2005/Atom' do
   end
   entries.each do |entry|
     entry_uri = "#{weblog_uri}/#{href(entry)}"
-    xml.entry("xml:base" => entry_uri) do
+    xml.entry do
       xml.id entry_uri
       xml.title entry.title
       xml.link :rel=>"alternate", :type=>"text/html", :href=>entry_uri
       xml.published entry.published_at.xmlschema
       xml.updated entry.updated_at.xmlschema
-      xml.content entry.render(self), :type=>"html"
+      xml.content entry.render(self), :type=>"html", "xml:base" => entry_uri
     end
   end
 end
