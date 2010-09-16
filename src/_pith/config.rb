@@ -1,24 +1,7 @@
 require "builder/xmlmarkup"
-require "time"
 require "wikiwah/tilt_integration" # for legacy blog-entries in "WikiWah" format
 
-class Pith::Input::Template 
-  
-  def published_at
-    parse_date(meta["published"])
-  end
-
-  def updated_at
-    parse_date(meta["updated"]) || published_at
-  end
-
-  private
-  
-  def parse_date(date_string)
-    Time.parse(date_string) if date_string
-  end
-  
-end
+require "pith/plugins/publication"
 
 class ::String
   def starts_with?(prefix)
@@ -40,12 +23,8 @@ project.helpers do
 
   def published_pages(dir_path = current_input.path.parent)
     dir_path = Pathname(dir_path)
-    project.inputs.select do |input|
+    project.published_inputs.select do |input|
       input.path.within?(dir_path)
-    end.select do |input|
-      input.respond_to?(:published_at) && !input.published_at.nil?
-    end.compact.sort_by do |input|
-      input.published_at
     end.reverse
   end
   
