@@ -3,19 +3,6 @@ require "wikiwah/tilt_integration" # for legacy blog-entries in "WikiWah" format
 
 require "pith/plugins/publication"
 
-class ::String
-  def starts_with?(prefix)
-    prefix = prefix.to_s
-    self[0, prefix.length] == prefix
-  end
-end
-
-class ::Pathname
-  def within?(ancestor_path)
-    self.to_str.starts_with?(ancestor_path.to_str + "/")
-  end
-end
-
 project.assume_content_negotiation = true
 project.assume_directory_index = true
 
