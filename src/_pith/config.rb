@@ -21,11 +21,8 @@ project.assume_directory_index = true
 
 project.helpers do
 
-  def published_pages(dir_path = current_input.path.parent)
-    dir_path = Pathname(dir_path)
-    project.published_inputs.select do |input|
-      input.path.within?(dir_path)
-    end.reverse
+  def weblog_archive
+    project.published_inputs.reverse
   end
   
   def interesting_path_components

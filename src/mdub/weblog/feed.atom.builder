@@ -1,6 +1,6 @@
 weblog_uri = "http://dogbiscuit.org/mdub/weblog"
 
-entries = published_pages[0..19]
+entries = weblog_archive[0..19]
 updated_at = entries.map { |e| e.updated_at }.compact.max
 
 xml.instruct! :xml, :version=>"1.0", :encoding=>"UTF-8"
