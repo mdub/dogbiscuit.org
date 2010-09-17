@@ -4,7 +4,7 @@
   %head
     %meta{ :"http-equiv"=>"Content-Type", :content=>"text/html; charset=UTF-8" }/ 
     %title= page.title || "dogbiscuit"
-    %link{ :href=>"/mdub/style.css", :rel=>"stylesheet", :type=>"text/css" }
+    %link{ :href=>href("style.css"), :rel=>"stylesheet", :type=>"text/css" }
     ~ content_for[:head]
 
   %body{:class => @body_class}
