@@ -1,0 +1,38 @@
+PATH
+  remote: /Users/mdub/Projects/pith
+  specs:
+    pith (0.0.11)
+      adsf (~> 1.0.1)
+      rack (~> 1.2.1)
+      thin (~> 1.2.7)
+      tilt (~> 1.1)
+
+GEM
+  remote: http://rubygems.org/
+  specs:
+    adsf (1.0.1)
+      rack (>= 1.0.0)
+    builder (2.1.2)
+    daemons (1.1.0)
+    eventmachine (0.12.10)
+    haml (3.0.22)
+    rack (1.2.1)
+    rake (0.8.7)
+    rdiscount (1.6.5)
+    thin (1.2.7)
+      daemons (>= 1.0.9)
+      eventmachine (>= 0.12.6)
+      rack (>= 1.0.0)
+    tilt (1.1)
+    wikiwah (0.0.2)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  builder
+  haml
+  pith!
+  rake
+  rdiscount
+  wikiwah
