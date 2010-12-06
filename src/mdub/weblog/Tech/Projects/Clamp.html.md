@@ -1,6 +1,7 @@
 --- 
 layout: /mdub/weblog/_article.html.haml
 title: Clamp - a Ruby command-line framework
+published: Dec 6 2010, 21:30
 ...
 
 In the course of my current project, I've been writing a bunch of command-line utilities.  While they're just Ruby scripts, much of their work is interacting with the user: accepting command-line options and arguments, and providing useful feedback in case of errors.  So, I wrote a little framework to make it easier.  It's called [Clamp](http://github.com/mdub/clamp).
