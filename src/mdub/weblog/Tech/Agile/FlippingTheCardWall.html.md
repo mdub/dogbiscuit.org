@@ -19,14 +19,14 @@ The key difference here is that cards progress from *right-to-left*, rather than
 
 At the same time, the labels on our columns are all verbs, making it very clear what needs to happen with that card next.  These, then, are our columns:
 
-- **Advertise**:
+- **Advertise**: If we've recently released useful new features, our quickest path to providing value is to get people using them.  We hold a "showcase" every two weeks or so, but often use other channels (email, internal blog, wandering over) to promote our wares, as well.
 
-- **Release** (and Document):
+- **Release** (and Document): Much of our work needs to be made available explicitly, by upgrading a network service, or publishing a new version of a software component.  We try to do this as soon as possible once we consider it "done".  Part of releasing is making sure that suitable documentation is available, if necessary.
 
-- **Review**:
+- **Review**: If someone has recently completed a task, we want someone else to review it be we consider it "good to go".  Sometimes another member of the team can do it, but usually we'll ask an end-user to give it the seal of approval (or not, as the case may be).  Getting this feedback is more important than building new stuff.
 
-- **Implement**:
+- **Implement**: Assuming we've cleared out the previous couple of columns, we can do some actual programming (with frequent pauses to drink coffee and/or insult each other's choice of text editor).
 
-- **Discuss**:
+- **Discuss**: 
 
 - **Consider**:
