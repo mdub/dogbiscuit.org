@@ -1,8 +1,7 @@
-$LOAD_PATH << "#{ENV['HOME']}/Projects/pith/lib"
-
+require "rubygems"
 require "pith/console_logger"
 require "pith/project"
 
 def dogbiscuit
-  @dogbiscuit ||= Pith::Project.new(:input_dir => "src", :output_dir => "out", :logger => Pith::ConsoleLogger.new)
+  @dogbiscuit ||= Pith::Project.new(:input_dir => "src", :logger => Pith::ConsoleLogger.new)
 end

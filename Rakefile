@@ -1,24 +1,22 @@
-$LOAD_PATH << "."
-
-require "dogbiscuit"
+require 'rubygems'
+require 'bundler/setup'
 
 task "default" => "watch"
 
 desc "build the site"
 task "build" do
-  dogbiscuit.build
+  sh "pith -i src build"
 end
 
 task "watch" do
-  require "pith/watcher"
-  Pith::Watcher.new(dogbiscuit).call
+  sh "pith -i src watch"
 end
 
 desc "Publish to dogbiscuit.org"
 task "push" => ["build", "upload"]
 
 task "upload" do
-  sh "rsync -av out/ dogbiscuit:dogbiscuit.org/"
+  sh "rsync -av src/_out/ dogbiscuit:dogbiscuit.org/"
 end
 
 desc "Start an IRB session, with project pre-loaded"
