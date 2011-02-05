@@ -23,3 +23,9 @@ desc "Start an IRB session, with project pre-loaded"
 task "console" do
   sh("irb -I . -r dogbiscuit")
 end
+
+task "browse" do
+  sh("open http://dogbiscuit.local")
+end
+
+task "dev" => ["browse", "watch"]
