@@ -1,6 +1,7 @@
 --- 
 layout: /mdub/weblog/_article.html.haml
 title: Flipping the card wall
+published: Feb 5 2011, 23:30
 ...
 
 Most agile software development projects have a "card wall", with each card representing a story, or a task, or some other unit of work.  
@@ -25,8 +26,13 @@ At the same time, the labels on our columns are all verbs, making it very clear 
 
 - **Review**: If someone has recently completed a task, we want someone else to review it be we consider it "good to go".  Sometimes another member of the team can do it, but usually we'll ask an end-user to give it the seal of approval (or not, as the case may be).  Getting this feedback is more important than building new stuff.
 
-- **Implement**: Assuming we've cleared out the previous couple of columns, we can do some actual programming (with frequent pauses to drink coffee and/or insult each other's choice of text editor).
+- **Implement**: Assuming we've cleared out the previous couple of columns, we can do some actual programming (with frequent pauses to drink coffee and/or insult each other's choice of text editor).  We don't use separate columns to distinguish what's being worked on, and what's as-yet unstarted; instead, the presence of one or more people's names on a card indicates that it's getting attention.
 
-- **Discuss**: 
+- **Discuss**: Sometimes a good whiteboard session is required before we can feel comfortable that a card is ready to be worked on.  Often these discussions result in cards being split into smaller, more concrete steps.
 
-- **Consider**:
+- **Consider**: On the right hand side is a cloud of things that are really good ideas.  We keep them around to remind ourselves, and others, that while these are really good ideas, we're NOT working on them right now.  We don't bother attempting to keep these in priority order, as priorities are likely to change radically before we get to them; instead, we'll do just-in-time prioritisation when space becomes free further to the left of the board.  
+
+We keep our current "milestone" (medium-term goal) in plain sight, on a card just above our column headings.  This helps us maintain focus, by highlighting when we are tempted to work on things that are "off-mission".
+
+I think this has been a positive change, and has *helped* us reduce work-in-progress.  It's no silver bullet, though. For instance, we still tend to spend too much time (IMHO) thinking about potential upcoming work, as evidenced by the cluster of cards in "Discuss", in the photo above.  Still, early days.
+
