@@ -8,6 +8,7 @@ task "build" do
   sh "pith -i src build"
 end
 
+desc "build the site and rebuild as required"
 task "watch" do
   sh "pith -i src watch"
 end
@@ -25,7 +26,8 @@ task "console" do
 end
 
 task "browse" do
-  sh("open http://dogbiscuit.local")
+  sh("open http://dogbiscuit.dev")
 end
 
+desc "build the site"
 task "dev" => ["browse", "watch"]

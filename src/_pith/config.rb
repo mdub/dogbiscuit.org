@@ -13,7 +13,7 @@ project.helpers do
   end
   
   def interesting_path_components
-    page.output_path.to_str.sub(%r{(/index)?\.html$}, '').split("/")
+    page.output_path.to_s.sub(%r{(/index)?\.html$}, '').split("/")
   end
   
   def breadcrumb_trail
