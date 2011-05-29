@@ -17,14 +17,13 @@ rm -fr $tmproot
 
 # Clone the repo there, and switch to gh-pages branch
 git clone $root --shared $tmproot
-cd $tmproot
-git checkout --track gh-pages
+(cd $tmproot; git checkout --track origin/gh-pages)
 
 # Replace contents with $srcdir
 rsync -av --delete --exclude .git $srcdir/. $tmproot
 
-# Checkin the changes
+# Checkin the changes, and push back to gh-pages branch
+cd $tmproot
 git add -A .
 git commit -m "Updated"
-
-# git checkout master
+git push origin gh-pages
