@@ -1,0 +1,30 @@
+#!/bin/bash
+
+if (( $# != 1 )); then
+  echo "usage: $0 <srcdir>" >&2
+  exit 1
+fi
+
+root=`pwd`
+srcdir="$1"; shift
+
+# Halt on error
+set -e
+
+# Find a temporary resting-place
+tmproot=${TMP-/tmp}/blah
+rm -fr $tmproot
+
+# Clone the repo there, and switch to gh-pages branch
+git clone $root --shared $tmproot
+cd $tmproot
+git checkout --track gh-pages
+
+# Replace contents with $srcdir
+rsync -av --delete --exclude .git $srcdir/. $tmproot
+
+# Checkin the changes
+git add -A .
+git commit -m "Updated"
+
+# git checkout master
