@@ -12,6 +12,13 @@ project.helpers do
     project.published_inputs.reverse
   end
   
+  def weblog_drafts
+    project.inputs.select do |input|
+      input.path.to_s =~ %r{/weblog/} &&
+      input.meta["draft"]
+    end
+  end
+  
   def interesting_path_components
     page.output_path.to_s.sub(%r{(/index)?\.html$}, '').split("/")
   end

@@ -1,0 +1,9 @@
+---
+layout: "_layout.html.haml"
+title: Drafts
+...
+
+%ul.articles
+  - weblog_drafts.each do |entry|
+    %li
+      %p= link(entry)
