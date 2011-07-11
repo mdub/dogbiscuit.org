@@ -6,7 +6,7 @@ published: 11-Jul-2011, 22:00
 
 To properly assess a test's value, you need to consider both the benefit it provides, <u>and</u> the cost of creating, maintaining, and executing it.  When the cost outweighs the benefit, the test has ceased to provide (net) value.
 
-A have a few simple criteria I use to gauge the value provided by an automated test.  Even better, I've managed to rationalise them all starting with the same letter, so can now define:
+A have a few simple criteria I use to gauge the value provided by an automated test.  Even better, I've managed to rationalise them all starting with the same letter, so now proclaim:
 
 <blockquote>
   <big><strong>The Three R's of Test Automation:</strong></big>
