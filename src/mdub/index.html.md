@@ -5,7 +5,7 @@ title: "about"
 
 "mdub" is Mike Williams.
 
-I live in Melbourne, Australia, and work for [Cogent Consulting][cogent]. 
+I live in Melbourne, Australia, and work for [Cogent][cogent]. 
 
 Welcome to my small, dusty corner of the web.
 
