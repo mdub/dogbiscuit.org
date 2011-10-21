@@ -13,4 +13,4 @@ Welcome to my small, dusty corner of the web.
 * [software](software/) - dubious projects
 
 
-[cogent]: http://www.cogentconsulting.com.au/
+[cogent]: http://www.cogent.co/
