@@ -1,0 +1,18 @@
+!!!
+%html{:lang => "en"}
+  %head
+    %meta(charset="utf-8")/
+    %script(src="http://html5slides.googlecode.com/svn/trunk/slides.js")
+    %title= page.title
+    ~ content_for[:head]
+
+    :css
+      .slides article {
+        background-image:none !important;
+      }
+
+  %body(style="display: none")
+
+    %section.slides.template-default
+
+      ~ yield
