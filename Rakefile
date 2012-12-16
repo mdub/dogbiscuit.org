@@ -13,6 +13,10 @@ task "watch" do
   sh "pith -i src watch"
 end
 
+task "serve" do
+  sh "pith -i src serve"
+end
+
 desc "Publish to dogbiscuit.org"
 task "push" => ["build", "upload"]
 
