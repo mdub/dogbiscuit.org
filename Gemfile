@@ -2,7 +2,7 @@ source "https://rubygems.org"
 
 gem "rake"
 gem "pith", "~> 0.3.1"
-gem "wikiwah", "~> 0.0.3"
+gem "wikiwah", "~> 0.1.0"
 gem "builder"
 gem "rdiscount"
 gem "haml"

@@ -19,7 +19,7 @@ GEM
       eventmachine (>= 0.12.6)
       rack (>= 1.0.0)
     tilt (1.4.0)
-    wikiwah (0.0.3)
+    wikiwah (0.1.0)
 
 PLATFORMS
   ruby
@@ -30,4 +30,4 @@ DEPENDENCIES
   pith (~> 0.3.1)
   rake
   rdiscount
-  wikiwah (~> 0.0.3)
+  wikiwah (~> 0.1.0)
