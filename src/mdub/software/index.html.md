@@ -6,13 +6,18 @@ title: Software
 Active projects
 ---------------
 
+[Clamp](http://github.com/mdub/clamp) is a framework for Ruby command-line applications.
+
+[Pith](http://github.com/mdub/pith) is the static website generator used to create this site.
+
 [ShamRack](http://github.com/mdub/sham_rack) is a Ruby library that makes it easy to stub-out external HTTP services, for testing.
+
+[Enumerating](http://github.com/mdub/enumerating) and
+[Lazily](http://github.com/mdub/lazily) provide lazy operations on Ruby collections.
 
 [Representative](http://github.com/mdub/representative) makes it easy to create XML or JSON representations of Ruby objects.
 
 [arboreal](http://github.com/mdub/arboreal) is an ActiveRecord extension to support navigation of tree-shaped data.
-
-[Pith](http://github.com/mdub/pith) is the static website generator used to create this site.
 
 Older projects
 --------------
