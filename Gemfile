@@ -1,4 +1,4 @@
-source :rubygems
+source "https://rubygems.org"
 
 gem "rake"
 gem "pith", "~> 0.3.1"
