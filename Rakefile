@@ -13,10 +13,6 @@ task "watch" do
   sh "pith -i src watch"
 end
 
-task "serve" do
-  sh "pith -i src serve"
-end
-
 desc "Publish to dogbiscuit.org"
 task "push" => ["build", "upload"]
 
@@ -29,9 +25,17 @@ task "console" do
   sh("irb -I . -r dogbiscuit")
 end
 
+desc "build the site and rebuild as required"
+task "serve" do
+  sh "pith -i src serve -p 9877"
+end
+
 task "browse" do
-  sh("open http://dogbiscuit.dev")
+  Process.fork do
+    sleep 1
+    sh("open http://localhost:9877/mdub/")
+  end
 end
 
 desc "build the site"
-task "dev" => ["browse", "watch"]
+task "dev" => ["browse", "serve"]
