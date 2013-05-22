@@ -5,8 +5,8 @@
     %meta{ :"http-equiv"=>"Content-Type", :content=>"text/html; charset=UTF-8" }/
     %title= page.title || "dogbiscuit"
     %base(href="/#{page.output.path}")
-    %link{ :href=>href("style.css"), :rel=>"stylesheet", :type=>"text/css" }
     = include("_highlight-js.html")
+    %link{ :href=>href("style.css"), :rel=>"stylesheet", :type=>"text/css" }
     ~ content_for[:head]
 
   %body{:class => @body_class}
