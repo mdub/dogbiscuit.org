@@ -7,6 +7,7 @@
     %base(href="/#{page.output.path}")
     = include("_highlight-js.html")
     %link{ :href=>href("style.css"), :rel=>"stylesheet", :type=>"text/css" }
+    %link{ :href=>'http://fonts.googleapis.com/css?family=Source+Sans+Pro', :rel=>"stylesheet", :type=>"text/css" }
     ~ content_for[:head]
 
   %body{:class => @body_class}
