@@ -101,6 +101,15 @@ pre, code {
   font-family: 'Inconsolata', Monaco, monospace;
 }
 
+figure {
+  text-align: center;
+  figcaption {
+    font-size: 90%;
+    font-style: italic;
+    margin-bottom: 2em;
+  }
+}
+
 a {
   text-decoration: none;
   border-bottom: 1px dotted #999999;
