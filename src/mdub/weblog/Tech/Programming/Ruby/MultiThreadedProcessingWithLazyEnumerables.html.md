@@ -18,7 +18,7 @@ The problem with this naive approach, though, is that you end up creating a Thre
 
 <figure>
 <img src="diagrams/eager.png" />
-<figcaption>Figure 1: Thread explosion!</fipcaption>
+<figcaption>Figure 1: Thread explosion!</figcaption>
 </figure>
 
 We can fix the do-everything-at-once problem using lazy enumeration:
@@ -35,7 +35,7 @@ Okay, but now we have the opposite problem: the worker Threads aren't created un
 
 <figure>
 <img src="diagrams/lazy.png" />
-<figcaption>Figure 2: Not really parallel</fipcaption>
+<figcaption>Figure 2: Not really parallel</figcaption>
 </figure>
 
 So, what if we reintroduced _just a little_ eagerness?  Let's **prefetch** some of the Threads in the `lazy_threads` collection, before we actually need them:
@@ -55,7 +55,7 @@ Bingo! Now we're starting a limited number of Threads in advance of needing thei
 
 <figure>
 <img src="diagrams/anticipation.png" />
-<figcaption>Figure 3: Antici........pation</fipcaption>
+<figcaption>Figure 3: Antici........pation</figcaption>
 </figure>
 
 We can size the prefetch "window" to get some parallelization, without creating an explosion of Threads. Even better, we've managed to do it without involving tricksy multi-threading operators like `Mutex` or `Queue`. And, the collection of outputs is lazy, so we can use this approach to process large (even infinite?) collections.
