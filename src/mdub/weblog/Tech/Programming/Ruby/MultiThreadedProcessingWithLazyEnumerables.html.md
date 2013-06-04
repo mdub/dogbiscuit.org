@@ -1,7 +1,6 @@
---- 
+---
 layout: /mdub/weblog/_article.html.haml
 title: Multi-threaded processing with lazy enumerables
-draft: true
 published: 23 May 2013, 23:30
 ...
 
