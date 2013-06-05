@@ -1,10 +1,10 @@
 ---
 layout: /mdub/weblog/_article.html.haml
 title: Fun with Autotest hooks
-draft: true
+published: 5 Jun 2013 10:40
 ...
 
-I've been doing more rapid-feedback unit-testing in Ruby recently, and find myself using `autotest` (from the ZenTest suite) a lot.
+I've been doing more tight-feedback-loop unit-testing in Ruby recently, and find myself using `autotest` (from the [ZenTest](https://github.com/seattlerb/zentest) suite) a lot.
 
 One of the great things about `autotest` is it's hook mechanism, which allows you to hang behaviour on the passing or failing of a test suite.  Many people have written hooks that publish test results via a notification mechanism such as Growl. I wrote a similar one that signals the state of the test-suite via the title of the terminal window running `autotest`:
 
@@ -34,3 +34,4 @@ Also, I have a tendency to checkpoint with "`git add`" whenever the tests pass. 
       system(checkpoint_command)
     end
 
+Does anyone have other useful hooks to share?
