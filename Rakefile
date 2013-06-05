@@ -33,7 +33,7 @@ end
 task "browse" do
   Process.fork do
     sleep 1
-    sh("open http://localhost:9877/mdub/")
+    sh("open http://localhost:9877/mdub/weblog/drafts")
   end
 end
 
