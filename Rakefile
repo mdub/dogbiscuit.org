@@ -39,3 +39,7 @@ end
 
 desc "build the site"
 task "dev" => ["browse", "serve"]
+
+require 'rake/clean'
+
+CLEAN << "src/_out"
