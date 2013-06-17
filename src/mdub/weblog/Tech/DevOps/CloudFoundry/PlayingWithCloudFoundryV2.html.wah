@@ -1,7 +1,7 @@
 ---
 layout: /mdub/weblog/_article.html.haml
 title: Play-ing with Cloud Foundry v2
-draft: true
+published: 17 June 2013 21:50
 ...
 
 I'm currently messing about a bit with {Cloud Foundry}@http://www.cloudfoundry.com, an open-source Platform-as-a-Service which promises to be something akin to Heroku-in-your-data-center, or perhaps Heroku-in-your-AWS-VPC.  In any case, it's exciting stuff, and appears to be moving fast, under the guidance of {Pivotal}@http://gopivotal.com.
