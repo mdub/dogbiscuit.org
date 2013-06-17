@@ -1,6 +1,8 @@
 require "builder/xmlmarkup"
 require "wikiwah/tilt_integration" # for legacy blog-entries in "WikiWah" format
 
+Tilt.prefer(Tilt::RedcarpetTemplate)
+
 require "pith/plugins/publication"
 
 project.assume_content_negotiation = true

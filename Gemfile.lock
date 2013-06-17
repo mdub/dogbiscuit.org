@@ -20,7 +20,7 @@ GEM
     rack-livereload (0.3.14)
       rack
     rake (0.8.7)
-    rdiscount (1.6.5)
+    redcarpet (2.2.2)
     thin (1.5.1)
       daemons (>= 1.0.9)
       eventmachine (>= 0.12.6)
@@ -36,5 +36,5 @@ DEPENDENCIES
   haml
   pith (~> 0.3.1)!
   rake
-  rdiscount
+  redcarpet (~> 2.2.2)
   wikiwah (~> 0.1.0)
