@@ -1,0 +1,115 @@
+---
+layout: /mdub/weblog/_article.html.haml
+title: Play-ing with Cloud Foundry v2
+draft: true
+...
+
+I'm currently messing about a bit with {Cloud Foundry}@http://www.cloudfoundry.com, an open-source Platform-as-a-Service which promises to be something akin to Heroku-in-your-data-center, or perhaps Heroku-in-your-AWS-VPC.  In any case, it's exciting stuff, and appears to be moving fast, under the guidance of {Pivotal}@http://gopivotal.com.
+
+Brian McClain posted an {article}@http://catdevrandom.me/blog/2013/05/16/buildpacks-in-cloud-foundry-v2/ recently about getting a Haskell app running in Cloud Foundry. I decided to do something similar using {Play}@http://www.playframework.com.
+
+I hadn't used Play before, but it turns out that it's pretty easy to get a basic app up and running:
+
+| $ play new playpen
+
+A quick check locally, to check that everything is hanging together:
+
+| $ cd playpen
+| $ play start
+| $ open http://localhost:9000
+
+All good, so I'll try pushing it up to Cloud Foundry.
+
+  | $ cf push
+  | Name> playpen
+  |
+  | Instances> 1
+  |
+  | 1: 64M
+  | 2: 128M
+  | 3: 256M
+  | 4: 512M
+  | Memory Limit> 256M
+  |
+  | Creating playpen... OK
+  |
+  | 1: playpen
+  | 2: none
+  | Subdomain> playpen
+  |
+  | 1: cfapps.io
+  | 2: none
+  | Domain> cfapps.io
+  |
+  | Binding playpen.cfapps.io to playpen... OK
+  |
+  | Create services for application?> n
+  |
+  | Bind other services to application?> n
+  |
+  | Save configuration?> y
+  |
+  | Saving to manifest.yml... OK
+  | Uploading playpen... OK
+  | Starting playpen... OK
+  | -----> Downloaded app package (1020K)
+  | Installing java.
+  | Downloading JDK...
+  | Copying openjdk-1.7.0_21.tar.gz from the buildpack cache ...
+  | Unpacking JDK to .jdk
+  | /var/vcap/packages/dea_next/buildpacks/lib/buildpack.rb:63:in `start_command': Please specify a web start command in your manifest.yml or Procfile (RuntimeError)
+  |   from (erb):6:in `generate_startup_script'
+  |   from /usr/lib/ruby/1.9.1/erb.rb:838:in `eval'
+  |   from /usr/lib/ruby/1.9.1/erb.rb:838:in `result'
+  |   from /var/vcap/packages/dea_next/buildpacks/lib/staging_plugin.rb:110:in `generate_startup_script'
+  |   from /var/vcap/packages/dea_next/buildpacks/lib/buildpack.rb:84:in `startup_script'
+  |   from /var/vcap/packages/dea_next/buildpacks/lib/staging_plugin.rb:139:in `block in create_startup_script'
+  |   from /var/vcap/packages/dea_next/buildpacks/lib/staging_plugin.rb:138:in `open'
+  |   from /var/vcap/packages/dea_next/buildpacks/lib/staging_plugin.rb:138:in `create_startup_script'
+  |   from /var/vcap/packages/dea_next/buildpacks/lib/buildpack.rb:19:in `block in stage_application'
+  |   from /var/vcap/packages/dea_next/buildpacks/lib/buildpack.rb:12:in `chdir'
+  |   from /var/vcap/packages/dea_next/buildpacks/lib/buildpack.rb:12:in `stage_application'
+  |   from /var/vcap/packages/dea_next/buildpacks/bin/run:10:in `<main>'
+  | Checking playpen...
+  | Application failed to stage
+
+Well, that started well, but finished badly.  Cloud Foundry is assumed I was pushing a generic Java app. We need to tell it how to handle Play applications.
+
+Buildpacks to the rescue! Buildpacks are a concept that Cloud Foundry has borrowed {from Heroku}@https://devcenter.heroku.com/articles/buildpacks - they adapt the generic PaaS to the specfics of a particular application framework and/or language. A buildpack takes your application source-code as input, and outputs a compiled package that can be run on the target PaaS. Some buildpacks are very specific to the app framework; others are more generic, and can support multiple frameworks.
+
+It turns out that the buildpack required for a Play 2.1.1 app is {heroku-buildpack-scala}@https://github.com/heroku/heroku-buildpack-scala. This was written for Heroku, but can be used without changes on Cloud Foundry!
+
+| $ cf push --buildpack https://github.com/heroku/heroku-buildpack-scala.git
+| Using manifest file manifest.yml
+|
+| Not applying manifest changes without --reset
+| See `cf diff` for more details.
+|
+| Uploading playpen... OK
+| Changes:
+|   buildpack: '' -> 'https://github.com/heroku/heroku-buildpack-scala.git'
+| Updating playpen... OK
+| Stopping playpen... OK
+|
+| Starting playpen... OK
+| -----> Downloaded app package (1020K)
+| Initialized empty Git repository in /tmp/buildpacks/heroku-buildpack-scala.git/.git/
+| Installing heroku-buildpack-scala.git.
+| -----> Installing OpenJDK 1.6...done
+| -----> Building app with sbt
+| -----> Running: sbt clean compile stage
+|        Getting net.java.dev.jna jna 3.2.3 ...
+|        Getting org.scala-sbt sbt 0.12.2 ...
+| (... etc etc ... download half the internet ...)
+|        [success] Total time: 3 s, completed Jun 17, 2013 5:39:55 AM
+| -----> Dropping ivy cache from the slug
+| -----> Uploading staged droplet (127M)
+| -----> Uploaded droplet
+| Checking playpen...
+| Staging in progress...
+|   0/1 instances: 1 starting
+|   1/1 instances: 1 running
+| OK
+
+Success! That's one more toy application in the cloud!
+
