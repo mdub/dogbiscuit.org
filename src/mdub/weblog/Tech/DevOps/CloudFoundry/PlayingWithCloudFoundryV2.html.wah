@@ -10,16 +10,19 @@ Brian McClain posted an {article}@http://catdevrandom.me/blog/2013/05/16/buildpa
 
 I hadn't used Play before, but it turns out that it's pretty easy to get a basic app up and running:
 
-| $ play new playpen
+  ,-- no-highlight --
+  | $ play new playpen
 
 A quick check locally, to check that everything is hanging together:
 
-| $ cd playpen
-| $ play start
-| $ open http://localhost:9000
+  ,-- no-highlight --
+  | $ cd playpen
+  | $ play start
+  | $ open http://localhost:9000
 
 All good, so I'll try pushing it up to Cloud Foundry.
 
+  ,-- no-highlight --
   | $ cf push
   | Name> playpen
   |
@@ -79,6 +82,7 @@ Buildpacks to the rescue! Buildpacks are a concept that Cloud Foundry has borrow
 
 It turns out that the buildpack required for a Play 2.1.1 app is {heroku-buildpack-scala}@https://github.com/heroku/heroku-buildpack-scala. This was written for Heroku, but can be used without changes on Cloud Foundry!
 
+,-- no-highlight --
 | $ cf push --buildpack https://github.com/heroku/heroku-buildpack-scala.git
 | Using manifest file manifest.yml
 |
