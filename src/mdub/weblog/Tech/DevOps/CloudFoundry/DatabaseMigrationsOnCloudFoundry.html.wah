@@ -45,7 +45,7 @@ If the +instance_id+ is non-zero, or unset, the task exits Rake early, skipping 
   |   command: "bundle exec rake cf:on_primary_instance db:migrate && bundle exec rackup -p $PORT"
 
 
-This actually works fairly well; the migrations run, then the application-server starts up.  Of course, if the migrations fail, the app-server won't start.  That fine with mine (for now), and I imagine it would be acceptable for many apps.
+This actually works fairly well; the migrations run, then the application-server starts up.  Of course, if the migrations fail, the app-server won't start.  That's fine with me, for now, and I imagine it would be acceptable for many apps.
 
 Others, though, might want/need tighter control over when database migrations run, rather than just running them automatically on boot.  With that in mind, an alternative approach would be to handle migrations entirely separately from application deployments.  Cloud Foundry provides easy access to information about database (and other external) services, e.g.
 
