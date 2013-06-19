@@ -1,0 +1,58 @@
+---
+layout: /mdub/weblog/_article.html.haml
+title: Running database migrations on Cloud Foundry
+draft: true
+...
+
+An important part of deploying a database-backed application is keeping the database schema up-to-date.  For Rails applications, you typically do that by running:
+
+  | $ rake db:migrate
+
+For Rails applications running on Heroku, you typically run the migrations immediately after deploying a new version of your app, e.g.
+
+  | $ git push heroku master
+  | $ heroku run rake db:migrate
+
+Since Cloud Foundry takes after Heroku in so many ways, I expected to use a similar workflow when deploying my Rails application on Cloud Foundry.  I was suprised to discover that CF does not support any equivalent of "+heroku run+".  That is, there's not a built-in way to run a shell-command in the context of the currently deployed application.
+
+The {Cloud Foundry documentation}@http://docs.cloudfoundry.com/docs/using/deploying-apps/ruby/ suggests a somewhat surprising solution: alter the startup command for your application to execute migrations before (re)-starting the web-app.  I duly did so by specifying a custom start command in the Cloud Foundry "+manifest.yml+" for my app:
+
+  | ---
+  | applications:
+  | - name: barfly
+  |   command: "bundle exec rake db:migrate && bundle exec rackup -p $PORT"
+
+So far, this actually works fairly well.  The migrations run, then the application-server starts up.  As written, if the migrations fail, the app-server won't start ... which is fine with me (for now).
+
+We don't really want to run the migrations on every app-server instance, though. Luckily, Cloud Foundry provides meta-data to each instance, in the form of an environment variable, <samp>$VCAP_APPLICATION</samp>. Specifically, it provides an "+instance_id+" key, which contains the a unique number for every instance.
+
+So, I created a Rake task to limit an action to the first instance, ie. the one with <code>instance_id == 0</code>.
+
+  ,-- code.ruby --
+  | namespace :cf do
+  |
+  |   desc "Only run on the primary Cloud Foundry instance"
+  |   task :on_primary_instance do
+  |     instance_index = JSON.parse(ENV["VCAP_APPLICATION"])["instance_index"] rescue nil
+  |     unless instance_index == 0
+  |       exit 0
+  |     end
+  |   end
+  |
+  | end
+
+Note that if the +instance_id+ is non-zero, or unset, the task exits Rake early, skipping any subsequent tasks.  With this in place, I altered the startup command to make use of the new task:
+
+  | ---
+  | applications:
+  | - name: barfly
+  |   command: "bundle exec rake cf:on_primary_instance db:migrate && bundle exec rackup -p $PORT"
+s
+This approach would probably work quite well for many applications, but I imagine others would want tighter control over when database migrations run, rather than just running them automatically on boot.
+
+An alternative approach would be to handle migrations entirely separately from application deployments.  Cloud Foundry provides easy access to information about database (and other external) services, e.g.
+
+  | $ cf file barfly logs/env.log | grep DATABASE_URL
+  | DATABASE_URL=postgresql://deadb33f:5Dvc0ePHMrwFUuODGQiSYWCYHU-nIzu-@babar.elephantsql.com:5432/deadb33f
+
+Using those connection details, the deployment script could connect to and migrate the target database schema, independant of the "+cf push+" that deployed the app.  In many ways, this is preferrable to the usual Heroku workflow, as it creates the flexibility to run the migrations before (rather than after) deploying a new version of the application.
