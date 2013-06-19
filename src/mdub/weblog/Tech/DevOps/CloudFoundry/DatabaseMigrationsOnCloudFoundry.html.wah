@@ -13,7 +13,7 @@ For Rails applications running on Heroku, you typically run the migrations immed
   | $ git push heroku master
   | $ heroku run rake db:migrate
 
-Since Cloud Foundry takes after Heroku in so many ways, I expected to use a similar workflow when deploying my Rails application on Cloud Foundry.  I was suprised to discover that CF does not support any equivalent of "+heroku run+".  That is, there's not a built-in way to run a shell-command in the context of the currently deployed application.
+Since Cloud Foundry takes after Heroku in so many ways, I expected to use a similar workflow when deploying my Rails application on Cloud Foundry.  I was suprised to discover that CF does not support any equivalent of "+heroku run+".  That is, there's not (yet) a built-in way to run a Rake task or shell-command in the context of the currently deployed application.
 
 The {Cloud Foundry documentation}@http://docs.cloudfoundry.com/docs/using/deploying-apps/ruby/ suggests a somewhat surprising solution: alter the startup command for your application to execute migrations before (re)-starting the web-app.  I duly did so by specifying a custom start command in the Cloud Foundry "+manifest.yml+" for my app:
 
