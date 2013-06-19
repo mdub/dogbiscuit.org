@@ -1,7 +1,7 @@
 ---
 layout: /mdub/weblog/_article.html.haml
 title: Running database migrations on Cloud Foundry
-draft: true
+published: 19 June 2013, 21:55
 ...
 
 An important part of deploying a database-backed application is keeping the database schema up-to-date.  For Rails applications, you typically do that by running:
