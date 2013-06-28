@@ -1,6 +1,9 @@
 $line: #aaaaaa;
 $light_grey: #aaaaaa;
 
+@import url(http://fonts.googleapis.com/css?family=Source+Sans+Pro);
+@import url(http://fonts.googleapis.com/css?family=Inconsolata);
+
 body {
   margin: 0 auto;
   padding: 0;
@@ -98,7 +101,7 @@ pre {
 }
 
 pre, code, tt, kdb, samp {
-  font-family: 'Inconsolata', Monaco, monospace;
+  font-family: Inconsolata, Monaco, monospace;
 }
 
 figure {
@@ -143,6 +146,3 @@ ol.menu {
     }
   }
 }
-
-@import url(http://fonts.googleapis.com/css?family=Source+Sans+Pro);
-@import url(http://fonts.googleapis.com/css?family=Inconsolata);
