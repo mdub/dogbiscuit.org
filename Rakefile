@@ -27,7 +27,7 @@ end
 
 desc "build the site and rebuild as required"
 task "serve" do
-  sh "pith -i src serve --live-reload -p 9877"
+  sh "pith -i src serve -L -p 9877"
 end
 
 task "browse" do
