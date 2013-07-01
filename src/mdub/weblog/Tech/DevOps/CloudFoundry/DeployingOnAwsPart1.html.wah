@@ -17,7 +17,7 @@ Before you get too excited, though, you'll need an "inception server".  Despite 
 * you'll be downloading some large BLOBs, and it's best to keep them inside the AWS network
 * in order to turn the MicroBOSH stemcell into an AMI, you need to create a mount an EBS volume.
 
-Any Linux machine running Ruby 1.9.x should do.  To make it easier, you can use one of:
+Any Linux instance running Ruby 1.9.x should do.  If you don't have one handy, you can use one of:
 
 * Dr Nic's {+inception-server+}@https://github.com/cloudfoundry-community/inception-server project
 * my {+bosh-inception-vagrant+}@https://github.com/mdub/bosh-inception-vagrant
