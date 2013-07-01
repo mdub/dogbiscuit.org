@@ -8,6 +8,8 @@ Having spent some time {experimenting with Cloud Foundry}@PlayingWithCloudFoundr
 
 The recommended deployment mechanism for Cloud Foundry uses {BOSH}@http://docs.cloudfoundry.com/docs/running/bosh/, "an open source tool chain for release engineering, deployment, and lifecycle management of large-scale distributed services".  Once it's up and running, Cloud Foundry actually has no dependencies on BOSH, and in fact, it's technically possible to deploy CF by {other}@https://github.com/Altoros/cf-vagrant-installer {means}@https://github.com/yudai/cf_nise_installer. But BOSH makes it easier to manage an existing Cloud Foundry deployment, so we'll stick with that.
 
+(A word of warning: the official documentation for "{Deploying Cloud Foundry on AWS}@http://docs.cloudfoundry.com/docs/running/deploying-cf/ec2/index.html" currently describes a installation process involving the +bootstrap-cf-plugin+ gem.  I recommend avoiding that path, as it conflates installation of BOSH and Cloud Foundry in a confusing way.  Let's stay focused on BOSH, for now.)
+
 BOSH is itself a distributed system, and can be deployed across multiple nodes (e.g. EC2 instances) for better performance and resilience.  For our purposes, though, it's sufficient to have all the BOSH components installed on a single node. Such a single-node deployment is called a "MicroBOSH".
 
 The BOSH project distributes MicroBOSH as stemcells; where "stemcell" is their term for a raw machine image.  They provide an AWS-specific stemcells, which can be used to build AMIs, as well as stemcells for other target infrastructures (like vSphere and OpenStack).
