@@ -1,6 +1,6 @@
 ---
 layout: /mdub/weblog/_article.html.haml
-title: "Cloud Foundry on AWS - Part 1: deploying a MicroBOSH"
+title: "Cloud Foundry on AWS - Part 1: Deploying a MicroBOSH"
 published: 2 Jul 2013, 9:48am
 ...
 
