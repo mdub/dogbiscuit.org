@@ -1,7 +1,7 @@
 ---
 layout: /mdub/weblog/_article.html.haml
 title: "Cloud Foundry on AWS - Part 1: deploying a MicroBOSH"
-draft: true
+published: 2 Jul 2013, 9:48am
 ...
 
 Having spent some time {experimenting with Cloud Foundry}@PlayingWithCloudFoundryV2 using Pivotal's flagship deployment at {+run.pivotal.io+}@http://run.pivotal.io, I wanted to see how easy it was to deploy Cloud Foundry myself.
