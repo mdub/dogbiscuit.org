@@ -1,0 +1,122 @@
+---
+layout: /mdub/weblog/_article.html.haml
+title: "Cloud Foundry on AWS - Part 1: deploying a MicroBOSH"
+draft: true
+...
+
+Having spent some time {experimenting with Cloud Foundry}@PlayingWithCloudFoundryV2 using Pivotal's flagship deployment at {+run.pivotal.io+}@http://run.pivotal.io, I wanted to see how easy it was to deploy Cloud Foundry myself.
+
+The recommended deployment mechanism for Cloud Foundry uses {BOSH}@http://docs.cloudfoundry.com/docs/running/bosh/, "an open source tool chain for release engineering, deployment, and lifecycle management of large-scale distributed services".  Once it's up and running, Cloud Foundry actually has no dependencies on BOSH, and in fact, it's technically possible to deploy CF by {other}@https://github.com/Altoros/cf-vagrant-installer {means}@https://github.com/yudai/cf_nise_installer. But BOSH makes it easier to manage an existing Cloud Foundry deployment, so we'll stick with that.
+
+BOSH is itself a distributed system, and can be deployed across multiple nodes (e.g. EC2 instances) for better performance and resilience.  For our purposes, though, it's sufficient to have all the BOSH components installed on a single node. Such a single-node deployment is called a "MicroBOSH".
+
+The BOSH project distributes MicroBOSH as stemcells; where "stemcell" is their term for a raw machine image.  They provide an AWS-specific stemcells, which can be used to build AMIs, as well as stemcells for other target infrastructures (like vSphere and OpenStack).
+
+Before you get too excited, though, you'll need an "inception server".  Despite the fancy name, this is nothing more than an EC2 instance in your target AWS region, that you can SSH into, to use as a staging point for MicroBOSH installation.  It's required because:
+
+* you'll be downloading some large BLOBs, and it's best to keep them inside the AWS network
+* in order to turn the MicroBOSH stemcell into an AMI, you need to create a mount an EBS volume.
+
+Any Linux machine running Ruby 1.9.x should do.  To make it easier, you can use one of:
+
+* Dr Nic's {+inception-server+}@https://github.com/cloudfoundry-community/inception-server project
+* my {+bosh-inception-vagrant+}@https://github.com/mdub/bosh-inception-vagrant
+
+Once you have an inception server running, SSH on in.
+
+=== Option A: +bosh-bootstrap+
+
+At this point, you're welcome to take a shortcut by way of Dr Nic's {+bosh-bootstrap+}@https://github.com/cloudfoundry-community/bosh-bootstrap project, which mostly automates the remainder of the process.
+
+=== Option B: DIY
+
+After some initial experiments with +bosh-bootstrap+, I wanted to understand more about what it was doing, so ended up building my MicroBOSH manually.  If you're a sucker for punishment, like me, then read on ...
+
+Next, you'll need the BOSH command-line toolset.  Create a +Gemfile+ containing:
+
+,-- code.ruby --
+| source "https://rubygems.org"
+| source 'https://s3.amazonaws.com/bosh-jenkins-gems/'
+|
+| gem "bosh_cli", "~> 1.5.0.pre"
+| gem "bosh_cli_plugin_micro", "~> 1.5.0.pre"
+
+and run "+bundle install+" to install the bits you need.
+
+Create a directory to contain your microboshery:
+
+| inception$ mkdir microbosh
+| inception$ cd microbosh
+
+The latest MicroBOSH stemcell for AWS deployments can be downloaded as follows:
+
+| inception$ curl -O http://bosh-jenkins-artifacts.s3.amazonaws.com/micro-bosh-stemcell/aws/latest-micro-bosh-stemcell-aws.tgz
+
+Now, use the AWS console (or the API) to set some stuff up:
+
+  * create a keypair (e.g. "+mybosh+")
+  * create a security group (e.g. "+bosh+") that allows inbound connections on the following ports:
+    * +22+ (for SSH)
+    * +4222+ (for the "nats" pub/sub protocol)
+    * +6868+ (for the BOSH agent)
+    * +25250+ (for the BOSH blobstore)
+    * +25555+ (for the BOSH director)
+    * +25777+ (for the BOSH registry)
+    * +53+ (UDP, for DNS)
+  * allocate an Elastic IP address (e.g. A.B.C.D)
+
+Pick a name for your MicroBOSH, e.g. "+mybosh+", and create a configuration file for it:
+
+  | $ mkdir -p ~/microbosh/deployments/mybosh
+  | $ vi ~/microbosh/deployments/mybosh/micro_bosh.yml
+
+Here's an example +micro_bosh.yml+ file:
+
+  | name: mybosh
+  | logging:
+  |   level: DEBUG
+  | network:
+  |   type: dynamic
+  |   vip: A.B.C.D
+  | resources:
+  |   persistent_disk: 4096
+  |   cloud_properties:
+  |     instance_type: m1.medium
+  | cloud:
+  |   plugin: aws
+  |   properties:
+  |     aws:
+  |       access_key_id: YOURKEY
+  |       secret_access_key: YOURSECRET
+  |       region: ap-southeast-2
+  |       ec2_endpoint: ec2.ap-southeast-2.amazonaws.com
+  |       default_security_groups:
+  |       - bosh
+  |       default_key_name: mybosh
+  |       ec2_private_key: /home/ubuntu/.ssh/mybosh.pem
+  | apply_spec:
+  |   agent:
+  |     blobstore:
+  |       address: A.B.C.D
+  |     nats:
+  |       address: A.B.C.D
+  |   properties:
+  |     aws_registry:
+  |       address: A.B.C.D
+
+You'll need to :
+
+  * insert the appropriate AWS access/secret key
+  * change the region (unless "+ap-southeast-2+" is what you want)
+  * replace "A.B.C.D" with the Elastic IP address you allocated earlier
+
+Now it's time to crank up the MicroBOSH!
+
+  | $ cd ~/microbosh/deployments
+  | $ bosh micro deployment mybosh/
+  | Deployment set to '/home/ubuntu/microbosh/deployments/mybosh/micro_bosh.yml'
+  |
+  | $ bosh -n micro deploy ../latest-micro-bosh-stemcell-aws.tgz
+  | Verifying stemcell...
+  | ...
+  |
