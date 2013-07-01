@@ -34,7 +34,7 @@ At this point, you're welcome to take a shortcut by way of Dr Nic's {+bosh-boots
 
 After some initial experiments with +bosh-bootstrap+, I wanted to understand more about what it was doing, so ended up building my MicroBOSH manually, using +bosh-bootstrap+ as a guideline.  If you're a sucker for punishment, like me, then read on ...
 
-Next, you'll need the BOSH command-line toolset.  Create a +Gemfile+ containing:
+You'll need the BOSH command-line toolset.  Create a +Gemfile+ containing:
 
 ,-- code.ruby --
 | source "https://rubygems.org"
@@ -44,15 +44,6 @@ Next, you'll need the BOSH command-line toolset.  Create a +Gemfile+ containing:
 | gem "bosh_cli_plugin_micro", "~> 1.5.0.pre"
 
 and run "+bundle install+" to install the bits you need.
-
-Create a directory to contain your microboshery:
-
-| inception$ mkdir microbosh
-| inception$ cd microbosh
-
-The latest MicroBOSH stemcell for AWS deployments can be downloaded as follows:
-
-| inception$ curl -O http://bosh-jenkins-artifacts.s3.amazonaws.com/micro-bosh-stemcell/aws/latest-micro-bosh-stemcell-aws.tgz
 
 Now, use the AWS console (or the API) to set some stuff up:
 
@@ -112,7 +103,14 @@ You'll need to :
   * change the region (unless "+ap-southeast-2+" is what you want)
   * replace "A.B.C.D" with the Elastic IP address you allocated earlier
 
+Now, you need a MicroBOSH image to install, so download the latest MicroBOSH stemcell:
+
+| $ cd ~/microbosh
+| $ curl -O http://bosh-jenkins-artifacts.s3.amazonaws.com/micro-bosh-stemcell/aws/latest-micro-bosh-stemcell-aws.tgz
+
 Now it's time to crank up the MicroBOSH!
+
+Be patient; it takes a while.  Actually, you should consider installing a terminal multiplexer like +tmux+ on your inception server, and running this step within a +tmux+ session, just in case you get disconnected while the deployment is in progress.
 
   | $ cd ~/microbosh/deployments
   | $ bosh micro deployment mybosh/
@@ -146,11 +144,20 @@ Now it's time to crank up the MicroBOSH!
   | Deployment set to '/home/ubuntu/microbosh/deployments/mybosh/micro_bosh.yml'
   | Deployed `mybosh/micro_bosh.yml' to `https://mybosh:25555', took 01:18:06 to complete
 
-It takes a while, but a significant part of that is baking a new AMI from the raw stemcell.
-Take note of the AMI, since in future, you can use that to create other MicroBOSHes in the
-same AWS region, bypassing the stemcell download and conversion.
 
-Now that your MicroBOSH is running, you should be able to connect to it:
+Note the id of the AMI produced; you can use this for future MicroBOSH deployments in the same region, bypassing the stemcell download and conversion processes, e.g.
+
+  | $ bosh -n micro deploy ami-c51380ff
+
+Actually, if you're really lucky, Pivotal might have already baked a MicroBOSH AMI in your target region, in which case you can just use that, and save yourself a lot of time (and network traffic).
+
+  | $ AWS_REGION=us-east-1
+  | $ curl http://bosh-jenkins-artifacts.s3.amazonaws.com/last_successful_micro-bosh-stemcell-aws_ami_$AWS_REGION
+  | ami-427b092b
+
+At time of writing, they're only baking AMIs for +us-east-1+, so for other regions you'll have to resort to downloading the stemcell, as described above.
+
+Once your MicroBOSH is running, you should be able to connect to it:
 
   | $ bosh target https://55.251.169.14:25555
   | Target set to `mybosh'
