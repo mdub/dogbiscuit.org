@@ -30,7 +30,7 @@ At this point, you're welcome to take a shortcut by way of Dr Nic's {+bosh-boots
 
 === Option B: DIY
 
-After some initial experiments with +bosh-bootstrap+, I wanted to understand more about what it was doing, so ended up building my MicroBOSH manually.  If you're a sucker for punishment, like me, then read on ...
+After some initial experiments with +bosh-bootstrap+, I wanted to understand more about what it was doing, so ended up building my MicroBOSH manually, using +bosh-bootstrap+ as a guideline.  If you're a sucker for punishment, like me, then read on ...
 
 Next, you'll need the BOSH command-line toolset.  Create a +Gemfile+ containing:
 
@@ -117,6 +117,61 @@ Now it's time to crank up the MicroBOSH!
   | Deployment set to '/home/ubuntu/microbosh/deployments/mybosh/micro_bosh.yml'
   |
   | $ bosh -n micro deploy ../latest-micro-bosh-stemcell-aws.tgz
-  | Verifying stemcell...
-  | ...
   |
+  | Verifying stemcell...
+  | File exists and readable                                     OK
+  | Using cached manifest...
+  | Stemcell properties                                          OK
+  |
+  | Stemcell info
+  | -------------
+  | Name:    micro-bosh-stemcell
+  | Version: 776
+  |
+  | Deploy Micro BOSH
+  |   unpacking stemcell (00:00:16)
+  |   uploading stemcell (00:10:48)
+  |   creating VM from ami-c51380ff (00:00:32)
+  |   waiting for the agent (01:01:20)
+  |   create disk (00:04:16)
+  |   mount disk (00:00:06)
+  |   stopping agent services (00:00:01)
+  |   applying micro BOSH spec (00:00:19)
+  |   starting agent services (00:00:00)
+  |   waiting for the director (00:00:18)
+  | Done             11/11 01:18:06
+  | WARNING! Your target has been changed to `https://55.251.169.14:25555'!
+  | Deployment set to '/home/ubuntu/microbosh/deployments/mybosh/micro_bosh.yml'
+  | Deployed `mybosh/micro_bosh.yml' to `https://mybosh:25555', took 01:18:06 to complete
+
+It takes a while, but a significant part of that is baking a new AMI from the raw stemcell.
+Take note of the AMI, since in future, you can use that to create other MicroBOSHes in the
+same AWS region, bypassing the stemcell download and conversion.
+
+Now that your MicroBOSH is running, you should be able to connect to it:
+
+  | $ bosh target https://55.251.169.14:25555
+  | Target set to `mybosh'
+  | Your username: admin
+  | Enter password: *****
+  | Logged in as `admin'
+  |
+  | $ bosh status
+  | Config
+  |              /home/ubuntu/.bosh_config
+  |
+  | Director
+  |   Name       mybosh
+  |   URL        https://55.251.169.14:25555
+  |   Version    1.5.0.pre.776 (release:6191c586 bosh:6191c586)
+  |   User       admin
+  |   UUID       eac3cf02-845d-4817-aa55-7626a071304a
+  |   CPI        aws
+  |   dns        enabled (domain_name: microbosh)
+  |   compiled_package_cache disabled
+  |   snapshots  disabled
+  |
+  | Deployment
+  |   not set
+
+Stay tuned for the next exciting episode!
