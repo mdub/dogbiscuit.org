@@ -1,4 +1,4 @@
-weblog_uri = "http://dogbiscuit.org/mdub/weblog"
+weblog_uri = "http://www.dogbiscuit.org/mdub/weblog"
 
 entries = weblog_archive[0..19]
 updated_at = entries.map { |e| e.updated_at }.compact.max
