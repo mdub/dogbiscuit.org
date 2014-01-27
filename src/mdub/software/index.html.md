@@ -26,7 +26,7 @@ Older projects
 
 [BasketCase](http://github.com/mdub/basketcase) makes Rational ClearCase ever-so-slightly less painful to use.
 
-[Selenium](http://openqa.org/selenium/) is a web-testing tool.  I was an active contributer in the early days.
+[Selenium](http://www.seleniumhq.org/) is a web-testing tool.  I was an active contributer in the early days.
 
 [vDoclet](http://vdoclet.sourceforge.net/) is Java tool used to generate J2EE code, based on
 Javadoc comments.  I also contributed to [QDox](http://qdox.codehaus.org/) - a fast JavaDoc parser, used by vDoclet.
