@@ -1,0 +1,55 @@
+==================================================================
+https://keybase.io/woollyams
+--------------------------------------------------------------------
+
+I hereby claim:
+
+  * I am an admin of http://www.dogbiscuit.org
+  * I am woollyams (https://keybase.io/woollyams) on keybase.
+  * I have a public key ASCyECVgIfVp-fgnxiGVTIxKCBmUq-iyxD6KhYwcZjp2hgo
+
+To do so, I am signing this object:
+
+{
+  "body": {
+    "key": {
+      "eldest_kid": "0120e17518e83ce14d3556250b62f7742e7644a76281ac4429b05259d322cc34bd630a",
+      "host": "keybase.io",
+      "kid": "0120b210256021f569f9f827c621954c8c4a081994abe8b2c43e8a858c1c663a76860a",
+      "uid": "2890c782d8749987d24205ebc1389d19",
+      "username": "woollyams"
+    },
+    "merkle_root": {
+      "ctime": 1519292225,
+      "hash": "8b762fb52ae1977101ec10d05962ba34846c0ecf0178aa69e738874a49a90f997229049436b18d037ad2de3eae7a234609d4ff9546c6f4640596cd763347b8d4",
+      "hash_meta": "15bb52dbb80169c52cecfd2d377a08eb92dd1bc6dc122f9d1c9299add829d25f",
+      "seqno": 2136711
+    },
+    "service": {
+      "hostname": "www.dogbiscuit.org",
+      "protocol": "http:"
+    },
+    "type": "web_service_binding",
+    "version": 1
+  },
+  "client": {
+    "name": "keybase.io go client",
+    "version": "1.0.41"
+  },
+  "ctime": 1519292310,
+  "expire_in": 504576000,
+  "prev": "d115923cbe52a67e8a80da6fc1ee9f618af06d563dbca7fc4eda0ea77b5439c3",
+  "seqno": 49,
+  "tag": "signature"
+}
+
+which yields the signature:
+
+hKRib2R5hqhkZXRhY2hlZMOpaGFzaF90eXBlCqNrZXnEIwEgshAlYCH1afn4J8YhlUyMSggZlKvossQ+ioWMHGY6doYKp3BheWxvYWTFA0t7ImJvZHkiOnsia2V5Ijp7ImVsZGVzdF9raWQiOiIwMTIwZTE3NTE4ZTgzY2UxNGQzNTU2MjUwYjYyZjc3NDJlNzY0NGE3NjI4MWFjNDQyOWIwNTI1OWQzMjJjYzM0YmQ2MzBhIiwiaG9zdCI6ImtleWJhc2UuaW8iLCJraWQiOiIwMTIwYjIxMDI1NjAyMWY1NjlmOWY4MjdjNjIxOTU0YzhjNGEwODE5OTRhYmU4YjJjNDNlOGE4NThjMWM2NjNhNzY4NjBhIiwidWlkIjoiMjg5MGM3ODJkODc0OTk4N2QyNDIwNWViYzEzODlkMTkiLCJ1c2VybmFtZSI6Indvb2xseWFtcyJ9LCJtZXJrbGVfcm9vdCI6eyJjdGltZSI6MTUxOTI5MjIyNSwiaGFzaCI6IjhiNzYyZmI1MmFlMTk3NzEwMWVjMTBkMDU5NjJiYTM0ODQ2YzBlY2YwMTc4YWE2OWU3Mzg4NzRhNDlhOTBmOTk3MjI5MDQ5NDM2YjE4ZDAzN2FkMmRlM2VhZTdhMjM0NjA5ZDRmZjk1NDZjNmY0NjQwNTk2Y2Q3NjMzNDdiOGQ0IiwiaGFzaF9tZXRhIjoiMTViYjUyZGJiODAxNjljNTJjZWNmZDJkMzc3YTA4ZWI5MmRkMWJjNmRjMTIyZjlkMWM5Mjk5YWRkODI5ZDI1ZiIsInNlcW5vIjoyMTM2NzExfSwic2VydmljZSI6eyJob3N0bmFtZSI6Ind3dy5kb2diaXNjdWl0Lm9yZyIsInByb3RvY29sIjoiaHR0cDoifSwidHlwZSI6IndlYl9zZXJ2aWNlX2JpbmRpbmciLCJ2ZXJzaW9uIjoxfSwiY2xpZW50Ijp7Im5hbWUiOiJrZXliYXNlLmlvIGdvIGNsaWVudCIsInZlcnNpb24iOiIxLjAuNDEifSwiY3RpbWUiOjE1MTkyOTIzMTAsImV4cGlyZV9pbiI6NTA0NTc2MDAwLCJwcmV2IjoiZDExNTkyM2NiZTUyYTY3ZThhODBkYTZmYzFlZTlmNjE4YWYwNmQ1NjNkYmNhN2ZjNGVkYTBlYTc3YjU0MzljMyIsInNlcW5vIjo0OSwidGFnIjoic2lnbmF0dXJlIn2jc2lnxEDyy/C9z6Et0uLHkq+CM8XEFLORyUKITElzGyXXiK/abninGMs6gWi1zJMjURBl1yTv8XLhoM5WRYmSZDbJlEUDqHNpZ190eXBlIKRoYXNogqR0eXBlCKV2YWx1ZcQgg46gvqzhPSUw5OkKoSvnwEgn+lMdI0i2fNlja36ndqajdGFnzQICp3ZlcnNpb24B
+
+And finally, I am proving ownership of this host by posting or
+appending to this document.
+
+View my publicly-auditable identity here: https://keybase.io/woollyams
+
+==================================================================
