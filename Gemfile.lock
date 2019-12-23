@@ -20,7 +20,7 @@ GEM
       rack-livejs (>= 0.2.1)
       thin (>= 1.7.0)
       tilt (~> 2.0)
-    rack (2.0.7)
+    rack (2.0.8)
     rack-livejs (0.2.1)
       rack
     rake (12.3.3)
