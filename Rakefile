@@ -17,7 +17,7 @@ desc "Publish to dogbiscuit.org"
 task "push" => ["build", "upload"]
 
 task "upload" do
-  sh "rsync -av src/_out/ dogbiscuit-nfs:"
+  sh "rsync -av src/_out/ mdub_dogbiscuit@ssh.phx.nearlyfreespeech.net:"
 end
 
 desc "Start an IRB session, with project pre-loaded"
