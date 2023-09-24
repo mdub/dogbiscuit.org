@@ -4,7 +4,6 @@ layout: "../_layout.html.haml"
 
 - content_for[:head] += capture_haml do
   %link{ :rel=>"stylesheet", :href=>href("weblog.css"), :type=>"text/css" }
-  %link{ :rel=>"alternate", :href=>href("feed.atom"), :type=>"application/atom+xml" }
 
 - content_for[:header_icons] += capture_haml do
   %a{:href=>href("feed.atom"), :type=>"application/atom+xml"}
