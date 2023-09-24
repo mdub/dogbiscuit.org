@@ -9,6 +9,8 @@
     = include("_highlight-js.html")
     %link{ :href=>href("style.css"), :rel=>"stylesheet", :type=>"text/css" }
     ~ content_for[:head]
+    %meta{ property: "og:type", content: (@og_type || "website") }/
+    %meta{ property: "og:title", content: page.title }/
 
   %body{:class => @body_class}
 
